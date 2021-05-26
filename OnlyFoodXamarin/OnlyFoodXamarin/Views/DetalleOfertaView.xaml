@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlyFoodXamarin.Views.DetalleOfertaView"
+             xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical">
+                <StackLayout.BindingContext>
+                    <viewmodels:DetalleOfertaViewModal/>
+                </StackLayout.BindingContext>
+                <Image Source="{Binding Oferta.Imagen}"
+                       Aspect="AspectFill"/>
+                <Label Text="{Binding Oferta.Titulo}"
+                       FontSize="Title"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding Oferta.Precio}"
+                           FontSize="Large"
+                           HorizontalOptions="CenterAndExpand"/>
+                    <Label Text="{Binding Cadena.Nombre}"
+                           FontSize="Medium"
+                           HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Image Source="https://img.favpng.com/10/9/6/thumb-signal-font-awesome-computer-icons-clip-art-png-favpng-ZpSc5KfNAuc3ixKCZ4Zpe1qDi.jpg"
+                           HorizontalOptions="CenterAndExpand"
+                           WidthRequest="75"/>
+                    <Image Source="https://w7.pngwing.com/pngs/917/982/png-transparent-thumb-signal-computer-icons-font-awesome-like-button-dislike-text-hand-facebook-like-button.png"
+                           HorizontalOptions="CenterAndExpand"
+                           WidthRequest="175"/>
+                </StackLayout>
+                <Label Text="{Binding Oferta.Descripcion}"
+                       FontSize="Medium"/>
+                <Label Text="Comentarios"
+                       FontSize="Medium"
+                       HorizontalOptions="Center"/>
+                <Entry Placeholder="Escribe tu comentario"/>
+                <ListView ItemsSource="{Binding Comentarios}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Vertical">
+                                    <Label Text="{Binding Mensaje}"
+                                           FontSize="Small"/>
+                                    <Label Text="{Binding Username}"
+                                           FontSize="Subtitle"
+                                           HorizontalOptions="End"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>    
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

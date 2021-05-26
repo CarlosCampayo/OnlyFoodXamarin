@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlyFoodXamarin.Views.NuevaCadenaView"
+             xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout.BindingContext>
+                <viewmodels:NuevaCadenaViewModel/>
+            </StackLayout.BindingContext>
+            <ScrollView>
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Nueva Cadena"
+                           FontSize="Title"
+                           VerticalOptions="CenterAndExpand" 
+                           HorizontalOptions="CenterAndExpand" />
+                    <Label Text="Nombre"
+                           FontSize="Medium"
+                           HorizontalOptions="StartAndExpand"/>
+                    <Entry Text="{Binding Nombre}"
+                           HorizontalOptions="FillAndExpand"/>
+                    <Label Text="Descripcion"
+                           HeightRequest="50"
+                           FontSize="Medium"
+                           HorizontalOptions="StartAndExpand"/>
+                    <Entry Text="{Binding Descripcion}"
+                           HorizontalOptions="FillAndExpand"/>
+                    <Label Text="Imagen"
+                           FontSize="Medium"
+                           HorizontalOptions="StartAndExpand"/>
+                    <Entry Text="{Binding Imagen}"
+                           HorizontalOptions="FillAndExpand"/>
+                    <Label Text="Web"
+                           FontSize="Medium"
+                           HorizontalOptions="StartAndExpand"/>
+                    <Entry Text="{Binding Web}"
+                           HorizontalOptions="FillAndExpand"/>
+                    <Button Text="Crear cadena"
+                            />
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

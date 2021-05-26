@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlyFoodXamarin.Views.EliminarUsuarioBuscadorView"
+             xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout.BindingContext>
+                <viewmodels:EliminarUsuarioBuscadorViewModel/>
+            </StackLayout.BindingContext>
+            <StackLayout Orientation="Vertical">
+                <Label Text="Eliminar usuario"
+                        FontSize="Title"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+                <Label Text="Buscar usuario"
+                        FontSize="Medium"
+                        HorizontalOptions="StartAndExpand"/>
+                <Entry Text="{Binding Nombre}"
+                        Placeholder="Introduce el email del usuario"
+                        HorizontalOptions="FillAndExpand"/>
+                <Button Text="Buscar"
+                        />
+                <ScrollView>
+                    <StackLayout Orientation="Vertical">
+                        <ListView ItemsSource="{Binding Usuarios}" 
+                                  HasUnevenRows="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Vertical">
+                                            <Label Text="{Binding Email}"
+                                                    FontSize="Medium"
+                                                    HorizontalOptions="Center"/>
+                                            <Label Text="{Binding UserName}"
+                                                    FontSize="Medium"
+                                                    HorizontalOptions="End"/>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlyFoodXamarin.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,7 +11,7 @@ namespace OnlyFoodXamarin
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new EliminarUsuarioBuscadorView();
         }
 
         protected override void OnStart()
