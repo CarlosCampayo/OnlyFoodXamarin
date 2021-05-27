@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlyFoodXamarin.Views.OfertasView">
+    <!--xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels">-->
+
+
+    <ContentPage.Content>
+        <StackLayout>
+            <!--<StackLayout.BindingContext>
+                <viewmodels:OfertasViewModel />
+            </StackLayout.BindingContext>-->
+
+            <Label Text="Cadena ?"
+                   FontSize="Large"
+                   TextColor="Black"
+                   HorizontalTextAlignment="Center"
+                   Margin="0, 15, 0, 10"/>
+
+            <ListView ItemsSource="{Binding Ofertas}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Source="{Binding Imagen}" 
+                                           Grid.RowSpan="2"
+                                           Grid.Column="0"
+                                           HeightRequest="50"/>
+                                    <Label Text="{Binding Titulo}"
+                                           FontSize="Large"
+                                           Grid.Row="0"
+                                           Grid.Column="1"/>
+                                    <Label Text="{Binding Precio, StringFormat='{0} €'}"
+                                           Grid.Row="1"
+                                           Grid.Column="1"
+                                           FontSize="Caption"/>
+                                </Grid>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

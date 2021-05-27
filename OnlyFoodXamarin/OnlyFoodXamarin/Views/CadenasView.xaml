@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlyFoodXamarin.Views.CadenasView"
+             xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels"
+             xmlns:customcontrols="clr-namespace:OnlyFoodXamarin.CustomControls" 
+             x:Name="PageCadenas">
+
+
+    <ContentPage.BindingContext>
+        <viewmodels:CadenasViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <!-- TITLE -->
+            <Label Text="Elige la cadena que quieras ver sus ofertas"
+                   FontSize="Large"
+                   TextColor="Black"
+                   HorizontalTextAlignment="Center"
+                   Margin="0, 15, 0, 10"/>
+
+            <!-- CADENAS -->
+            <CollectionView ItemsSource="{Binding Cadenas}"
+                            SelectedItem="{Binding CadenaSeleccionada}"
+                            ItemsLayout="VerticalGrid, 2"
+                            SelectionMode="Single">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <!--<customcontrols:CustomViewCellControl SelectedItemBackgroundColor="White">-->
+                            <Grid Padding="10, 15">
+                                <!--Estructura Grid-->
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <!--Contenido-->
+                                <Image Source="{Binding Imagen}"
+                                       WidthRequest="100"
+                                       HeightRequest="100"
+                                       Grid.Column="1"/>
+                            </Grid>
+                        <!--</customcontrols:CustomViewCellControl>-->
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
