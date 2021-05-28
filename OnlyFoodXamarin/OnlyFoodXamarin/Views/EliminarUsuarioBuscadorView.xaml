@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlyFoodXamarin.Views.EliminarUsuarioBuscadorView"
+             xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels"
+             x:Name="PageEliminarUsuarioBuscador"
+             xmlns:local="clr-namespace:OnlyFoodXamarin"
+             BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=EliminarUsuarioBuscadorViewModel}">
+    <!--<ContentPage.BindingContext>
+        <viewmodels:EliminarUsuarioBuscadorViewModel/>
+    </ContentPage.BindingContext>-->
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+                <Label Text="Eliminar usuario"
+                        FontSize="Title"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
+                <Label Text="Buscar usuario"
+                        FontSize="Medium"
+                        HorizontalOptions="StartAndExpand"/>
+                <Entry Text="{Binding Filtro}"
+                        Placeholder="Introduce el email o username del usuario"
+                        HorizontalOptions="FillAndExpand"/>
+                <Button Text="Buscar"
+                        Command="{Binding BuscarUsuarios}"/>
+                <ScrollView>
+                    <StackLayout Orientation="Vertical">
+                        <ListView ItemsSource="{Binding Usuarios}" 
+                                  SelectedItem="{Binding UsuarioSeleccionado}"
+                                  HasUnevenRows="True">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Orientation="Horizontal"
+                                                     HorizontalOptions="Fill"
+                                                     Margin="10"
+                                                     Spacing="10"
+                                                     Padding="10"
+                                                     BackgroundColor="LightGray">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="260"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackLayout Grid.Column="0" Spacing="0" Padding="0,5">
+                                                    <Label Text="{Binding Email}"
+                                                        FontSize="Medium"
+                                                        HorizontalOptions="Start"/>
+                                                </StackLayout>
+                                                <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="4" 
+                                                                HorizontalOptions="End" Padding="0" VerticalOptions="End">
+                                                    <Label Text="{Binding UserName}"
+                                                        FontSize="Subtitle"
+                                                        HorizontalOptions="End"/>
+                                                    <Button Text="Eliminar" FontAttributes="Bold" 
+                                                        Style="{DynamicResource SocialStyle}" 
+                                                        Command="{Binding BindingContext.SeleccionarUsuarioEliminar, Source={x:Reference PageEliminarUsuarioBuscador}}"/>
+                                                </StackLayout>
+                                            </Grid>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlyFoodXamarin.Views.EliminarCadenaView"
+             xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels"
+             xmlns:local="clr-namespace:OnlyFoodXamarin"
+             BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=EliminarCadenaViewModel}">
+    <ContentPage.Content>
+        <StackLayout>
+            <!--<StackLayout.BindingContext>
+                <viewmodels:EliminarCadenaViewModel/>
+            </StackLayout.BindingContext>-->
+            <ScrollView>
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Eliminar Cadena"
+                           FontSize="Title"
+                           VerticalOptions="CenterAndExpand" 
+                           HorizontalOptions="CenterAndExpand" />
+                    <Label Text="Cadena"
+                           FontSize="Medium"
+                           HorizontalOptions="StartAndExpand"
+                           />
+                    <Picker ItemsSource="{Binding Cadenas}"
+                            Title="Selecciona una cadena"
+                            ItemDisplayBinding="{Binding Nombre}"
+                            SelectedItem="{Binding CadenaSeleccionda}"/>
+                    <Button Text="Eliminar cadena"
+                            Command="{Binding EliminarCadena}"/>
+                    <Label Text="{Binding Mensaje}"
+                           FontSize="Medium"
+                           TextColor="Green"
+                           HorizontalOptions="StartAndExpand"
+                           Margin="10"
+                           Padding="10"
+                           />
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
