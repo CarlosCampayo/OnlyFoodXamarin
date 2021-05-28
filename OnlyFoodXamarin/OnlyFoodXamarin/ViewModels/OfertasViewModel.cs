@@ -24,7 +24,7 @@ namespace OnlyFoodXamarin.ViewModels
             }
         }
 
-        public OfertasViewModel(int idcadena)
+        public OfertasViewModel(int? idcadena)
         {
             List<Oferta> ofertaslocal = new List<Oferta>()
             {
@@ -66,8 +66,20 @@ namespace OnlyFoodXamarin.ViewModels
                 }
             };
 
-            this.Ofertas = new ObservableCollection<Oferta>
-                (ofertaslocal.Where(x => x.IdCadena == idcadena));
+            if (idcadena != null)
+            {
+                this.Ofertas = new ObservableCollection<Oferta>
+                (ofertaslocal.Where(x => x.IdCadena == idcadena.Value));
+            }
+            else
+            {
+                this.Ofertas = new ObservableCollection<Oferta>
+                (ofertaslocal);
+            }
+            //this.Ofertas = new ObservableCollection<Oferta>(
+            //    (idcadena != null)
+            //    ? ofertaslocal.Where(x => x.IdCadena == idcadena.Value)
+            //    : ofertaslocal);
         }
     }
 }

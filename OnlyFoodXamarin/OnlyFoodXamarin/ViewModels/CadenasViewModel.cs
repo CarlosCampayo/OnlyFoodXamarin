@@ -53,10 +53,28 @@ namespace OnlyFoodXamarin.ViewModels
             {
                 this._CadenaSeleccionada = value;
                 // Solo usa el parametro si el command lo tiene declarado
-                this.MostrarOfertas.Execute(1);  
+                //this.MostrarOfertas.Execute(1);  
+                this.MostrarOfertasFunction();
                 OnPropertyChanged("CadenaSeleccionada");
             }
         }
+
+        private void MostrarOfertasFunction()
+        {
+            int? idcadena;
+            if (this.CadenaSeleccionada != null)
+            {
+                idcadena = this.CadenaSeleccionada.Id;
+                
+            } else
+            {
+                idcadena = null;
+            }
+            OfertasView view = new OfertasView();
+            view.BindingContext = new OfertasViewModel(idcadena);
+            Application.Current.MainPage.Navigation.PushModalAsync(view);
+        }
+
 
         public Command MostrarOfertas
         {
@@ -64,12 +82,11 @@ namespace OnlyFoodXamarin.ViewModels
             {
                 return new Command(() =>
                 {
-                    int idcadena = this.CadenaSeleccionada.Id;
-                    OfertasView view = new OfertasView();
-                    view.BindingContext = new OfertasViewModel(idcadena);
-                    Application.Current.MainPage.Navigation.PushModalAsync(view);
+                    this.MostrarOfertasFunction();
                 });
             }
         }
+
+        
     }
 }

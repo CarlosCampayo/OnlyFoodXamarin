@@ -20,6 +20,8 @@
                    HorizontalTextAlignment="Center"
                    Margin="0, 15, 0, 10"/>
 
+            <Button Text="Prueba" Command="{Binding MostrarOfertas}"/>
+
             <!-- CADENAS -->
             <CollectionView ItemsSource="{Binding Cadenas}"
                             SelectedItem="{Binding CadenaSeleccionada}"
