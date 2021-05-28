@@ -9,5 +9,10 @@ namespace OnlyFoodXamarin.Models
     {
         public List<VistaComentarios> VistaComentarios { get; set; }
         public int Ultimo { get; set; }
+
+        public static implicit operator List<object>(VistaComentariosListApi v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -2,12 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlyFoodXamarin.Views.NuevaCadenaView"
-             xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels">
+             xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels"
+             xmlns:local="clr-namespace:OnlyFoodXamarin"
+             BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=NuevaCadenaViewModel}">
+    <!--<ContentPage.BindingContext>
+        <viewmodels:NuevaCadenaViewModel/>
+    </ContentPage.BindingContext>-->
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout.BindingContext>
-                <viewmodels:NuevaCadenaViewModel/>
-            </StackLayout.BindingContext>
             <ScrollView>
                 <StackLayout Orientation="Vertical">
                     <Label Text="Nueva Cadena"
@@ -17,26 +19,32 @@
                     <Label Text="Nombre"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
-                    <Entry Text="{Binding Nombre}"
+                    <Entry Text="{Binding Cadena.Nombre}"
                            HorizontalOptions="FillAndExpand"/>
                     <Label Text="Descripcion"
-                           HeightRequest="50"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
-                    <Entry Text="{Binding Descripcion}"
+                    <Entry Text="{Binding Cadena.Descripcion}"
                            HorizontalOptions="FillAndExpand"/>
                     <Label Text="Imagen"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
-                    <Entry Text="{Binding Imagen}"
+                    <Entry Text="{Binding Cadena.Imagen}"
                            HorizontalOptions="FillAndExpand"/>
                     <Label Text="Web"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
-                    <Entry Text="{Binding Web}"
+                    <Entry Text="{Binding Cadena.Web}"
                            HorizontalOptions="FillAndExpand"/>
                     <Button Text="Crear cadena"
-                            />
+                            Command="{Binding CrearCadena}"/>
+                    <Label Text="{Binding Mensaje}"
+                           FontSize="Medium"
+                           TextColor="Green"
+                           HorizontalOptions="StartAndExpand"
+                           Margin="10"
+                           Padding="10"
+                           />
                 </StackLayout>
             </ScrollView>
         </StackLayout>

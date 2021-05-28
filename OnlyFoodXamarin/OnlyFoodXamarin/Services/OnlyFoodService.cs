@@ -42,8 +42,11 @@ namespace OnlyFoodXamarin.Services
                     await client.GetAsync(request);
                 if (response.IsSuccessStatusCode)
                 {
-                    T data = await response.Content.ReadAsAsync<T>();
-                    return data;
+                    //T data = await response.Content.ReadAsAsync<T>();
+                    //return data;
+                    String data =
+                        await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<T>(data);
                 }
                 else
                 {
@@ -63,8 +66,11 @@ namespace OnlyFoodXamarin.Services
                     await client.GetAsync(request);
                 if (response.IsSuccessStatusCode)
                 {
-                    T data = await response.Content.ReadAsAsync<T>();
-                    return data;
+                    //T data = await response.Content.ReadAsAsync<T>();
+                    //return data;
+                    String data =
+                        await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<T>(data);
                 }
                 else
                 {
@@ -86,8 +92,11 @@ namespace OnlyFoodXamarin.Services
                     await client.PostAsync(request, content);
                 if (response.IsSuccessStatusCode)
                 {
-                    T data = await response.Content.ReadAsAsync<T>();
-                    return data;
+                    //T data = await response.Content.ReadAsAsync<T>();
+                    //return data;
+                    String data =
+                        await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<T>(data);
                 }
                 else
                 {
@@ -110,8 +119,11 @@ namespace OnlyFoodXamarin.Services
                     await client.PostAsync(request, content);
                 if (response.IsSuccessStatusCode)
                 {
-                    T data = await response.Content.ReadAsAsync<T>();
-                    return data;
+                    //T data = await response.Content.ReadAsAsync<T>();
+                    //return data;
+                    String data =
+                        await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<T>(data);
                 }
                 else
                 {
@@ -134,8 +146,11 @@ namespace OnlyFoodXamarin.Services
                     await client.PutAsync(request, content);
                 if (response.IsSuccessStatusCode)
                 {
-                    T data = await response.Content.ReadAsAsync<T>();
-                    return data;
+                    //T data = await response.Content.ReadAsAsync<T>();
+                    //return data;
+                    String data =
+                        await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<T>(data);
                 }
                 else
                 {
@@ -158,8 +173,11 @@ namespace OnlyFoodXamarin.Services
                     await client.PutAsync(request, content);
                 if (response.IsSuccessStatusCode)
                 {
-                    T data = await response.Content.ReadAsAsync<T>();
-                    return data;
+                    //T data = await response.Content.ReadAsAsync<T>();
+                    //return data;
+                    String data =
+                        await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<T>(data);
                 }
                 else
                 {
@@ -192,9 +210,12 @@ namespace OnlyFoodXamarin.Services
                     await client.GetAsync(request);
                 if (response.IsSuccessStatusCode)
                 {
-                    List<Cadena> cadenas =
-                        await response.Content.ReadAsAsync<List<Cadena>>();
-                    return cadenas;
+                    //List<Cadena> cadenas =
+                    //    await response.Content.ReadAsAsync<List<Cadena>>();
+                    //return cadenas;
+                    String data =
+                        await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<List<Cadena>>(data);
                 }
                 else
                 {
@@ -215,9 +236,12 @@ namespace OnlyFoodXamarin.Services
                     await client.GetAsync(request);
                 if (response.IsSuccessStatusCode)
                 {
-                    Cadena cadena =
-                        await response.Content.ReadAsAsync<Cadena>();
-                    return cadena;
+                    //Cadena cadena =
+                    //    await response.Content.ReadAsAsync<Cadena>();
+                    //return cadena;
+                    String data =
+                        await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<Cadena>(data);
                 }
                 else
                 {
@@ -281,9 +305,12 @@ namespace OnlyFoodXamarin.Services
                     await client.GetAsync(request);
                 if (response.IsSuccessStatusCode)
                 {
-                    List<Oferta> ofertas =
-                        await response.Content.ReadAsAsync<List<Oferta>>();
-                    return ofertas;
+                    //List<Oferta> ofertas =
+                    //    await response.Content.ReadAsAsync<List<Oferta>>();
+                    //return ofertas;
+                    String data =
+                        await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<List<Oferta>>(data);
                 }
                 else
                 {
@@ -304,9 +331,12 @@ namespace OnlyFoodXamarin.Services
                     await client.GetAsync(request);
                 if (response.IsSuccessStatusCode)
                 {
-                    Oferta oferta =
-                        await response.Content.ReadAsAsync<Oferta>();
-                    return oferta;
+                    //Oferta oferta =
+                    //    await response.Content.ReadAsAsync<Oferta>();
+                    //return oferta;
+                    String data =
+                        await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<Oferta>(data);
                 }
                 else
                 {
@@ -330,9 +360,12 @@ namespace OnlyFoodXamarin.Services
                     await client.PostAsync(request, content);
                 if (response.IsSuccessStatusCode)
                 {
-                    OfertasListApi ofertaList =
-                        await response.Content.ReadAsAsync<OfertasListApi>();
-                    return ofertaList;
+                    //OfertasListApi ofertaList =
+                    //    await response.Content.ReadAsAsync<OfertasListApi>();
+                    //return ofertaList;
+                    String data =
+                        await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<OfertasListApi>(data);
                 }
                 else
                 {
@@ -355,9 +388,12 @@ namespace OnlyFoodXamarin.Services
                     await client.PostAsync(request, content);
                 if (response.IsSuccessStatusCode)
                 {
-                    OfertasListApi ofertaList =
-                        await response.Content.ReadAsAsync<OfertasListApi>();
-                    return ofertaList;
+                    //OfertasListApi ofertaList =
+                    //    await response.Content.ReadAsAsync<OfertasListApi>();
+                    //return ofertaList;
+                    String data =
+                        await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<OfertasListApi>(data);
                 }
                 else
                 {
@@ -380,9 +416,12 @@ namespace OnlyFoodXamarin.Services
                     await client.PostAsync(request, content);
                 if (response.IsSuccessStatusCode)
                 {
-                    List<Oferta> ofertaList =
-                        await response.Content.ReadAsAsync<List<Oferta>>();
-                    return ofertaList;
+                    //List<Oferta> ofertaList =
+                    //    await response.Content.ReadAsAsync<List<Oferta>>();
+                    //return ofertaList;
+                    String data =
+                        await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<List<Oferta>>(data);
                 }
                 else
                 {
@@ -402,9 +441,12 @@ namespace OnlyFoodXamarin.Services
                     await client.GetAsync(request);
                 if (response.IsSuccessStatusCode)
                 {
-                    List<Oferta> ofertas =
-                        await response.Content.ReadAsAsync<List<Oferta>>();
-                    return ofertas;
+                    //List<Oferta> ofertas =
+                    //    await response.Content.ReadAsAsync<List<Oferta>>();
+                    //return ofertas;
+                    String data =
+                        await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<List<Oferta>>(data);
                 }
                 else
                 {
@@ -425,9 +467,12 @@ namespace OnlyFoodXamarin.Services
                     await client.GetAsync(request);
                 if (response.IsSuccessStatusCode)
                 {
-                    List<Oferta> ofertas =
-                        await response.Content.ReadAsAsync<List<Oferta>>();
-                    return ofertas;
+                    //List<Oferta> ofertas =
+                    //    await response.Content.ReadAsAsync<List<Oferta>>();
+                    //return ofertas;
+                    String data =
+                        await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<List<Oferta>>(data);
                 }
                 else
                 {
@@ -448,9 +493,12 @@ namespace OnlyFoodXamarin.Services
                     await client.GetAsync(request);
                 if (response.IsSuccessStatusCode)
                 {
-                    List<Oferta> ofertas =
-                        await response.Content.ReadAsAsync<List<Oferta>>();
-                    return ofertas;
+                    //List<Oferta> ofertas =
+                    //    await response.Content.ReadAsAsync<List<Oferta>>();
+                    //return ofertas;
+                    String data =
+                        await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<List<Oferta>>(data);
                 }
                 else
                 {
@@ -592,7 +640,10 @@ namespace OnlyFoodXamarin.Services
                     await client.PostAsync(request, content);
                 if (response.IsSuccessStatusCode)
                 {
-                    return await response.Content.ReadAsAsync<Usuario>();
+                    //return await response.Content.ReadAsAsync<Usuario>();
+                    String data =
+                        await response.Content.ReadAsStringAsync();
+                    return JsonConvert.DeserializeObject<Usuario>(data);
                 }
                 else
                 {
@@ -760,7 +811,7 @@ namespace OnlyFoodXamarin.Services
         }
         #endregion
         #region TOKEN
-        public async Task<String> GetApiTokenAsync(String email, String password, String salt)
+        public async Task<String> GetApiTokenAsync(String email, String password)
         {
             String request = "Auth/Login/";
             LoginModel login = new LoginModel();

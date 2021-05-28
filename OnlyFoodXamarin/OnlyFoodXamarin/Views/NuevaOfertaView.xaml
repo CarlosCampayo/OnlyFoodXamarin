@@ -2,14 +2,16 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlyFoodXamarin.Views.NuevaOfertaView"
-             xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels">
+             xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels"
+             xmlns:local="clr-namespace:OnlyFoodXamarin"
+             BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=NuevaOfertaViewModel}">
+    <!--<ContentPage.BindingContext>
+        <viewmodels:NuevaOfertaViewModel/>
+    </ContentPage.BindingContext>-->
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout.BindingContext>
-                <viewmodels:NuevaOfertaViewModel/>
-            </StackLayout.BindingContext>
             <ScrollView>
-                    <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Vertical">
                     <Label Text="Nueva Oferta"
                            FontSize="Title"
                            VerticalOptions="CenterAndExpand" 
@@ -21,14 +23,15 @@
                     <Picker x:Name="selectcadenas"
                             ItemsSource="{Binding Cadenas}"
                             Title="Selecciona una cadena"
-                            ItemDisplayBinding="{Binding Nombre}"/>
-                    <Label Text="Titulo"
+                            SelectedItem="{Binding CadenaSeleccionada}"
+                            ItemDisplayBinding="{Binding Nombre}">
+                    </Picker>
+                        <Label Text="Titulo"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
                     <Entry Text="{Binding Titulo}"
                            HorizontalOptions="FillAndExpand"/>
                     <Label Text="Descripcion"
-                           HeightRequest="50"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
                     <Entry Text="{Binding Descripcion}"
@@ -54,7 +57,14 @@
                     <Entry Text="{Binding Web}"
                            HorizontalOptions="FillAndExpand"/>
                     <Button Text="Crear oferta"
-                            />
+                            Command="{Binding CrearOferta}"/>
+                    <Label Text="{Binding Mensaje}"
+                           FontSize="Medium"
+                           TextColor="Green"
+                           HorizontalOptions="StartAndExpand"
+                           Margin="10"
+                           Padding="10"
+                           />
                 </StackLayout>
             </ScrollView>
         </StackLayout>

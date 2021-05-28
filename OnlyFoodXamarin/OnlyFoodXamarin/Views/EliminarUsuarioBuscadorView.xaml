@@ -2,13 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlyFoodXamarin.Views.EliminarUsuarioBuscadorView"
-             xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels">
+             xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels"
+             x:Name="PageEliminarUsuarioBuscador"
+             xmlns:local="clr-namespace:OnlyFoodXamarin"
+             BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=EliminarUsuarioBuscadorViewModel}">
+    <!--<ContentPage.BindingContext>
+        <viewmodels:EliminarUsuarioBuscadorViewModel/>
+    </ContentPage.BindingContext>-->
     <ContentPage.Content>
-        <StackLayout>
-            <StackLayout.BindingContext>
-                <viewmodels:EliminarUsuarioBuscadorViewModel/>
-            </StackLayout.BindingContext>
-            <StackLayout Orientation="Vertical">
+        <StackLayout Orientation="Vertical">
                 <Label Text="Eliminar usuario"
                         FontSize="Title"
                         VerticalOptions="CenterAndExpand" 
@@ -16,25 +18,45 @@
                 <Label Text="Buscar usuario"
                         FontSize="Medium"
                         HorizontalOptions="StartAndExpand"/>
-                <Entry Text="{Binding Nombre}"
-                        Placeholder="Introduce el email del usuario"
+                <Entry Text="{Binding Filtro}"
+                        Placeholder="Introduce el email o username del usuario"
                         HorizontalOptions="FillAndExpand"/>
                 <Button Text="Buscar"
-                        />
+                        Command="{Binding BuscarUsuarios}"/>
                 <ScrollView>
                     <StackLayout Orientation="Vertical">
                         <ListView ItemsSource="{Binding Usuarios}" 
+                                  SelectedItem="{Binding UsuarioSeleccionado}"
                                   HasUnevenRows="True">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
-                                        <StackLayout Orientation="Vertical">
-                                            <Label Text="{Binding Email}"
-                                                    FontSize="Medium"
-                                                    HorizontalOptions="Center"/>
-                                            <Label Text="{Binding UserName}"
-                                                    FontSize="Medium"
-                                                    HorizontalOptions="End"/>
+                                        <StackLayout Orientation="Horizontal"
+                                                     HorizontalOptions="Fill"
+                                                     Margin="10"
+                                                     Spacing="10"
+                                                     Padding="10"
+                                                     BackgroundColor="LightGray">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="260"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackLayout Grid.Column="0" Spacing="0" Padding="0,5">
+                                                    <Label Text="{Binding Email}"
+                                                        FontSize="Medium"
+                                                        HorizontalOptions="Start"/>
+                                                </StackLayout>
+                                                <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="4" 
+                                                                HorizontalOptions="End" Padding="0" VerticalOptions="End">
+                                                    <Label Text="{Binding UserName}"
+                                                        FontSize="Subtitle"
+                                                        HorizontalOptions="End"/>
+                                                    <Button Text="Eliminar" FontAttributes="Bold" 
+                                                        Style="{DynamicResource SocialStyle}" 
+                                                        Command="{Binding BindingContext.SeleccionarUsuarioEliminar, Source={x:Reference PageEliminarUsuarioBuscador}}"/>
+                                                </StackLayout>
+                                            </Grid>
                                         </StackLayout>
                                     </ViewCell>
                                 </DataTemplate>
@@ -42,7 +64,6 @@
                         </ListView>
                     </StackLayout>
                 </ScrollView>
-            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

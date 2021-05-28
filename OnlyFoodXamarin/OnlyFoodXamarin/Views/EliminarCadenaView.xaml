@@ -2,12 +2,14 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlyFoodXamarin.Views.EliminarCadenaView"
-             xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels">
+             xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels"
+             xmlns:local="clr-namespace:OnlyFoodXamarin"
+             BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=EliminarCadenaViewModel}">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout.BindingContext>
+            <!--<StackLayout.BindingContext>
                 <viewmodels:EliminarCadenaViewModel/>
-            </StackLayout.BindingContext>
+            </StackLayout.BindingContext>-->
             <ScrollView>
                 <StackLayout Orientation="Vertical">
                     <Label Text="Eliminar Cadena"
@@ -18,12 +20,19 @@
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"
                            />
-                    <Picker x:Name="selectcadenas"
-                            ItemsSource="{Binding Cadenas}"
+                    <Picker ItemsSource="{Binding Cadenas}"
                             Title="Selecciona una cadena"
-                            ItemDisplayBinding="{Binding Nombre}"/>
+                            ItemDisplayBinding="{Binding Nombre}"
+                            SelectedItem="{Binding CadenaSeleccionda}"/>
                     <Button Text="Eliminar cadena"
-                            />
+                            Command="{Binding EliminarCadena}"/>
+                    <Label Text="{Binding Mensaje}"
+                           FontSize="Medium"
+                           TextColor="Green"
+                           HorizontalOptions="StartAndExpand"
+                           Margin="10"
+                           Padding="10"
+                           />
                 </StackLayout>
             </ScrollView>
         </StackLayout>

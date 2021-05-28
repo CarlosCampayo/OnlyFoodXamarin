@@ -6,9 +6,9 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Orientation="Vertical">
-                <StackLayout.BindingContext>
+                <!--<StackLayout.BindingContext>
                     <viewmodels:DetalleOfertaViewModal/>
-                </StackLayout.BindingContext>
+                </StackLayout.BindingContext>-->
                 <Image Source="{Binding Oferta.Imagen}"
                        Aspect="AspectFill"/>
                 <Label Text="{Binding Oferta.Titulo}"
@@ -17,9 +17,11 @@
                     <Label Text="{Binding Oferta.Precio}"
                            FontSize="Large"
                            HorizontalOptions="CenterAndExpand"/>
+                    <Label Text="{Binding Likes}" FontSize="Large"/>
                     <Label Text="{Binding Cadena.Nombre}"
                            FontSize="Medium"
                            HorizontalOptions="CenterAndExpand"/>
+                    <Label Text="{Binding DisLikes}" FontSize="Large"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal">
                     <Image Source="https://img.favpng.com/10/9/6/thumb-signal-font-awesome-computer-icons-clip-art-png-favpng-ZpSc5KfNAuc3ixKCZ4Zpe1qDi.jpg"

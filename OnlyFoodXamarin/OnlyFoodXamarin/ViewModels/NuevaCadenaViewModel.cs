@@ -1,63 +1,104 @@
 ﻿using OnlyFoodXamarin.Base;
+using OnlyFoodXamarin.Helpers;
 using OnlyFoodXamarin.Models;
+using OnlyFoodXamarin.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Forms;
 
 namespace OnlyFoodXamarin.ViewModels
 {
     public class NuevaCadenaViewModel: ViewModelBase
     {
-        private String _Nombre;
-        public String Nombre
+        OnlyFoodService service;
+        public NuevaCadenaViewModel(OnlyFoodService service)
         {
-            get { return _Nombre; }
+            //UploadService uploadService = new UploadService();
+            //service = new OnlyFoodService(uploadService);
+            this.service = service;
+        }
+        private Cadena _Cadena;
+        public Cadena Cadena
+        {
+            get { return _Cadena; }
             set
             {
-                this._Nombre = value;
-                OnPropertyChanged("Nombre");
+                this._Cadena = value;
+                OnPropertyChanged("Cadena");
             }
         }
-        private String _Descripcion;
-        public String Descripcion
+        //private String _Descripcion;
+        //public String Descripcion
+        //{
+        //    get { return _Descripcion; }
+        //    set
+        //    {
+        //        this._Descripcion = value;
+        //        OnPropertyChanged("Descripcion");
+        //    }
+        //}
+        //private String _Imagen;
+        //public String Imagen
+        //{
+        //    get { return _Imagen; }
+        //    set
+        //    {
+        //        this._Imagen = value;
+        //        OnPropertyChanged("Imagen");
+        //    }
+        //}
+        //private String _Web;
+        //public String Web
+        //{
+        //    get { return _Web; }
+        //    set
+        //    {
+        //        this._Web = value;
+        //        OnPropertyChanged("Web");
+        //    }
+        //}
+        private String _Mensaje;
+        public String Mensaje
         {
-            get { return _Descripcion; }
+            get { return _Mensaje; }
             set
             {
-                this._Descripcion = value;
-                OnPropertyChanged("Descripcion");
+                this._Mensaje = value;
+                OnPropertyChanged("Mensaje");
             }
         }
-        private String _Imagen;
-        public String Imagen
+        //private Cadena NewCadena()
+        //{
+        //    Cadena cadena = new Cadena();
+        //    cadena.Descripcion = this.Descripcion;
+        //    cadena.Imagen = this.Imagen;
+        //    cadena.Nombre = this.Nombre;
+        //    cadena.Web = this.Web;
+        //    return cadena;
+        //}
+        private void Limpiar()
         {
-            get { return _Imagen; }
-            set
-            {
-                this._Imagen = value;
-                OnPropertyChanged("Imagen");
-            }
+            //this.Nombre = "";
+            //this.Descripcion = "";
+            //this.Imagen = "";
+            //this.Web = "";
+            //this.Mensaje = "";
+            this.Cadena = new Cadena();
         }
-        private String _Web;
-        public String Web
+        public Command CrearCadena
         {
-            get { return _Web; }
-            set
-            {
-                this._Web = value;
-                OnPropertyChanged("Web");
+            get{
+                return new Command(async() =>
+                {
+                    //Cadena cadena = this.NewCadena();
+                    await this.service.NewCadenaAsync(Cadena.Nombre, Cadena.Descripcion, null, Cadena.Descripcion, Cadena.Descripcion);
+                    this.Mensaje = "Cadena creada: " + this.Cadena.Nombre;
+                    //llamada a api para crearla
+                    this.Limpiar();
+
+                });
             }
-        }
-        public Cadena NewCadena()
-        {
-            Cadena cadena = new Cadena()
-            {
-                Descripcion = this.Descripcion,
-                Imagen = this.Imagen,
-                Nombre = this.Nombre,
-                Web = this.Web
-            };
-            return cadena;
         }
     }
 }
