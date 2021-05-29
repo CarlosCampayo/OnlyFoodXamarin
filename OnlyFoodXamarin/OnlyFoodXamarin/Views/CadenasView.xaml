@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlyFoodXamarin.Views.CadenasView"
              xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels"
-             xmlns:customcontrols="clr-namespace:OnlyFoodXamarin.CustomControls" 
              x:Name="PageCadenas">
 
 
