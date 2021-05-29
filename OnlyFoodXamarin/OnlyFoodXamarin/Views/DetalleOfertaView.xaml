@@ -9,8 +9,8 @@
                 <!--<StackLayout.BindingContext>
                     <viewmodels:DetalleOfertaViewModal/>
                 </StackLayout.BindingContext>-->
-                <Image Source="{Binding Oferta.Imagen}"
-                       Aspect="AspectFill"/>
+                <Image Source="{Binding Oferta.Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}"
+                       Aspect="AspectFit"/>
                 <Label Text="{Binding Oferta.Titulo}"
                        FontSize="Title"/>
                 <StackLayout Orientation="Horizontal">

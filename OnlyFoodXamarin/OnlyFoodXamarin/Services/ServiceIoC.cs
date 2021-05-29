@@ -25,7 +25,24 @@ namespace OnlyFoodXamarin.Services
             builder.RegisterType<EliminarUsuarioBuscadorViewModel>();
             builder.RegisterType<NuevaCadenaViewModel>();
             builder.RegisterType<NuevaOfertaViewModel>();
+            builder.RegisterType<CadenasViewModel>();
+            builder.RegisterType<OfertasViewModel>();
+
             this.container = builder.Build();
+        }
+        public CadenasViewModel CadenasViewModel
+        {
+            get
+            {
+                return this.container.Resolve<CadenasViewModel>();
+            }
+        }
+        public OfertasViewModel OfertasViewModel
+        {
+            get
+            {
+                return this.container.Resolve<OfertasViewModel>();
+            }
         }
         public DetalleOfertaViewModal DetalleOfertaViewModal
         {

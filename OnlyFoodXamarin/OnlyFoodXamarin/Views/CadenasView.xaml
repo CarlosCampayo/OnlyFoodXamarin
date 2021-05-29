@@ -3,16 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlyFoodXamarin.Views.CadenasView"
              xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels"
-             xmlns:customcontrols="clr-namespace:OnlyFoodXamarin.CustomControls" 
-             x:Name="PageCadenas">
+             x:Name="PageCadenas"
+             xmlns:local="clr-namespace:OnlyFoodXamarin"
+             BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=CadenasViewModel}">
 
 
-    <ContentPage.BindingContext>
+    <!--<ContentPage.BindingContext>
         <viewmodels:CadenasViewModel />
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
 
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Orientation="Vertical">
             <!-- TITLE -->
             <Label Text="Elige la cadena que quieras ver sus ofertas"
                    FontSize="Large"
@@ -21,30 +22,34 @@
                    Margin="0, 15, 0, 10"/>
 
             <Button Text="Prueba" Command="{Binding MostrarOfertas}"/>
-
+            <ScrollView>
+                
             <!-- CADENAS -->
-            <CollectionView ItemsSource="{Binding Cadenas}"
-                            SelectedItem="{Binding CadenaSeleccionada}"
-                            ItemsLayout="VerticalGrid, 2"
-                            SelectionMode="Single">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <!--<customcontrols:CustomViewCellControl SelectedItemBackgroundColor="White">-->
-                            <Grid Padding="10, 15">
-                                <!--Estructura Grid-->
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <!--Contenido-->
-                                <Image Source="{Binding Imagen}"
-                                       WidthRequest="100"
-                                       HeightRequest="100"
-                                       Grid.Column="1"/>
-                            </Grid>
-                        <!--</customcontrols:CustomViewCellControl>-->
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                <CollectionView ItemsSource="{Binding Cadenas}"
+                                SelectedItem="{Binding CadenaSeleccionada}"
+                                SelectionMode="Single">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <!--<ViewCell>-->
+                            <!--<customcontrols:CustomViewCellControl SelectedItemBackgroundColor="White">-->
+                                <Grid Padding="10, 15">
+                                    <!--Estructura Grid-->
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <!--Contenido-->
+                                    <!--<Label Text="{Binding Nombre}"/>-->
+                                <Image Source="{Binding Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}"
+                                           WidthRequest="100"
+                                           HeightRequest="100"
+                                           Grid.Column="1"/>
+                                </Grid>
+                            <!--</ViewCell>-->
+                            <!--</customcontrols:CustomViewCellControl>-->
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
