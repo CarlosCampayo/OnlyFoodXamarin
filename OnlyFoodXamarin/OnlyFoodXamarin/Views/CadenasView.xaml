@@ -20,6 +20,10 @@
                    HorizontalTextAlignment="Center"
                    Margin="0, 15, 0, 10"/>
 
+            <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
+                               Color="Red"
+                               VerticalOptions="CenterAndExpand" />
+            
             <ScrollView>
             <!-- CADENAS -->
                 <CollectionView ItemsSource="{Binding Cadenas}"

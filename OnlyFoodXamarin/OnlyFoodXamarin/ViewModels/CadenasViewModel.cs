@@ -18,10 +18,23 @@ namespace OnlyFoodXamarin.ViewModels
         public CadenasViewModel(OnlyFoodService service)
         {
             this.service = service;
+            this._ShowLoading = true;
             Task.Run(async () =>
             {
                 await this.LoadCadenasAsync();
+                this.ShowLoading = false;
             });
+        }
+
+        private bool _ShowLoading;
+        public bool ShowLoading
+        {
+            get { return this._ShowLoading; }
+            set
+            {
+                this._ShowLoading = value;
+                OnPropertyChanged("ShowLoading");
+            }
         }
 
         private ObservableCollection<Cadena> _Cadenas;
@@ -54,6 +67,8 @@ namespace OnlyFoodXamarin.ViewModels
         {
             List<Cadena> cadenas = await this.service.GetCadenasAsync();
             this.Cadenas = new ObservableCollection<Cadena>(cadenas);
+            this._ShowLoading = false;
+
         }
 
         private async Task MostrarOfertasFunction()
