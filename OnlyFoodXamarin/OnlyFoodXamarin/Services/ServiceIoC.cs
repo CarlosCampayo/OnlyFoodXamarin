@@ -27,8 +27,17 @@ namespace OnlyFoodXamarin.Services
             builder.RegisterType<NuevaOfertaViewModel>();
             builder.RegisterType<CadenasViewModel>();
             builder.RegisterType<OfertasViewModel>();
+            builder.RegisterType<PerfilViewModel>();
+
 
             this.container = builder.Build();
+        }
+        public PerfilViewModel PerfilViewModel
+        {
+            get
+            {
+                return this.container.Resolve<PerfilViewModel>();
+            }
         }
         public CadenasViewModel CadenasViewModel
         {

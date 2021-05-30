@@ -28,6 +28,11 @@ namespace OnlyFoodXamarin
                 Titulo = "Ofertas",
                 PaginaHija = typeof(OfertasView)
             };
+            var perfilView = new MasterPageItem()
+            {
+                Titulo = "Perfil",
+                PaginaHija = typeof(PerfilView)
+            };
             var nuevaOfertaView = new MasterPageItem()
             {
                 Titulo = "Nueva oferta",
@@ -56,6 +61,7 @@ namespace OnlyFoodXamarin
             paginas.Add(cadenasView);
             paginas.Add(ofertasView);
             //paginas.Add(ofertasUsuarioView);
+            paginasUsuario.Add(perfilView);
             paginasUsuario.Add(nuevaOfertaView);
             paginasUsuario.Add(nuevaCadenaView);
             paginasUsuario.Add(eliminarCadenaView);
