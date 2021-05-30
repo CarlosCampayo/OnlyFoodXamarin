@@ -18,16 +18,16 @@ namespace OnlyFoodXamarin
             InitializeComponent();
             List<MasterPageItem> paginas = new List<MasterPageItem>();
             List<MasterPageItem> paginasUsuario = new List<MasterPageItem>();
-            //var cadenasView = new MasterPageItem()
-            //{
-            //    Titulo = "Cadenas",
-            //    PaginaHija = typeof(CadenasView)
-            //};
-            //var ofertasView = new MasterPageItem()
-            //{
-            //    Titulo = "Ofertas",
-            //    PaginaHija = typeof(OfertasView)
-            //};
+            var cadenasView = new MasterPageItem()
+            {
+                Titulo = "Cadenas",
+                PaginaHija = typeof(CadenasView)
+            };
+            var ofertasView = new MasterPageItem()
+            {
+                Titulo = "Ofertas",
+                PaginaHija = typeof(OfertasView)
+            };
             var nuevaOfertaView = new MasterPageItem()
             {
                 Titulo = "Nueva oferta",
@@ -53,11 +53,11 @@ namespace OnlyFoodXamarin
                 Titulo = "Eliminar usuario",
                 PaginaHija = typeof(EliminarUsuarioBuscadorView)
             };
-            //paginas.Add(cadenasView);
-            //paginas.Add(ofertasView);
+            paginas.Add(cadenasView);
+            paginas.Add(ofertasView);
             //paginas.Add(ofertasUsuarioView);
-            paginas.Add(nuevaOfertaView);
-            paginas.Add(nuevaCadenaView);
+            paginasUsuario.Add(nuevaOfertaView);
+            paginasUsuario.Add(nuevaCadenaView);
             paginasUsuario.Add(eliminarCadenaView);
             paginasUsuario.Add(eliminarUsuarioBuscadorView);
 
@@ -65,7 +65,7 @@ namespace OnlyFoodXamarin
             this.listviewMenuUsuario.ItemsSource = paginasUsuario;
 
             this.Detail=new NavigationPage(
-                (Page)Activator.CreateInstance(typeof(NuevaOfertaView)));
+                (Page)Activator.CreateInstance(typeof(CadenasView)));
             this.listviewMenu.ItemSelected += ListviewMenu_ItemSelected;
             this.listviewMenuUsuario.ItemSelected += ListviewMenu_ItemSelected;
         }
