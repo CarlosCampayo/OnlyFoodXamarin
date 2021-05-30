@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlyFoodXamarin.Views.OfertasUsuarioView"
+             xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels"
+             xmlns:local="clr-namespace:OnlyFoodXamarin"
+             BindingContext="{Binding Source={x:Static local:App.ServiceLocator}, 
+                Path=OfertasUsuarioViewModel}">
+    
+    
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical">
+            <!--<StackLayout.BindingContext>
+                <viewmodels:OfertasViewModel />
+            </StackLayout.BindingContext>-->
+
+            <Label Text="Mis Ofertas"
+                   FontSize="Large"
+                   TextColor="Black"
+                   HorizontalTextAlignment="Center"
+                   Margin="0, 15, 0, 10"/>
+            <ScrollView>
+                <StackLayout Orientation="Vertical">
+                    <CollectionView ItemsSource="{Binding Ofertas}"
+                                    SelectedItem="{Binding OfertaSeleccionada}"
+                                    SelectionMode="Single"
+                                    >
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <!--<ViewCell>-->
+                                <StackLayout>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Source="{Binding Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}" 
+                                                   Grid.RowSpan="2"
+                                                   Grid.Column="0"
+                                                   HeightRequest="50"/>
+                                        <Label Text="{Binding Titulo}"
+                                                   FontSize="Large"
+                                                   Grid.Row="0"
+                                                   Grid.Column="1"/>
+                                        <Label Text="{Binding Precio, StringFormat='{0} €'}"
+                                                   Grid.Row="1"
+                                                   Grid.Column="1"
+                                                   FontSize="Caption"/>
+                                    </Grid>
+                                </StackLayout>
+                                <!--</ViewCell>-->
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Button Text="Cargar más" 
+                            BackgroundColor="Red" 
+                            TextColor="Black"
+                            HorizontalOptions="FillAndExpand"
+                            Command="{Binding MostrarMasOfertas}"/>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

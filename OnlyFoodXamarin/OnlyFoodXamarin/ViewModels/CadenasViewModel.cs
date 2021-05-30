@@ -20,37 +20,8 @@ namespace OnlyFoodXamarin.ViewModels
             this.service = service;
             Task.Run(async () =>
             {
-                await this.LoadCadenas();
+                await this.LoadCadenasAsync();
             });
-            //List<Cadena> cadenasLocal = new List<Cadena>()
-            //{
-            //    new Cadena()
-            //    {
-            //        Id = 1,
-            //        Nombre = "Burguer King",
-            //        Descripcion = "Burger King, también conocida como BK, es una cadena de establecimientos de comida rápida estadounidense con sede central en Miami, fundada por James McLamore y David Edgerton, presente a nivel internacional y especializada principalmente en la elaboración de hamburguesas.",
-            //        Imagen = "https://onlyfood.blob.core.windows.net/imagenes/bklogo%20-%20copia.png",
-            //        Web = "https://www.burgerking.es/"
-            //    },
-            //    new Cadena()
-            //    {
-            //        Id = 2,
-            //        Nombre = "KFC",
-            //        Descripcion = "Burger King, también conocida como BK, es una cadena de establecimientos de comida rápida estadounidense con sede central en Miami, fundada por James McLamore y David Edgerton, presente a nivel internacional y especializada principalmente en la elaboración de hamburguesas.",
-            //        Imagen = "https://onlyfood.s3.amazonaws.com/kfc.png",
-            //        Web = "https://www.burgerking.es/"
-            //    },
-            //    new Cadena()
-            //    {
-            //        Id = 3,
-            //        Nombre = "McDonald's",
-            //        Descripcion = "Burger King, también conocida como BK, es una cadena de establecimientos de comida rápida estadounidense con sede central en Miami, fundada por James McLamore y David Edgerton, presente a nivel internacional y especializada principalmente en la elaboración de hamburguesas.",
-            //        Imagen = "https://onlyfood.s3.amazonaws.com/McDonaldsEmblema.png",
-            //        Web = "https://www.burgerking.es/"
-            //    },
-            //};
-
-            //this.Cadenas = new ObservableCollection<Cadena>(cadenasLocal);
         }
 
         private ObservableCollection<Cadena> _Cadenas;
@@ -59,12 +30,10 @@ namespace OnlyFoodXamarin.ViewModels
             set
             {
                 this._Cadenas = value;
-                // Solo usa el parametro si el command lo tiene declarado
-                //this.MostrarOfertas.Execute(1);  
-                //this.MostrarOfertasFunction();
                 OnPropertyChanged("Cadenas");
             }
         }
+
         private Cadena _CadenaSeleccionada;
         public Cadena CadenaSeleccionada
         {
@@ -72,39 +41,40 @@ namespace OnlyFoodXamarin.ViewModels
             set
             {
                 this._CadenaSeleccionada = value;
-                // Solo usa el parametro si el command lo tiene declarado
-                //this.MostrarOfertasFunction();
+                OnPropertyChanged("CadenaSeleccionada");
                 //Task.Run(async () =>
                 //{
                 //    await this.MostrarOfertasFunction();
                 //});
-                OnPropertyChanged("CadenaSeleccionada");
                 this.MostrarOfertas.Execute(1);
             }
         }
-        public async Task LoadCadenas()
+
+        public async Task LoadCadenasAsync()
         {
             List<Cadena> cadenas = await this.service.GetCadenasAsync();
             this.Cadenas = new ObservableCollection<Cadena>(cadenas);
         }
+
         private async Task MostrarOfertasFunction()
         {
-            //int? idcadena;
-            //if (this.CadenaSeleccionada != null)
-            //{
-            //    idcadena = this.CadenaSeleccionada.Id;
-                
-            //} else
-            //{
-            //    idcadena = null;
-            //}
-
             OfertasView view = new OfertasView();
+
             OfertasViewModel viewmodel = App.ServiceLocator.OfertasViewModel;
-            viewmodel.Filtro.IdCadenas.Add(this.CadenaSeleccionada.Id);
-            await viewmodel.LoadOfertas();
+
+            FiltroOfertas filtroOfertas = new FiltroOfertas();
+            filtroOfertas.IdCadenas.Add(this.CadenaSeleccionada.Id);
+            viewmodel.Filtro = filtroOfertas;
+            view.BindingContext = viewmodel;
+
+            // LISTA NULA
+            //viewmodel.Filtro.IdCadenas.Add(this.CadenaSeleccionada.Id);
+            //SOBRA, AL CAMBIAR EL FILTRO SE ACTUALIZA
+            //await viewmodel.LoadOfertas(); 
             //view.BindingContext = viewmodel;
-            Application.Current.MainPage.Navigation.PushModalAsync(view);
+            await Application.Current.MainPage.Navigation.PushModalAsync(view);
+            //await App.Current.MainPage.Navigation.PushAsync(view);
+
         }
 
         
@@ -118,7 +88,5 @@ namespace OnlyFoodXamarin.ViewModels
                 });
             }
         }
-
-        
     }
 }

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlyFoodXamarin.Views.DetalleOfertaUsuarioView"
+             xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical">
+                <Image Source="{Binding Oferta.Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}"
+                       Aspect="AspectFit"/>
+                <Label Text="{Binding Oferta.Titulo}"
+                       FontSize="Title"/>
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding Oferta.Precio, StringFormat='{0} €'}"
+                           FontSize="Large"
+                           HorizontalOptions="CenterAndExpand"/>
+                    <Label Text="{Binding Cadena.Nombre}"
+                           FontSize="Medium"
+                           HorizontalOptions="CenterAndExpand"/>
+                </StackLayout>
+
+                <Label Text="{Binding Oferta.Descripcion}"
+                       FontSize="Medium"/>
+
+                <Button Text="Editar" Command="{Binding Editar}"/>
+                <Button Text="Eliminar" Command="{Binding Eliminar}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

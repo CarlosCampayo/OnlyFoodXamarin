@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlyFoodXamarin.Views.EditarOfertaView"
+             xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels">
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Orientation="Vertical">
+                <Label Text="Editar Oferta"
+                           FontSize="Title"
+                           VerticalOptions="CenterAndExpand" 
+                           HorizontalOptions="CenterAndExpand" />
+
+                <Label Text="Cadena"
+                           FontSize="Medium"
+                           HorizontalOptions="StartAndExpand"
+                           />
+                <Grid x:Name="GridPicker"></Grid>
+                <Picker ItemsSource="{Binding Cadenas}"
+                            Title="Selecciona una cadena"
+                        SelectedIndex="1"
+                            ItemDisplayBinding="{Binding Nombre}">
+                    </Picker>
+
+                <Label Text="Titulo"
+                           FontSize="Medium"
+                           HorizontalOptions="StartAndExpand"/>
+                <Entry Text="{Binding Oferta.Titulo}"
+                           HorizontalOptions="FillAndExpand"/>
+
+                <Label Text="Descripcion"
+                           FontSize="Medium"
+                           HorizontalOptions="StartAndExpand"/>
+                <Entry Text="{Binding Oferta.Descripcion}"
+                        HorizontalOptions="FillAndExpand"/>
+
+                <Label Text="Imagen"
+                        FontSize="Medium"
+                        HorizontalOptions="StartAndExpand"/>
+                <Entry Text="{Binding Oferta.Imagen}"
+                        HorizontalOptions="FillAndExpand"/>
+                
+                <Label Text="Precio"
+                        FontSize="Medium"
+                        HorizontalOptions="StartAndExpand"/>
+                <Entry Text="{Binding Oferta.Precio}"
+                        HorizontalOptions="FillAndExpand"/>
+                
+                <Label Text="Codigo"
+                        FontSize="Medium"
+                        HorizontalOptions="StartAndExpand"/>
+                <Entry Text="{Binding Oferta.Codigo}"
+                        HorizontalOptions="FillAndExpand"/>
+                
+                <Label Text="Web"
+                        FontSize="Medium"
+                        HorizontalOptions="StartAndExpand"/>
+                <Entry Text="{Binding Oferta.Web}"
+                        HorizontalOptions="FillAndExpand"/>
+
+                <Button Text="Actualizar datos"
+                        Command="{Binding EditarOferta}"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

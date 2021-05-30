@@ -19,7 +19,7 @@ namespace OnlyFoodXamarin.Services
             ContainerBuilder builder = new ContainerBuilder();
             builder.RegisterType<OnlyFoodService>();
             builder.RegisterType<UploadService>();
-            builder.RegisterType<DetalleOfertaViewModal>();
+            builder.RegisterType<DetalleOfertaViewModel>();
             builder.RegisterType<EliminarCadenaViewModel>();
             builder.RegisterType<EliminarUsuarioViewModel>();
             builder.RegisterType<EliminarUsuarioBuscadorViewModel>();
@@ -28,6 +28,9 @@ namespace OnlyFoodXamarin.Services
             builder.RegisterType<CadenasViewModel>();
             builder.RegisterType<OfertasViewModel>();
             builder.RegisterType<PerfilViewModel>();
+            builder.RegisterType<OfertasUsuarioViewModel>();
+            builder.RegisterType<DetalleOfertaUsuarioViewModel>();
+            builder.RegisterType<EditarOfertaViewModel>();
 
 
             this.container = builder.Build();
@@ -53,11 +56,11 @@ namespace OnlyFoodXamarin.Services
                 return this.container.Resolve<OfertasViewModel>();
             }
         }
-        public DetalleOfertaViewModal DetalleOfertaViewModal
+        public DetalleOfertaViewModel DetalleOfertaViewModel
         {
             get
             {
-                return this.container.Resolve<DetalleOfertaViewModal>();
+                return this.container.Resolve<DetalleOfertaViewModel>();
             }
         }
         public EliminarCadenaViewModel EliminarCadenaViewModel
@@ -93,6 +96,28 @@ namespace OnlyFoodXamarin.Services
             get
             {
                 return this.container.Resolve<NuevaOfertaViewModel>();
+            }
+        }
+        public OfertasUsuarioViewModel OfertasUsuarioViewModel
+        {
+            get
+            {
+                return this.container.Resolve<OfertasUsuarioViewModel>();
+            }
+        }
+        public DetalleOfertaUsuarioViewModel DetalleOfertaUsuarioViewModel
+        {
+            get
+            {
+                return this.container.Resolve<DetalleOfertaUsuarioViewModel>();
+            }
+        }
+
+        public EditarOfertaViewModel EditarOfertaViewModel
+        {
+            get
+            {
+                return this.container.Resolve<EditarOfertaViewModel>();
             }
         }
     }

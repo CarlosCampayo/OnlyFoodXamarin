@@ -10,12 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace OnlyFoodXamarin.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class OfertasView : ContentPage
+    public partial class DetalleOfertaUsuarioView : ContentPage
     {
-        public OfertasView()
+        public DetalleOfertaUsuarioView()
         {
             InitializeComponent();
-            //BindingContext = App.ServiceLocator.OfertasViewModel;
         }
     }
 }

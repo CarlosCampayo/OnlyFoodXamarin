@@ -64,6 +64,6 @@
         </ContentPage>
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
-        <NavigationPage></NavigationPage>
+        <NavigationPage BarBackgroundColor="#e41b23"></NavigationPage>
     </MasterDetailPage.Detail>
 </MasterDetailPage>

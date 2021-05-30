@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlyFoodXamarin.Views.CadenasView"
              xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels"
-             x:Name="PageCadenas"
              xmlns:local="clr-namespace:OnlyFoodXamarin"
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=CadenasViewModel}">
 
@@ -21,9 +20,7 @@
                    HorizontalTextAlignment="Center"
                    Margin="0, 15, 0, 10"/>
 
-            <Button Text="Prueba" Command="{Binding MostrarOfertas}"/>
             <ScrollView>
-                
             <!-- CADENAS -->
                 <CollectionView ItemsSource="{Binding Cadenas}"
                                 SelectedItem="{Binding CadenaSeleccionada}"
@@ -38,7 +35,6 @@
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
                                     <!--Contenido-->
-                                    <!--<Label Text="{Binding Nombre}"/>-->
                                 <Image Source="{Binding Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}"
                                            WidthRequest="100"
                                            HeightRequest="100"

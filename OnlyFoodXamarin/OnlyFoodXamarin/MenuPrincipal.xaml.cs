@@ -38,11 +38,11 @@ namespace OnlyFoodXamarin
                 Titulo = "Nueva oferta",
                 PaginaHija = typeof(NuevaOfertaView)
             };
-            //var ofertasUsuarioView = new MasterPageItem()
-            //{
-            //    Titulo = "Mis ofertas",
-            //    PaginaHija = typeof(OfertasUsuarioView)
-            //};
+            var ofertasUsuarioView = new MasterPageItem()
+            {
+                Titulo = "Mis ofertas",
+                PaginaHija = typeof(OfertasUsuarioView)
+            };
             var nuevaCadenaView = new MasterPageItem()
             {
                 Titulo = "Nueva cadena",
@@ -60,9 +60,9 @@ namespace OnlyFoodXamarin
             };
             paginas.Add(cadenasView);
             paginas.Add(ofertasView);
-            //paginas.Add(ofertasUsuarioView);
             paginasUsuario.Add(perfilView);
             paginasUsuario.Add(nuevaOfertaView);
+            paginasUsuario.Add(ofertasUsuarioView);
             paginasUsuario.Add(nuevaCadenaView);
             paginasUsuario.Add(eliminarCadenaView);
             paginasUsuario.Add(eliminarUsuarioBuscadorView);

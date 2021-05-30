@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace OnlyFoodXamarin.ViewModels
 {
-    public class DetalleOfertaViewModal:ViewModelBase
+    public class DetalleOfertaViewModel:ViewModelBase
     {
         OnlyFoodService service;
-        public DetalleOfertaViewModal(OnlyFoodService service)
+        public DetalleOfertaViewModel(OnlyFoodService service)
         {
             //Oferta oferta = new Oferta()
             //{
