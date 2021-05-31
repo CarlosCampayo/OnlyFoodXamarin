@@ -1,6 +1,7 @@
 ﻿using OnlyFoodXamarin.Base;
 using OnlyFoodXamarin.Models;
 using OnlyFoodXamarin.Services;
+using OnlyFoodXamarin.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -86,11 +87,13 @@ namespace OnlyFoodXamarin.ViewModels
                 {
                     String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
                     await this.service.DeleteUserAsync(this.Usuario.Id, token);
-                    //LoginView view = new LoginView();
-                    //LoginViewModel viewmodel = App.ServiceLocator.LoginViewModel;
-                    //viewmodel.Usuario = this.Usuario;
-                    ////view.BindingContext = viewmodel;
-                    //Application.Current.MainPage.Navigation.PushModalAsync(view);
+                    LoginView view = new LoginView();
+                    App.ServiceLocator.SessionService.Password = null;
+                    App.ServiceLocator.SessionService.Token = null;
+                    App.ServiceLocator.SessionService.Usuario = null;
+                    var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
+                    masterDetailPage.Detail = new NavigationPage(view);
+                    masterDetailPage.IsPresented = false;
                 });
             }
         }

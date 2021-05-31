@@ -66,12 +66,6 @@ namespace OnlyFoodXamarin.ViewModels
             List<Usuario> usuarios = await this.service.GetUsuariosAsync(token);
             this.Usuarios = new ObservableCollection<Usuario>(usuarios);
         }
-        private async Task LoadUsuariosFiltro()
-        {
-            String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
-            List<Usuario> usuarios = await this.service.GetUsuariosAsync(token);
-            this.Usuarios = new ObservableCollection<Usuario>(usuarios);
-        }
         public Command SeleccionarUsuarioEliminar
         {
             get
@@ -82,7 +76,9 @@ namespace OnlyFoodXamarin.ViewModels
                     EliminarUsuarioView view = new EliminarUsuarioView();
                     viewModel.Usuario = this.UsuarioSeleccionado;
                     view.BindingContext = viewModel;
-                    Application.Current.MainPage.Navigation.PushModalAsync(view);
+                    var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
+                    masterDetailPage.Detail = new NavigationPage(view);
+                    masterDetailPage.IsPresented = false;
                 });
             }
         }

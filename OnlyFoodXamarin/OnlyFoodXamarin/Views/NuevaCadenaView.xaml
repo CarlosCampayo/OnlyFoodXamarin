@@ -12,9 +12,8 @@
         <StackLayout>
             <ScrollView>
                 <StackLayout Orientation="Vertical">
-                    <Label Text="Nueva Cadena"
+                    <Label Text="Registro"
                            FontSize="Title"
-                           VerticalOptions="CenterAndExpand" 
                            HorizontalOptions="CenterAndExpand" />
                     <Label Text="Nombre"
                            FontSize="Medium"

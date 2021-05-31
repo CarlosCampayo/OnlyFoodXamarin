@@ -51,7 +51,9 @@ namespace OnlyFoodXamarin.ViewModels
                 App.ServiceLocator.DetalleOfertaUsuarioViewModel;
             viewmodel.Oferta = this.OfertaSeleccionada;
             view.BindingContext = viewmodel;
-            await Application.Current.MainPage.Navigation.PushModalAsync(view);
+            var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
+            masterDetailPage.Detail = new NavigationPage(view);
+            masterDetailPage.IsPresented = false;
         }
 
         public Command MostrarDetalleOferta

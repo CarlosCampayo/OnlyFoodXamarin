@@ -43,9 +43,12 @@ namespace OnlyFoodXamarin.ViewModels
                     String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
                     await this.service.DeleteUserAsync(this.Usuario.Id, token);
                     EliminarUsuarioBuscadorViewModel viewModel = App.ServiceLocator.EliminarUsuarioBuscadorViewModel;
-                    viewModel.LoadUsuarios();
-                    //view.BindingContext = viewModel;
-                    Application.Current.MainPage.Navigation.PushModalAsync(new EliminarUsuarioBuscadorView());
+                    await viewModel.LoadUsuarios();
+                    EliminarUsuarioBuscadorView view = new EliminarUsuarioBuscadorView();
+                    view.BindingContext = viewModel;
+                    var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
+                    masterDetailPage.Detail = new NavigationPage(view);
+                    masterDetailPage.IsPresented = false;
                 });
             }
         }

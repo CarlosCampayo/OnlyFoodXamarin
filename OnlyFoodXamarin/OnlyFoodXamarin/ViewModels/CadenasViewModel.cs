@@ -72,9 +72,13 @@ namespace OnlyFoodXamarin.ViewModels
             //SOBRA, AL CAMBIAR EL FILTRO SE ACTUALIZA
             //await viewmodel.LoadOfertas(); 
             //view.BindingContext = viewmodel;
-            await Application.Current.MainPage.Navigation.PushModalAsync(view);
+            //await Application.Current.MainPage.Navigation.PushModalAsync(view);
             //await App.Current.MainPage.Navigation.PushAsync(view);
 
+            var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
+            masterDetailPage.Detail = new NavigationPage(
+                (Page)Activator.CreateInstance(typeof(OfertasView)));
+            masterDetailPage.IsPresented = false;
         }
 
         

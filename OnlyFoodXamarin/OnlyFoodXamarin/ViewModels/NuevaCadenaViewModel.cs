@@ -97,7 +97,6 @@ namespace OnlyFoodXamarin.ViewModels
                     this.Mensaje = "Cadena creada: " + this.Cadena.Nombre;
                     //llamada a api para crearla
                     this.Limpiar();
-
                 });
             }
         }
