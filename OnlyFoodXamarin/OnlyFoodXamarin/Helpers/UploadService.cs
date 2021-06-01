@@ -58,6 +58,21 @@ namespace OnlyFoodXamarin.Helpers
             }
             return name;
         }
+
+        public async Task<String> UploadImageBlobAzureAsycn(Stream stream, String name)
+        {
+            //String name = HelperToolkit.NormalizeName(fichero.FileName);
+            var blobClient = this.account.CreateCloudBlobClient();
+            var container = blobClient.GetContainerReference("imagenes");
+            //await container.CreateIfNotExistsAsync();
+            //container.SetPermissionsAsync(new BlobContainerPermissions()
+            //{
+            //    PublicAccess = BlobContainerPublicAccessType.Blob
+            //});
+            var blob = container.GetBlockBlobReference(name);
+            await blob.UploadFromStreamAsync(stream);
+            return name;
+        }
         //public async Task<bool> UploadFileAWSAsync(Stream stream, String filename)
         //{
         //    PutObjectRequest request = new PutObjectRequest()

@@ -7,24 +7,27 @@
 
     <!--xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels">-->
 
-
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <!--<StackLayout.BindingContext>
                 <viewmodels:OfertasViewModel />
             </StackLayout.BindingContext>-->
-
+            
             <Label Text="Ofertas"
                    FontSize="Large"
                    TextColor="Black"
                    HorizontalTextAlignment="Center"
                    Margin="0, 15, 0, 10"/>
+
+            <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
+                               Color="Red"
+                               VerticalOptions="CenterAndExpand" />
+            
             <ScrollView>
                 <StackLayout Orientation="Vertical">
                     <CollectionView ItemsSource="{Binding Ofertas}"
                                     SelectedItem="{Binding OfertaSeleccionada}"
-                                    SelectionMode="Single"
-                                    >
+                                    SelectionMode="Single">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <!--<ViewCell>-->

@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using OnlyFoodXamarin.Base;
+using OnlyFoodXamarin.Helpers;
 using OnlyFoodXamarin.Models;
 using OnlyFoodXamarin.Services;
 using OnlyFoodXamarin.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -69,33 +71,33 @@ namespace OnlyFoodXamarin.ViewModels
             }
         }
 
+        private Stream _ResultImagen;
+        public Stream ResultImagen
+        {
+            get { return _ResultImagen; }
+            set
+            {
+                this._ResultImagen = value;
+                OnPropertyChanged("ResultImagen");
+            }
+        }
+
         private async Task CargarCadenas()
         {
             List<Cadena> cadenas = await this.service.GetCadenasAsync();
             this.Cadenas = new ObservableCollection<Cadena>(cadenas);
-            //this.CrearPickerCadenas();
         }
-
-        //private void CrearPickerCadenas()
-        //{
-        //    Picker picker = new Picker
-        //    {
-
-        //        VerticalOptions = LayoutOptions.CenterAndExpand,
-        //        WidthRequest = 75,
-        //        HeightRequest = 45
-        //    };
-
-        //    picker.SelectedItem = this.CadenaSeleccionada;
-        //}
 
         private async Task EditarOfertaFunction()
         {
             String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
+            int idUsaurio = 2;
+
+            //this.ResultImagen.
             //await this.service.EditOfertaAsync(
             //    Oferta.Id, this.CadenaSeleccionada.Id, Oferta.Titulo,
-            //    Oferta.Descripcion, Nullable, Oferta.Codigo, Oferta.Precio,
-            //    Oferta.IdUsuario, token);
+            //    Oferta.Descripcion, this.ResultImagen, Oferta.Web, Oferta.Codigo, Oferta.Precio, 
+            //    idUsaurio, token); 
         }
 
         public Command EditarOferta
@@ -105,8 +107,9 @@ namespace OnlyFoodXamarin.ViewModels
                 return new Command(async () => 
                 {
                     await this.EditarOfertaFunction();
-                await Application.Current.MainPage.Navigation.PushModalAsync(new OfertasUsuarioView());
-
+                    //EditarOfertaViewModel vm = this;
+                    await Application.Current.MainPage.Navigation.PushModalAsync
+                        (new OfertasUsuarioView());
                 });
             }
         }

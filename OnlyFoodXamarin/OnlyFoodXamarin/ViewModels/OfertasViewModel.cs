@@ -15,6 +15,7 @@ namespace OnlyFoodXamarin.ViewModels
     public class OfertasViewModel : ViewModelBase
     {
         OnlyFoodService service;
+
         public OfertasViewModel(OnlyFoodService service)
         {
             this.service = service;
@@ -24,14 +25,28 @@ namespace OnlyFoodXamarin.ViewModels
                 this.Filtro.Preciomax = 100;
                 this.Filtro.Preciomin = 0;
             }
-            //if (this.Ofertas == null)
-            //{
-            //    Task.Run(async () =>
-            //    {
-            //        await this.LoadOfertas();
-            //    });
-            //}
+            if (this.Ofertas == null)
+            {
+                Task.Run(async () =>
+                {
+                    await this.LoadOfertas();
+                });
+            }
         }
+
+        #region ACTIVITY INDICATOR
+        private bool _ShowLoading;
+        public bool ShowLoading
+        {
+            get { return this._ShowLoading; }
+            set
+            {
+                this._ShowLoading = value;
+                OnPropertyChanged("ShowLoading");
+            }
+        }
+        #endregion
+
         private ObservableCollection<Oferta> _Ofertas;
         public ObservableCollection<Oferta> Ofertas
         {
@@ -72,7 +87,23 @@ namespace OnlyFoodXamarin.ViewModels
 
         private int _Ultimo;
 
-        
+        public OfertasViewModel(OnlyFoodService service)
+        {
+            this.service = service;
+            if (Filtro == null)
+            {
+                this.Filtro = new FiltroOfertas();
+                this.Filtro.Preciomax = 100;
+                this.Filtro.Preciomin = 0;
+            }
+            if (this.Ofertas == null)
+            {
+                Task.Run(async () =>
+                {
+                    await this.LoadOfertas();
+                });
+            }
+        }
 
         public async Task LoadOfertas()
         {

@@ -64,6 +64,12 @@
         </ContentPage>
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
-        <NavigationPage BarBackgroundColor="#e41b23"></NavigationPage>
+        <NavigationPage>
+            <NavigationPage.TitleView>
+                <StackLayout>
+                    <Label Text="FUCCK" />
+                </StackLayout>
+            </NavigationPage.TitleView>
+        </NavigationPage>
     </MasterDetailPage.Detail>
 </MasterDetailPage>

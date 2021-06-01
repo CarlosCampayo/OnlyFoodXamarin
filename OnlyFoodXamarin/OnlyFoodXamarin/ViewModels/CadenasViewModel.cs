@@ -24,6 +24,19 @@ namespace OnlyFoodXamarin.ViewModels
             });
         }
 
+        #region ACTIVITY INDICATOR
+        private bool _ShowLoading;
+        public bool ShowLoading
+        {
+            get { return this._ShowLoading; }
+            set
+            {
+                this._ShowLoading = value;
+                OnPropertyChanged("ShowLoading");
+            }
+        }
+        #endregion
+
         private ObservableCollection<Cadena> _Cadenas;
         public ObservableCollection<Cadena> Cadenas {
             get { return this._Cadenas; }
@@ -42,18 +55,19 @@ namespace OnlyFoodXamarin.ViewModels
             {
                 this._CadenaSeleccionada = value;
                 OnPropertyChanged("CadenaSeleccionada");
-                //Task.Run(async () =>
-                //{
-                //    await this.MostrarOfertasFunction();
-                //});
-                this.MostrarOfertas.Execute(1);
+                Task.Run(async () =>
+                {
+                    await this.MostrarOfertasFunction();
+                });
             }
         }
 
         public async Task LoadCadenasAsync()
         {
+            this.ShowLoading = true;
             List<Cadena> cadenas = await this.service.GetCadenasAsync();
             this.Cadenas = new ObservableCollection<Cadena>(cadenas);
+            this.ShowLoading = false;
         }
 
         private async Task MostrarOfertasFunction()
@@ -78,13 +92,13 @@ namespace OnlyFoodXamarin.ViewModels
             //view.BindingContext = viewmodel;
             //await Application.Current.MainPage.Navigation.PushModalAsync(view);
             //await App.Current.MainPage.Navigation.PushAsync(view);
+            //this.CadenaSeleccionada = null;
 
             var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
             masterDetailPage.Detail = new NavigationPage(view);
             masterDetailPage.IsPresented = false;
         }
 
-        
         public Command MostrarOfertas
         {
             get

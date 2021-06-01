@@ -23,9 +23,15 @@
                         HorizontalOptions="FillAndExpand"/>
                 <Button Text="Buscar"
                         Command="{Binding BuscarUsuarios}"/>
+            
+            
                 <ScrollView>
                     <StackLayout Orientation="Vertical">
-                        <ListView ItemsSource="{Binding Usuarios}" 
+                    <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
+                               Color="Red"
+                               VerticalOptions="CenterAndExpand" />
+                        
+                    <ListView ItemsSource="{Binding Usuarios}" 
                                   SelectedItem="{Binding UsuarioSeleccionado}"
                                   HasUnevenRows="True">
                             <ListView.ItemTemplate>
