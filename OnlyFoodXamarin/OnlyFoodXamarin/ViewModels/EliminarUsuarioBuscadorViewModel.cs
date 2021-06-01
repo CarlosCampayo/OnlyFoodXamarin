@@ -18,15 +18,9 @@ namespace OnlyFoodXamarin.ViewModels
         public EliminarUsuarioBuscadorViewModel(OnlyFoodService service)
         {
             this.service = service;
-            //this.Usuarios = new ObservableCollection<Usuario>();
-            //this.Usuarios.Add(new Usuario { Email = "a@a.es", UserName = "Pepe Ramirez" });
-            //this.Usuarios.Add(new Usuario { Email = "a@23a.es", UserName = "Pepe Ramirez2" });
-            //UploadService uploadService = new UploadService();
-            //service = new OnlyFoodService(uploadService);
-            //this.Usuarios = new ObservableCollection<Usuario>();
             Task.Run(async () =>
             {
-                await this.LoadUsuarios();
+                await this.LoadUsuariosAsync();
             });
         }
 
@@ -53,6 +47,7 @@ namespace OnlyFoodXamarin.ViewModels
                 OnPropertyChanged("Usuarios");
             }
         }
+
         private Usuario _UsuarioSeleccionado;
         public Usuario UsuarioSeleccionado
         {
@@ -61,6 +56,10 @@ namespace OnlyFoodXamarin.ViewModels
             {
                 this._UsuarioSeleccionado = value;
                 //this.SeleccionarUsuarioEliminar.Execute(1);
+                Task.Run(async() => {
+                    this.SeleccionarUsuarioAsync();
+                });
+                
                 OnPropertyChanged("UsuarioSeleccionado");
             }
         }
@@ -74,7 +73,8 @@ namespace OnlyFoodXamarin.ViewModels
                 OnPropertyChanged("Filtro");
             }
         }
-        public async Task LoadUsuarios()
+
+        public async Task LoadUsuariosAsync()
         {
             this.ShowLoading = true;
             String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
@@ -82,32 +82,34 @@ namespace OnlyFoodXamarin.ViewModels
             this.Usuarios = new ObservableCollection<Usuario>(usuarios);
             this.ShowLoading = false;
         }
-        public Command SeleccionarUsuarioEliminar
+
+        private async Task SeleccionarUsuarioAsync()
         {
-            get
+
+            EliminarUsuarioViewModel viewModel = App.ServiceLocator.EliminarUsuarioViewModel;
+            EliminarUsuarioView view = new EliminarUsuarioView();
+            viewModel.Usuario = this.UsuarioSeleccionado;
+            view.BindingContext = viewModel;
+            var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
+            masterDetailPage.Detail = new NavigationPage(view)
             {
-                return new Command(() =>
-                {
-                    EliminarUsuarioViewModel viewModel = App.ServiceLocator.EliminarUsuarioViewModel;
-                    EliminarUsuarioView view = new EliminarUsuarioView();
-                    viewModel.Usuario = this.UsuarioSeleccionado;
-                    view.BindingContext = viewModel;
-                    var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
-                    masterDetailPage.Detail = new NavigationPage(view);
-                    masterDetailPage.IsPresented = false;
-                });
-            }
+                BarBackgroundColor = Color.FromHex("e41b23")
+            };
+            masterDetailPage.IsPresented = false;
         }
+
         public Command BuscarUsuarios
         {
             get
             {
                 return new Command(async() =>
                 {
+                    this.ShowLoading = true;
                     //llamada de api de BuscarUsuario
                     String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
                     List<Usuario> usuarios = await this.service.GetUsuariosByEmailOrUsernameAsync(this.Filtro, token);
                     this.Usuarios = new ObservableCollection<Usuario>(usuarios);
+                    this.ShowLoading = false;
                 });
             }
         }

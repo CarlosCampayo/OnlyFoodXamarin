@@ -15,28 +15,35 @@
                     <Label Text="Registro"
                            FontSize="Title"
                            HorizontalOptions="CenterAndExpand" />
+                    
                     <Label Text="Nombre"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
                     <Entry Text="{Binding Cadena.Nombre}"
                            HorizontalOptions="FillAndExpand"/>
+                    
                     <Label Text="Descripcion"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
                     <Entry Text="{Binding Cadena.Descripcion}"
                            HorizontalOptions="FillAndExpand"/>
+                    
                     <Label Text="Imagen"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
-                    <Entry Text="{Binding Cadena.Imagen}"
-                           HorizontalOptions="FillAndExpand"/>
+                    <Button Text="Seleccionar Imagen" x:Name="btnpickimage"/>
+                    <Image x:Name="resultImg" />
+                    
                     <Label Text="Web"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
                     <Entry Text="{Binding Cadena.Web}"
                            HorizontalOptions="FillAndExpand"/>
+                    
+                    
                     <Button Text="Crear cadena"
                             Command="{Binding CrearCadena}"/>
+                    
                     <Label Text="{Binding Mensaje}"
                            FontSize="Medium"
                            TextColor="Green"

@@ -58,9 +58,9 @@
                                                     <Label Text="{Binding UserName}"
                                                         FontSize="Subtitle"
                                                         HorizontalOptions="End"/>
-                                                    <Button Text="Eliminar" FontAttributes="Bold" 
+                                                    <!--<Button Text="Eliminar" FontAttributes="Bold" 
                                                         Style="{DynamicResource SocialStyle}" 
-                                                        Command="{Binding BindingContext.SeleccionarUsuarioEliminar, Source={x:Reference PageEliminarUsuarioBuscador}}"/>
+                                                        Command="{Binding BindingContext.SeleccionarUsuarioEliminar, Source={x:Reference PageEliminarUsuarioBuscador}}"/>-->
                                                 </StackLayout>
                                             </Grid>
                                         </StackLayout>
