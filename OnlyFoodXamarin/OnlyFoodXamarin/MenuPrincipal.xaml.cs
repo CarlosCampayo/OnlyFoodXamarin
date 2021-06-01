@@ -18,6 +18,11 @@ namespace OnlyFoodXamarin
             InitializeComponent();
             List<MasterPageItem> paginas = new List<MasterPageItem>();
             List<MasterPageItem> paginasUsuario = new List<MasterPageItem>();
+            var loginView = new MasterPageItem()
+            {
+                Titulo = "Login",
+                PaginaHija = typeof(LoginView)
+            };
             var cadenasView = new MasterPageItem()
             {
                 Titulo = "Cadenas",
@@ -58,6 +63,8 @@ namespace OnlyFoodXamarin
                 Titulo = "Eliminar usuario",
                 PaginaHija = typeof(EliminarUsuarioBuscadorView)
             };
+            paginas.Add(loginView);
+
             paginas.Add(cadenasView);
             paginas.Add(ofertasView);
             paginasUsuario.Add(perfilView);
