@@ -1,4 +1,6 @@
-﻿using OnlyFoodXamarin.Views;
+﻿using OnlyFoodXamarin.Models;
+using OnlyFoodXamarin.ViewModels;
+using OnlyFoodXamarin.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,8 +89,27 @@ namespace OnlyFoodXamarin
         {
             var page= (MasterPageItem)e.SelectedItem;
             Type type = page.PaginaHija;
-            this.Detail = new NavigationPage(
-                (Page)Activator.CreateInstance(type));
+            if (type == typeof(OfertasView))
+            {
+                OfertasView view = new OfertasView();
+                OfertasViewModel viewmodel = App.ServiceLocator.OfertasViewModel;
+                FiltroOfertas filtroOfertas = new FiltroOfertas();
+                filtroOfertas.IdCadenas = new List<int>();
+                filtroOfertas.Preciomax = 100;
+                filtroOfertas.Preciomin = 0;
+                viewmodel.Filtro = filtroOfertas;
+                Task.Run(async () =>
+                {
+                    await viewmodel.LoadOfertas();
+                });
+                view.BindingContext = viewmodel;
+                Detail = new NavigationPage(view);
+            }
+            else
+            {
+                this.Detail = new NavigationPage(
+                                (Page)Activator.CreateInstance(type));
+            }
             //this.listviewMenu.SelectedItem = null;
             //this.listviewMenuUsuario.SelectedItem = null;
             this.IsPresented = false;

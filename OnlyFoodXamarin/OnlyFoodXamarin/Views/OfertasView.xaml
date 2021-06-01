@@ -56,12 +56,14 @@
                                 <!--</ViewCell>-->
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
-                    </CollectionView>
-                    <Button Text="Cargar más" 
+                        <CollectionView.Footer>
+                            <Button Text="Cargar más" 
                             BackgroundColor="Red" 
                             TextColor="Black"
                             HorizontalOptions="FillAndExpand"
                             Command="{Binding MostrarMasOfertas}"/>
+                        </CollectionView.Footer>
+                    </CollectionView>
                 </StackLayout>
             </ScrollView>
         </StackLayout>
