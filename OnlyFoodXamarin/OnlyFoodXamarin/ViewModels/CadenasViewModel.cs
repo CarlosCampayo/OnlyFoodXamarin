@@ -95,12 +95,10 @@ namespace OnlyFoodXamarin.ViewModels
             //this.CadenaSeleccionada = null;
 
             var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
-            masterDetailPage.Detail = new NavigationPage(
-                (Page)Activator.CreateInstance(typeof(OfertasView)))
+            masterDetailPage.Detail = new NavigationPage(view)
             {
                 BarBackgroundColor = Color.FromHex("#e41b23")
-            };
-            masterDetailPage.Detail = new NavigationPage(view);
+            }; 
             masterDetailPage.IsPresented = false;
         }
 
