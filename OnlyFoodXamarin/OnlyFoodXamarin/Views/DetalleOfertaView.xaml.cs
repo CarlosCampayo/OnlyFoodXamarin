@@ -14,7 +14,6 @@ namespace OnlyFoodXamarin.Views
     {
         public DetalleOfertaView()
         {
-            NavigationPage.SetHasNavigationBar(this, false);
             InitializeComponent();
         }
     }

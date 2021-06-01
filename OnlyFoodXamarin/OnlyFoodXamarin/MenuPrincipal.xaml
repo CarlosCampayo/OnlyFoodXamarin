@@ -64,7 +64,6 @@
         </ContentPage>
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
-        <NavigationPage>
-        </NavigationPage>
+        <NavigationPage></NavigationPage>
     </MasterDetailPage.Detail>
 </MasterDetailPage>

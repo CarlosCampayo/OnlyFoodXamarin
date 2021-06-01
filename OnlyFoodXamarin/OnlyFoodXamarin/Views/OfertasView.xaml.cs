@@ -15,7 +15,6 @@ namespace OnlyFoodXamarin.Views
         public OfertasView()
         {
             InitializeComponent();
-            //BindingContext = App.ServiceLocator.OfertasViewModel;
         }
     }
 }

@@ -5,14 +5,9 @@
              xmlns:local="clr-namespace:OnlyFoodXamarin"
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=OfertasViewModel}">
 
-    <!--xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels">-->
 
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
-            <!--<StackLayout.BindingContext>
-                <viewmodels:OfertasViewModel />
-            </StackLayout.BindingContext>-->
-            
             <Label Text="Ofertas"
                    FontSize="Large"
                    TextColor="Black"

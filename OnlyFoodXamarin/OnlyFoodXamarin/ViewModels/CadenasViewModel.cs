@@ -57,7 +57,7 @@ namespace OnlyFoodXamarin.ViewModels
                 OnPropertyChanged("CadenaSeleccionada");
                 Task.Run(async () =>
                 {
-                    await this.MostrarOfertasFunction();
+                    await this.MostrarOfertaAsync();
                 });
             }
         }
@@ -70,10 +70,9 @@ namespace OnlyFoodXamarin.ViewModels
             this.ShowLoading = false;
         }
 
-        private async Task MostrarOfertasFunction()
+        private async Task MostrarOfertaAsync()
         {
             OfertasView view = new OfertasView();
-
             OfertasViewModel viewmodel = App.ServiceLocator.OfertasViewModel;
 
             FiltroOfertas filtroOfertas = new FiltroOfertas();
@@ -85,32 +84,9 @@ namespace OnlyFoodXamarin.ViewModels
             await viewmodel.LoadOfertas();
             view.BindingContext = viewmodel;
 
-            // LISTA NULA
-            //viewmodel.Filtro.IdCadenas.Add(this.CadenaSeleccionada.Id);
-            //SOBRA, AL CAMBIAR EL FILTRO SE ACTUALIZA
-            //await viewmodel.LoadOfertas(); 
-            //view.BindingContext = viewmodel;
-            //await Application.Current.MainPage.Navigation.PushModalAsync(view);
-            //await App.Current.MainPage.Navigation.PushAsync(view);
-            //this.CadenaSeleccionada = null;
-
             var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
-            masterDetailPage.Detail = new NavigationPage(view)
-            {
-                BarBackgroundColor = Color.FromHex("#e41b23")
-            }; 
+            masterDetailPage.Detail = new NavigationPage(view);
             masterDetailPage.IsPresented = false;
-        }
-
-        public Command MostrarOfertas
-        {
-            get
-            {
-                return new Command(async() =>
-                {
-                    await this.MostrarOfertasFunction();
-                });
-            }
         }
     }
 }

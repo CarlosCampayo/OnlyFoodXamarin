@@ -6,10 +6,7 @@
              xmlns:local="clr-namespace:OnlyFoodXamarin"
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=CadenasViewModel}">
 
-    <!--<ContentPage.BindingContext>
-        <viewmodels:CadenasViewModel />
-    </ContentPage.BindingContext>-->
-
+    
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <!-- TITLE -->

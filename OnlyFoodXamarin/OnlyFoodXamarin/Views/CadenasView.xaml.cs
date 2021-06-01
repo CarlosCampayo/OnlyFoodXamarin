@@ -15,7 +15,6 @@ namespace OnlyFoodXamarin.Views
         public CadenasView()
         {
             InitializeComponent();
-            //BindingContext = App.ServiceLocator.CadenasViewModel;
         }
     }
 }

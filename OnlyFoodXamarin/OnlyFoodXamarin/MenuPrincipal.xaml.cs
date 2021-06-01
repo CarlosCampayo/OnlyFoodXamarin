@@ -80,12 +80,7 @@ namespace OnlyFoodXamarin
             this.listviewMenuUsuario.ItemsSource = paginasUsuario;
 
             this.Detail = new NavigationPage(
-                (Page)Activator.CreateInstance(typeof(CadenasView)))
-            {
-                BarBackgroundColor = Color.FromHex("#e41b23"),
-                Title = "ss"
-            };
-            this.Detail.IconImageSource = ImageSource.FromFile("logo.jpg");
+                (Page)Activator.CreateInstance(typeof(CadenasView)));
             this.listviewMenu.ItemSelected += ListviewMenu_ItemSelected;
             this.listviewMenuUsuario.ItemSelected += ListviewMenu_ItemSelected;
         }
@@ -110,10 +105,7 @@ namespace OnlyFoodXamarin
                         await viewmodel.LoadOfertas();
                     });
                     view.BindingContext = viewmodel;
-                    Detail = new NavigationPage(view)
-                    {
-                        BarBackgroundColor = Color.FromHex("#e41b23"),
-                    };
+                    Detail = new NavigationPage(view);
                 }
                 else
                 {

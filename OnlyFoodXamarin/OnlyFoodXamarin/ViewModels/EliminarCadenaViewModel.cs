@@ -20,18 +20,8 @@ namespace OnlyFoodXamarin.ViewModels
             {
                 await this.LoadCadenas();
             });
-            //Cadena cadena = new Cadena()
-            //{
-            //    Id = 1,
-            //    Nombre = "Burguer King",
-            //    Descripcion = "Burger King, también conocida como BK, ​ es una cadena de establecimientos de comida rápida estadounidense con sede central en Miami, fundada por James McLamore y David Edgerton, presente a nivel internacional y especializada principalmente en la elaboración de hamburguesas.",
-            //    Imagen = "https://onlyfood.blob.core.windows.net/imagenes/bklogo%20-%20copia.png",
-            //    Web = "https://www.burgerking.es/"
-            //};
-            //List<Cadena> listaCadenas = new List<Cadena>();
-            //listaCadenas.Add(cadena);
-            //this.Cadenas = new ObservableCollection<Cadena>(listaCadenas);
         }
+
         private ObservableCollection<Cadena> _Cadenas;
         public ObservableCollection<Cadena> Cadenas
         {
@@ -73,9 +63,7 @@ namespace OnlyFoodXamarin.ViewModels
             {
                 return new Command(async() =>
                 {
-                    //recoger el id de la cadena seleccionada
                     this.Mensaje = "Cadena eliminada";
-                    //llamada a api para eliminarla
                     String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
                     await this.service.DeleteCadenaAsync(this.CadenaSeleccionada.Id,token);
                     await this.LoadCadenas();
