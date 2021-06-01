@@ -18,14 +18,13 @@ namespace OnlyFoodXamarin.ViewModels
         public CadenasViewModel(OnlyFoodService service)
         {
             this.service = service;
-            this._ShowLoading = true;
             Task.Run(async () =>
             {
                 await this.LoadCadenasAsync();
-                this.ShowLoading = false;
             });
         }
 
+        #region ACTIVITY INDICATOR
         private bool _ShowLoading;
         public bool ShowLoading
         {
@@ -36,6 +35,7 @@ namespace OnlyFoodXamarin.ViewModels
                 OnPropertyChanged("ShowLoading");
             }
         }
+        #endregion
 
         private ObservableCollection<Cadena> _Cadenas;
         public ObservableCollection<Cadena> Cadenas {
@@ -55,20 +55,19 @@ namespace OnlyFoodXamarin.ViewModels
             {
                 this._CadenaSeleccionada = value;
                 OnPropertyChanged("CadenaSeleccionada");
-                //Task.Run(async () =>
-                //{
-                //    await this.MostrarOfertasFunction();
-                //});
-                this.MostrarOfertas.Execute(1);
+                Task.Run(async () =>
+                {
+                    await this.MostrarOfertasFunction();
+                });
             }
         }
 
         public async Task LoadCadenasAsync()
         {
+            this.ShowLoading = true;
             List<Cadena> cadenas = await this.service.GetCadenasAsync();
             this.Cadenas = new ObservableCollection<Cadena>(cadenas);
-            this._ShowLoading = false;
-
+            this.ShowLoading = false;
         }
 
         private async Task MostrarOfertasFunction()
@@ -89,10 +88,10 @@ namespace OnlyFoodXamarin.ViewModels
             //view.BindingContext = viewmodel;
             await Application.Current.MainPage.Navigation.PushModalAsync(view);
             //await App.Current.MainPage.Navigation.PushAsync(view);
+            //this.CadenaSeleccionada = null;
 
         }
 
-        
         public Command MostrarOfertas
         {
             get

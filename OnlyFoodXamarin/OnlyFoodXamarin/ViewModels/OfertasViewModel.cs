@@ -16,43 +16,6 @@ namespace OnlyFoodXamarin.ViewModels
     {
         OnlyFoodService service;
 
-        private ObservableCollection<Oferta> _Ofertas;
-        public ObservableCollection<Oferta> Ofertas
-        {
-            get { return this._Ofertas; }
-            set
-            {
-                this._Ofertas = value;
-                OnPropertyChanged("Ofertas");
-            }
-        }
-        private Oferta _OfertaSeleccionada;
-        public Oferta OfertaSeleccionada
-        {
-            get { return this._OfertaSeleccionada; }
-            set
-            {
-                this._OfertaSeleccionada = value;
-                OnPropertyChanged("OfertaSeleccionada");
-                this.MostrarDetalleOferta.Execute(1);
-                //Task.Run(async () =>
-                //{
-                //    await this.MostrarDetalleOfertaFunction();
-                //});
-            }
-        }
-        private FiltroOfertas _Filtro;
-        public FiltroOfertas Filtro
-        {
-            get { return this._Filtro; }
-            set
-            {
-                this._Filtro = value;
-                OnPropertyChanged("Filtro");
-            }
-        }
-        private int _Ultimo;
-
         public OfertasViewModel(OnlyFoodService service)
         {
             this.service = service;
@@ -71,11 +34,66 @@ namespace OnlyFoodXamarin.ViewModels
             }
         }
 
+        #region ACTIVITY INDICATOR
+        private bool _ShowLoading;
+        public bool ShowLoading
+        {
+            get { return this._ShowLoading; }
+            set
+            {
+                this._ShowLoading = value;
+                OnPropertyChanged("ShowLoading");
+            }
+        }
+        #endregion
+
+        private ObservableCollection<Oferta> _Ofertas;
+        public ObservableCollection<Oferta> Ofertas
+        {
+            get { return this._Ofertas; }
+            set
+            {
+                this._Ofertas = value;
+                OnPropertyChanged("Ofertas");
+            }
+        }
+
+        private Oferta _OfertaSeleccionada;
+        public Oferta OfertaSeleccionada
+        {
+            get { return this._OfertaSeleccionada; }
+            set
+            {
+                this._OfertaSeleccionada = value;
+                OnPropertyChanged("OfertaSeleccionada");
+                //this.MostrarDetalleOferta.Execute(1);
+                Task.Run(async () =>
+                {
+                    await this.MostrarDetalleOfertaFunction();
+                });
+            }
+        }
+        
+        private FiltroOfertas _Filtro;
+        public FiltroOfertas Filtro
+        {
+            get { return this._Filtro; }
+            set
+            {
+                this._Filtro = value;
+                OnPropertyChanged("Filtro");
+            }
+        }
+
+        private int _Ultimo;
+
         public async Task LoadOfertas()
         {
+            this.ShowLoading = true;
             OfertasListApi ofertas = await this.service.GetOfertasPaginadosAsync(this.Filtro,0,4);
             this.Ofertas = new ObservableCollection<Oferta>(ofertas.Ofertas);
             this._Ultimo = ofertas.Ultimo;
+            this.ShowLoading = false;
         }
 
         public async Task CargarMasOfertas()

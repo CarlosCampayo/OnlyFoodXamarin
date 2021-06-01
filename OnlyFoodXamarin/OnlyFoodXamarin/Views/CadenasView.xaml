@@ -6,7 +6,6 @@
              xmlns:local="clr-namespace:OnlyFoodXamarin"
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=CadenasViewModel}">
 
-
     <!--<ContentPage.BindingContext>
         <viewmodels:CadenasViewModel />
     </ContentPage.BindingContext>-->
@@ -28,7 +27,8 @@
             <!-- CADENAS -->
                 <CollectionView ItemsSource="{Binding Cadenas}"
                                 SelectedItem="{Binding CadenaSeleccionada}"
-                                SelectionMode="Single">
+                                SelectionMode="Single"
+                                x:Name="cvcadenas">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <!--<ViewCell>-->

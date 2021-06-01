@@ -15,6 +15,26 @@ namespace OnlyFoodXamarin.ViewModels
     {
         OnlyFoodService service;
 
+        public OfertasUsuarioViewModel(OnlyFoodService service)
+        {
+            this.ShowLoading = true;
+            this.service = service;
+            this.CargarMisOfertasFunction.Execute(1);
+        }
+
+        #region ACTIVITY INDICATOR
+        private bool _ShowLoading;
+        public bool ShowLoading
+        {
+            get { return this._ShowLoading; }
+            set
+            {
+                this._ShowLoading = value;
+                OnPropertyChanged("ShowLoading");
+            }
+        }
+        #endregion
+
         private ObservableCollection<Oferta> _Ofertas;
         public ObservableCollection<Oferta> Ofertas
         {
@@ -36,12 +56,6 @@ namespace OnlyFoodXamarin.ViewModels
                 OnPropertyChanged("OfertaSeleccionada");
                 this.MostrarDetalleOferta.Execute(1);
             }
-        }
-
-        public OfertasUsuarioViewModel(OnlyFoodService service)
-        {
-            this.service = service;
-            this.CargarMisOfertasFunction.Execute(1);
         }
 
         private async Task MostrarDetalleOfertaFunction()
@@ -80,6 +94,7 @@ namespace OnlyFoodXamarin.ViewModels
                 return new Command(async () =>
                 {
                     await this.CargarMisOfertas();
+                    this.ShowLoading = false;
                 });
             }
         }

@@ -24,11 +24,27 @@ namespace OnlyFoodXamarin.ViewModels
             //UploadService uploadService = new UploadService();
             //service = new OnlyFoodService(uploadService);
             //this.Usuarios = new ObservableCollection<Usuario>();
+            this.ShowLoading = true;
             Task.Run(async () =>
             {
                 await this.LoadUsuarios();
+                this.ShowLoading = false;
             });
         }
+
+        #region ACTIVITY INDICATOR
+        private bool _ShowLoading;
+        public bool ShowLoading
+        {
+            get { return this._ShowLoading; }
+            set
+            {
+                this._ShowLoading = value;
+                OnPropertyChanged("ShowLoading");
+            }
+        }
+        #endregion
+
         private ObservableCollection<Usuario> _Usuarios;
         public ObservableCollection<Usuario> Usuarios
         {

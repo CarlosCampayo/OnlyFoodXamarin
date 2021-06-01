@@ -70,8 +70,13 @@ namespace OnlyFoodXamarin
             this.listviewMenu.ItemsSource = paginas;
             this.listviewMenuUsuario.ItemsSource = paginasUsuario;
 
-            this.Detail=new NavigationPage(
-                (Page)Activator.CreateInstance(typeof(CadenasView)));
+            this.Detail = new NavigationPage(
+                (Page)Activator.CreateInstance(typeof(CadenasView)))
+            {
+                BarBackgroundColor = Color.FromHex("#e41b23"),
+                Title = "ss"
+            };
+            this.Detail.IconImageSource = ImageSource.FromFile("logo.jpg");
             this.listviewMenu.ItemSelected += ListviewMenu_ItemSelected;
             this.listviewMenuUsuario.ItemSelected += ListviewMenu_ItemSelected;
         }
@@ -79,12 +84,19 @@ namespace OnlyFoodXamarin
         private void ListviewMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var page= (MasterPageItem)e.SelectedItem;
-            Type type = page.PaginaHija;
-            this.Detail = new NavigationPage(
-                (Page)Activator.CreateInstance(type));
-            //this.listviewMenu.SelectedItem = null;
-            //this.listviewMenuUsuario.SelectedItem = null;
-            this.IsPresented = false;
+            if(page != null)
+            {
+                Type type = page.PaginaHija;
+                this.Detail = new NavigationPage(
+                    (Page)Activator.CreateInstance(type))
+                {
+                    BarBackgroundColor = Color.FromHex("#e41b23"),
+                };
+
+                this.IsPresented = false;
+                this.listviewMenu.SelectedItem = null;
+                this.listviewMenuUsuario.SelectedItem = null;
+            }
         }
     }
 }
