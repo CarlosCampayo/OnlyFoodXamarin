@@ -53,16 +53,6 @@ namespace OnlyFoodXamarin.ViewModels
             }
         }
 
-        //private Cadena NewCadena()
-        //{
-        //    Cadena cadena = new Cadena();
-        //    cadena.Descripcion = this.Descripcion;
-        //    cadena.Imagen = this.Imagen;
-        //    cadena.Nombre = this.Nombre;
-        //    cadena.Web = this.Web;
-        //    return cadena;
-        //}
-
         private void Limpiar()
         {
             this.Cadena = new Cadena();
@@ -73,7 +63,7 @@ namespace OnlyFoodXamarin.ViewModels
             //String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
             String token = App.ServiceLocator.SessionService.Token;
             await this.service.NewCadenaAsync(Cadena.Nombre, Cadena.Descripcion, this.Imagen, Cadena.Web, token);
-            this.Mensaje = "Cadena creada: " + this.Cadena.Nombre;
+            this.Mensaje = $"Cadena creada: {this.Cadena.Nombre}";
         }
 
         public Command CrearCadena

@@ -1,6 +1,7 @@
 ﻿using OnlyFoodXamarin.Base;
 using OnlyFoodXamarin.Models;
 using OnlyFoodXamarin.Services;
+using OnlyFoodXamarin.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,18 +21,8 @@ namespace OnlyFoodXamarin.ViewModels
             {
                 await this.LoadCadenas();
             });
-            //Cadena cadena = new Cadena()
-            //{
-            //    Id = 1,
-            //    Nombre = "Burguer King",
-            //    Descripcion = "Burger King, también conocida como BK, ​ es una cadena de establecimientos de comida rápida estadounidense con sede central en Miami, fundada por James McLamore y David Edgerton, presente a nivel internacional y especializada principalmente en la elaboración de hamburguesas.",
-            //    Imagen = "https://onlyfood.blob.core.windows.net/imagenes/bklogo%20-%20copia.png",
-            //    Web = "https://www.burgerking.es/"
-            //};
-            //List<Cadena> listaCadenas = new List<Cadena>();
-            //listaCadenas.Add(cadena);
-            //this.Cadenas = new ObservableCollection<Cadena>(listaCadenas);
         }
+
         private ObservableCollection<Cadena> _Cadenas;
         public ObservableCollection<Cadena> Cadenas
         {
@@ -42,6 +33,20 @@ namespace OnlyFoodXamarin.ViewModels
                 OnPropertyChanged("Cadenas");
             }
         }
+
+        #region ACTIVITY INDICATOR
+        private bool _ShowLoading;
+        public bool ShowLoading
+        {
+            get { return this._ShowLoading; }
+            set
+            {
+                this._ShowLoading = value;
+                OnPropertyChanged("ShowLoading");
+            }
+        }
+        #endregion
+
         private Cadena _CadenaSeleccionada;
         public Cadena CadenaSeleccionada
         {
@@ -52,6 +57,7 @@ namespace OnlyFoodXamarin.ViewModels
                 OnPropertyChanged("CadenaSeleccionada");
             }
         }
+
         private String _Mensaje;
         public String Mensaje
         {
@@ -62,16 +68,20 @@ namespace OnlyFoodXamarin.ViewModels
                 OnPropertyChanged("Mensaje");
             }
         }
+
         public async Task LoadCadenas()
         {
+            this.ShowLoading = true;
             List<Cadena> cadenas = await this.service.GetCadenasAsync();
             this.Cadenas = new ObservableCollection<Cadena>(cadenas);
+            this.ShowLoading = false;
         }
+
         public Command EliminarCadena
         {
             get
             {
-                return new Command(async() =>
+                return new Command(async(cadena) =>
                 {
                     String token = App.ServiceLocator.SessionService.Token;
                     int idUsaurio = App.ServiceLocator.SessionService.Usuario.Id;

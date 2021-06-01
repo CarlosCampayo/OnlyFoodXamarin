@@ -1,14 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="OnlyFoodXamarin.Views.DetalleOfertaView"
-             xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels">
+             x:Class="OnlyFoodXamarin.Views.DetalleOfertaView">
+   
+    
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Orientation="Vertical">
-                <!--<StackLayout.BindingContext>
-                    <viewmodels:DetalleOfertaViewModal/>
-                </StackLayout.BindingContext>-->
                 <Image Source="{Binding Oferta.Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}"
                        Aspect="AspectFit"/>
                 <Label Text="{Binding Oferta.Titulo}"

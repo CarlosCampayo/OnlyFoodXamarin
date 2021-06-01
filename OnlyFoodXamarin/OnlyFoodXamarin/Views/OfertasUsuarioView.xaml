@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlyFoodXamarin.Views.OfertasUsuarioView"
-             xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels"
              xmlns:local="clr-namespace:OnlyFoodXamarin"
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator}, 
                 Path=OfertasUsuarioViewModel}">
@@ -10,10 +9,6 @@
     
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
-            <!--<StackLayout.BindingContext>
-                <viewmodels:OfertasViewModel />
-            </StackLayout.BindingContext>-->
-
             <Label Text="Mis Ofertas"
                    FontSize="Large"
                    TextColor="Black"
@@ -28,13 +23,12 @@
                 <StackLayout Orientation="Vertical">
                     <CollectionView ItemsSource="{Binding Ofertas}"
                                     SelectedItem="{Binding OfertaSeleccionada}"
-                                    SelectionMode="Single"
-                                    >
+                                    SelectionMode="Single">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <!--<ViewCell>-->
                                 <StackLayout>
-                                    <Grid>
+                                    <Grid RowSpacing="30">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
                                             <RowDefinition Height="Auto"/>
@@ -61,12 +55,15 @@
                                 <!--</ViewCell>-->
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
-                    </CollectionView>
-                    <Button Text="Cargar más" 
+                        
+                        <CollectionView.Footer>
+                            <Button Text="Cargar más" 
                             BackgroundColor="Red" 
                             TextColor="Black"
                             HorizontalOptions="FillAndExpand"
                             Command="{Binding MostrarMasOfertas}"/>
+                        </CollectionView.Footer>
+                    </CollectionView>
                 </StackLayout>
             </ScrollView>
         </StackLayout>

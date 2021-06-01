@@ -43,7 +43,7 @@ namespace OnlyFoodXamarin.Helpers
         //}
         public async Task<String> UploadImageBlobAzureAsycn(IFormFile fichero)
         {
-            String name = HelperToolkit.NormalizeName(fichero.FileName);
+            String name = HelperToolkit.NormalizeName(fichero.FileName).Substring(0, 20);
             var blobClient = this.account.CreateCloudBlobClient();
             var container = blobClient.GetContainerReference("imagenes");
             //await container.CreateIfNotExistsAsync();

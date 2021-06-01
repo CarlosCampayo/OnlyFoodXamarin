@@ -2,12 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlyFoodXamarin.Views.NuevaCadenaView"
-             xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels"
              xmlns:local="clr-namespace:OnlyFoodXamarin"
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=NuevaCadenaViewModel}">
-    <!--<ContentPage.BindingContext>
-        <viewmodels:NuevaCadenaViewModel/>
-    </ContentPage.BindingContext>-->
+
+    
     <ContentPage.Content>
         <StackLayout>
             <ScrollView>
@@ -25,8 +23,8 @@
                     <Label Text="Descripcion"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
-                    <Entry Text="{Binding Cadena.Descripcion}"
-                           HorizontalOptions="FillAndExpand"/>
+                    <Editor Text="{Binding Cadena.Descripcion}"
+                           AutoSize="TextChanges"/>
                     
                     <Label Text="Imagen"
                            FontSize="Medium"

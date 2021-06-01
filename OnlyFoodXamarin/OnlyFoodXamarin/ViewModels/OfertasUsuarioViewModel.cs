@@ -18,10 +18,9 @@ namespace OnlyFoodXamarin.ViewModels
         public OfertasUsuarioViewModel(OnlyFoodService service)
         {
             this.service = service;
-            //this.CargarMisOfertas.Execute(1);
             Task.Run(async() =>
             {
-                this.CargarMisOfertasFunction();
+                this.CargarMisOfertasAsync();
             });
         }
 
@@ -57,11 +56,11 @@ namespace OnlyFoodXamarin.ViewModels
             {
                 this._OfertaSeleccionada = value;
                 OnPropertyChanged("OfertaSeleccionada");
-                this.MostrarDetalleOferta.Execute(1);
+                Task.Run(async() => await this.MostrarDetalleOfertaAsync());
             }
         }
 
-        private async Task MostrarDetalleOfertaFunction()
+        private async Task MostrarDetalleOfertaAsync()
         {
             DetalleOfertaUsuarioView view = new DetalleOfertaUsuarioView();
             DetalleOfertaUsuarioViewModel viewmodel =
@@ -69,24 +68,11 @@ namespace OnlyFoodXamarin.ViewModels
             viewmodel.Oferta = this.OfertaSeleccionada;
             view.BindingContext = viewmodel;
             var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
-            masterDetailPage.Detail = new NavigationPage(view) {
-                BarBackgroundColor = Color.FromHex("#e41b23")
-            };
+            masterDetailPage.Detail = new NavigationPage(view);
             masterDetailPage.IsPresented = false;
         }
 
-        public Command MostrarDetalleOferta
-        {
-            get
-            {
-                return new Command(async () =>
-                {
-                    await this.MostrarDetalleOfertaFunction();
-                });
-            }
-        }
-
-        public async Task CargarMisOfertasFunction()
+        public async Task CargarMisOfertasAsync()
         {
             this.ShowLoading = true;
             //String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
@@ -96,18 +82,6 @@ namespace OnlyFoodXamarin.ViewModels
             this.Ofertas = new ObservableCollection<Oferta>
                 (await this.service.GetOfertasByIdUserAsync(idUsuario, token));
             this.ShowLoading = false;
-        }
-
-        public Command CargarMisOfertas
-        {
-            get
-            {
-                return new Command(async () =>
-                {
-
-                    await this.CargarMisOfertasFunction();
-                });
-            }
         }
     }
 }

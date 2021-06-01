@@ -19,7 +19,7 @@ namespace OnlyFoodXamarin.ViewModels
             this.service = service;
             Task.Run(async () =>
             {
-                await this.CargarCadena();
+                await this.CargarCadenaAsync();
             });
         }
 
@@ -45,12 +45,12 @@ namespace OnlyFoodXamarin.ViewModels
             }
         }
 
-        private async Task CargarCadena()
+        private async Task CargarCadenaAsync()
         {
             this.Cadena = await this.service.GetCadenaByIdAsync(this.Oferta.IdCadena);
         }
 
-        private async Task EditarFunction()
+        private async Task EditarAsync()
         {
             EditarOfertaView view = new EditarOfertaView();
             EditarOfertaViewModel viewmodel = App.ServiceLocator.EditarOfertaViewModel;
@@ -59,23 +59,25 @@ namespace OnlyFoodXamarin.ViewModels
             view.BindingContext = viewmodel;
             await Application.Current.MainPage.Navigation.PushModalAsync(view);
         }
+
         public Command Editar
         {
             get
             {
                 return new Command(async () =>
                 {
-                    await this.EditarFunction();
+                    await this.EditarAsync();
                 });
             }
         }
 
-        private async Task EliminarFunction()
+        private async Task EliminarAsync()
         {
             //String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
             String token = App.ServiceLocator.SessionService.Token;
 
             await this.service.DeleteOfertaAsync(this.Oferta.Id, token);
+            await Application.Current.MainPage.Navigation.PushModalAsync(new OfertasUsuarioView());
         }
         public Command Eliminar
         {
@@ -83,9 +85,7 @@ namespace OnlyFoodXamarin.ViewModels
             {
                 return new Command(async () =>
                 {
-                    await this.EliminarFunction();
-                    await Application.Current.MainPage.Navigation.PushModalAsync(new OfertasUsuarioView());
-
+                    await this.EliminarAsync();
                 });
             }
         }
