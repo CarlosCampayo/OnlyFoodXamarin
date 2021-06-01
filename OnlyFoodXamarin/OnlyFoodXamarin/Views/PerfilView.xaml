@@ -28,6 +28,8 @@
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Button Text="Cambiar contraseña"  Command="{Binding CambiarPassword}" />
                 <Button Text="Eliminar cuenta" Command="{Binding EliminarCuenta}"/>
+                <Button Text="Cerrar sesión" Command="{Binding CerrarSesion}"/>
+
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using OnlyFoodXamarin.ViewModels;
 using OnlyFoodXamarin.Helpers;
+using OnlyFoodXamarin.Repositories;
 
 namespace OnlyFoodXamarin.Services
 {
@@ -19,6 +20,8 @@ namespace OnlyFoodXamarin.Services
             ContainerBuilder builder = new ContainerBuilder();
             builder.RegisterType<OnlyFoodService>();
             builder.RegisterType<UploadService>();
+            builder.RegisterType<RepositoryRealm>();
+
             builder.RegisterType<DetalleOfertaViewModel>();
             builder.RegisterType<EliminarCadenaViewModel>();
             builder.RegisterType<EliminarUsuarioViewModel>();

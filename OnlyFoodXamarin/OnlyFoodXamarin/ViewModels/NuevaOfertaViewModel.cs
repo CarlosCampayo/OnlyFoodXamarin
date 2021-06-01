@@ -93,8 +93,10 @@ namespace OnlyFoodXamarin.ViewModels
 
         private async Task CrearOfertaAsync()
         {
-            String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
-            int idUsaurio = 2;
+            //String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
+            String token = App.ServiceLocator.SessionService.Token;
+
+            int idUsaurio = App.ServiceLocator.SessionService.Usuario.Id;
 
             this.Oferta.IdCadena = this.CadenaSeleccionada.Id;
             this.Oferta.IdUsuario = idUsaurio;

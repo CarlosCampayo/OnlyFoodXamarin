@@ -72,7 +72,9 @@ namespace OnlyFoodXamarin.ViewModels
 
         private async Task EliminarFunction()
         {
-            String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
+            //String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
+            String token = App.ServiceLocator.SessionService.Token;
+
             await this.service.DeleteOfertaAsync(this.Oferta.Id, token);
         }
         public Command Eliminar

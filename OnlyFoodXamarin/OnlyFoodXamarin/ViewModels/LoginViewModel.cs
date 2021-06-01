@@ -1,5 +1,6 @@
 ﻿using OnlyFoodXamarin.Base;
 using OnlyFoodXamarin.Models;
+using OnlyFoodXamarin.Repositories;
 using OnlyFoodXamarin.Services;
 using OnlyFoodXamarin.Views;
 using System;
@@ -12,9 +13,11 @@ namespace OnlyFoodXamarin.ViewModels
     public class LoginViewModel : ViewModelBase
     {
         OnlyFoodService service;
-        public LoginViewModel(OnlyFoodService service)
+        RepositoryRealm repositoryRealm;
+        public LoginViewModel(OnlyFoodService service,RepositoryRealm repositoryRealm)
         {
             this.service = service;
+            this.repositoryRealm = repositoryRealm;
             this.Usuario = new LoginModel();
         }
         private LoginModel _Usuario;
@@ -48,13 +51,17 @@ namespace OnlyFoodXamarin.ViewModels
                     if (user != null)
                     {
                         String token = await this.service.GetApiTokenAsync(this.Usuario.Email, this.Usuario.Password);
+                        this.repositoryRealm.InsertarUsuario(user.Id, user.Email, this.Usuario.Password);
                         App.ServiceLocator.SessionService.Token = token;
                         App.ServiceLocator.SessionService.Password = this.Usuario.Password;
                         App.ServiceLocator.SessionService.Usuario = user;
                         var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
-                        masterDetailPage.Detail = new NavigationPage(
-                            (Page)Activator.CreateInstance(typeof(CadenasView)));
-                        masterDetailPage.IsPresented = false;
+                        //masterDetailPage.Detail = new NavigationPage(
+                        //    (Page)Activator.CreateInstance(typeof(CadenasView)));
+                        //masterDetailPage.Detail = new NavigationPage(new CadenasView());
+                        //masterDetailPage.IsPresented = false;
+                        //await Application.Current.MainPage.Navigation.PushAsync(new MenuPrincipal());
+                        App.LoadMainPage();
                         //await App.Current.MainPage.Navigation.PushAsync(new CadenasView());
                     }
                     else

@@ -1,4 +1,6 @@
 ﻿using OnlyFoodXamarin.Models;
+using OnlyFoodXamarin.Repositories;
+using OnlyFoodXamarin.Services;
 using OnlyFoodXamarin.ViewModels;
 using OnlyFoodXamarin.Views;
 using System;
@@ -18,6 +20,8 @@ namespace OnlyFoodXamarin
         public MenuPrincipal()
         {
             InitializeComponent();
+            RepositoryRealm repositoryRealm = new RepositoryRealm();
+            OnlyFoodService service = new OnlyFoodService(new Helpers.UploadService());
             List<MasterPageItem> paginas = new List<MasterPageItem>();
             List<MasterPageItem> paginasUsuario = new List<MasterPageItem>();
             var loginView = new MasterPageItem()
@@ -65,16 +69,34 @@ namespace OnlyFoodXamarin
                 Titulo = "Eliminar usuario",
                 PaginaHija = typeof(EliminarUsuarioBuscadorView)
             };
-            paginas.Add(loginView);
-
+            UsuarioLoginRealm user = repositoryRealm.GetUsuarioLogin();
+            if (user == null)
+            {
+                paginas.Add(loginView);
+            }
+            else
+            {
+                App.ServiceLocator.SessionService.Password = user.Password;
+                App.ServiceLocator.SessionService.Usuario = new Usuario()
+                {
+                    Id=user.Id,
+                    UserName=user.UserName,
+                    Email=user.Email
+                };
+                Task.Run(async () =>
+                {
+                    App.ServiceLocator.SessionService.Token = await service.GetApiTokenAsync(user.Email, user.Password);
+                    App.ServiceLocator.SessionService.Usuario = await service.GetUserByIdAsync(user.Id, App.ServiceLocator.SessionService.Token);
+                });
+                paginasUsuario.Add(perfilView);
+                paginasUsuario.Add(nuevaOfertaView);
+                paginasUsuario.Add(ofertasUsuarioView);
+                paginasUsuario.Add(nuevaCadenaView);
+                paginasUsuario.Add(eliminarCadenaView);
+                paginasUsuario.Add(eliminarUsuarioBuscadorView);
+            }
             paginas.Add(cadenasView);
             paginas.Add(ofertasView);
-            paginasUsuario.Add(perfilView);
-            paginasUsuario.Add(nuevaOfertaView);
-            paginasUsuario.Add(ofertasUsuarioView);
-            paginasUsuario.Add(nuevaCadenaView);
-            paginasUsuario.Add(eliminarCadenaView);
-            paginasUsuario.Add(eliminarUsuarioBuscadorView);
 
             this.listviewMenu.ItemsSource = paginas;
             this.listviewMenuUsuario.ItemsSource = paginasUsuario;
@@ -95,7 +117,7 @@ namespace OnlyFoodXamarin
             var page= (MasterPageItem)e.SelectedItem;
             if(page != null)
             {
-            Type type = page.PaginaHija;
+                Type type = page.PaginaHija;
                 if (type == typeof(OfertasView))
                 {
                     OfertasView view = new OfertasView();

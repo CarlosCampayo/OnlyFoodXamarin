@@ -73,10 +73,12 @@ namespace OnlyFoodXamarin.ViewModels
             {
                 return new Command(async() =>
                 {
+                    String token = App.ServiceLocator.SessionService.Token;
+                    int idUsaurio = App.ServiceLocator.SessionService.Usuario.Id;
                     //recoger el id de la cadena seleccionada
                     this.Mensaje = "Cadena eliminada";
                     //llamada a api para eliminarla
-                    String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
+                    //String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
                     await this.service.DeleteCadenaAsync(this.CadenaSeleccionada.Id,token);
                     await this.LoadCadenas();
                 });

@@ -70,7 +70,8 @@ namespace OnlyFoodXamarin.ViewModels
 
         private async Task CrearCadenaAsync()
         {
-            String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
+            //String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
+            String token = App.ServiceLocator.SessionService.Token;
             await this.service.NewCadenaAsync(Cadena.Nombre, Cadena.Descripcion, this.Imagen, Cadena.Web, token);
             this.Mensaje = "Cadena creada: " + this.Cadena.Nombre;
         }
