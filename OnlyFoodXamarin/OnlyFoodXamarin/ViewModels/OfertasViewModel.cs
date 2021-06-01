@@ -25,13 +25,6 @@ namespace OnlyFoodXamarin.ViewModels
                 this.Filtro.Preciomax = 100;
                 this.Filtro.Preciomin = 0;
             }
-            if (this.Ofertas == null)
-            {
-                Task.Run(async () =>
-                {
-                    await this.LoadOfertas();
-                });
-            }
         }
 
         #region ACTIVITY INDICATOR
@@ -86,24 +79,6 @@ namespace OnlyFoodXamarin.ViewModels
         }
 
         private int _Ultimo;
-
-        public OfertasViewModel(OnlyFoodService service)
-        {
-            this.service = service;
-            if (Filtro == null)
-            {
-                this.Filtro = new FiltroOfertas();
-                this.Filtro.Preciomax = 100;
-                this.Filtro.Preciomin = 0;
-            }
-            if (this.Ofertas == null)
-            {
-                Task.Run(async () =>
-                {
-                    await this.LoadOfertas();
-                });
-            }
-        }
 
         public async Task LoadOfertas()
         {

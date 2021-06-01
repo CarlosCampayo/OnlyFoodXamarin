@@ -108,29 +108,22 @@ namespace OnlyFoodXamarin
                     await viewmodel.LoadOfertas();
                 });
                 view.BindingContext = viewmodel;
-                Detail = new NavigationPage(view);
+                Detail = new NavigationPage(view)
+                {
+                    BarBackgroundColor = Color.FromHex("#e41b23"),
+                };
             }
             else
             {
                 this.Detail = new NavigationPage(
-                                (Page)Activator.CreateInstance(type));
+                                (Page)Activator.CreateInstance(type))
+                {
+                    BarBackgroundColor = Color.FromHex("#e41b23"),
+                };
             }
             //this.listviewMenu.SelectedItem = null;
             //this.listviewMenuUsuario.SelectedItem = null;
             this.IsPresented = false;
-            if(page != null)
-            {
-                Type type = page.PaginaHija;
-                this.Detail = new NavigationPage(
-                    (Page)Activator.CreateInstance(type))
-                {
-                    BarBackgroundColor = Color.FromHex("#e41b23"),
-                };
-
-                this.IsPresented = false;
-                this.listviewMenu.SelectedItem = null;
-                this.listviewMenuUsuario.SelectedItem = null;
-            }
         }
     }
 }
