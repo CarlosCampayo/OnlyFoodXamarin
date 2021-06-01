@@ -24,6 +24,7 @@ namespace OnlyFoodXamarin.ViewModels
             Task.Run(async () =>
             {
                 await this.CargarCadenas();
+                this.CadenaSeleccionadaAux = this.CadenaSeleccionada;
             });
         }
 
@@ -49,6 +50,17 @@ namespace OnlyFoodXamarin.ViewModels
             }
         }
 
+        private Cadena _CadenaSeleccionadaAux;
+        public Cadena CadenaSeleccionadaAux
+        {
+            get { return _CadenaSeleccionadaAux; }
+            set
+            {
+                this._CadenaSeleccionadaAux = value;
+                OnPropertyChanged("CadenaSeleccionadaAux");
+            }
+        }
+
         private ObservableCollection<Cadena> _Cadenas;
         public ObservableCollection<Cadena> Cadenas
         {
@@ -71,14 +83,14 @@ namespace OnlyFoodXamarin.ViewModels
             }
         }
 
-        private Stream _ResultImagen;
-        public Stream ResultImagen
+        private String _NewImagen;
+        public String NewImagen
         {
-            get { return _ResultImagen; }
+            get { return _NewImagen; }
             set
             {
-                this._ResultImagen = value;
-                OnPropertyChanged("ResultImagen");
+                this._NewImagen = value;
+                OnPropertyChanged("NewImagen");
             }
         }
 
@@ -93,11 +105,14 @@ namespace OnlyFoodXamarin.ViewModels
             String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
             int idUsaurio = 2;
 
-            //this.ResultImagen.
-            //await this.service.EditOfertaAsync(
-            //    Oferta.Id, this.CadenaSeleccionada.Id, Oferta.Titulo,
-            //    Oferta.Descripcion, this.ResultImagen, Oferta.Web, Oferta.Codigo, Oferta.Precio, 
-            //    idUsaurio, token); 
+            if(this.CadenaSeleccionada == null)
+            {
+                this.CadenaSeleccionada = this.CadenaSeleccionadaAux;
+            }
+            await this.service.EditOfertaAsync(
+                Oferta.Id, this.CadenaSeleccionada.Id, Oferta.Titulo,
+                Oferta.Descripcion, this.NewImagen, Oferta.Web, Oferta.Codigo, Oferta.Precio,
+                idUsaurio, token);
         }
 
         public Command EditarOferta

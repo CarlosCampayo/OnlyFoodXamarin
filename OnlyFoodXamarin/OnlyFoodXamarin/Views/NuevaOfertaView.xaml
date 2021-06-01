@@ -16,48 +16,58 @@
                            FontSize="Title"
                            VerticalOptions="CenterAndExpand" 
                            HorizontalOptions="CenterAndExpand" />
+                    
                     <Label Text="Cadena"
                            FontSize="Medium"
-                           HorizontalOptions="StartAndExpand"
-                           />
+                           HorizontalOptions="StartAndExpand" />
                     <Picker x:Name="selectcadenas"
                             ItemsSource="{Binding Cadenas}"
                             Title="Selecciona una cadena"
                             SelectedItem="{Binding CadenaSeleccionada}"
-                            ItemDisplayBinding="{Binding Nombre}">
-                    </Picker>
-                        <Label Text="Titulo"
+                            ItemDisplayBinding="{Binding Nombre}"/>
+
+                    <Label Text="Titulo"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
-                    <Entry Text="{Binding Titulo}"
+                    <Entry Text="{Binding Oferta.Titulo}"
                            HorizontalOptions="FillAndExpand"/>
+                    
                     <Label Text="Descripcion"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
-                    <Entry Text="{Binding Descripcion}"
+                    <Editor Text="{Binding Oferta.Descripcion}"
+                            AutoSize="TextChanges"
                            HorizontalOptions="FillAndExpand"/>
+                    
                     <Label Text="Imagen"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
-                    <Entry Text="{Binding Imagen}"
-                           HorizontalOptions="FillAndExpand"/>
+                    <Button Text="Seleccionar Imagen" x:Name="btnpickimage"/>
+                    <Image x:Name="resultImg" />
+
                     <Label Text="Precio"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
-                    <Entry Text="{Binding Precio}"
+                    <Entry Text="{Binding Oferta.Precio}"
+                           Keyboard="Numeric"
                            HorizontalOptions="FillAndExpand"/>
+                    
                     <Label Text="Codigo"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
-                    <Entry Text="{Binding Codigo}"
+                    <Entry Text="{Binding Oferta.Codigo}"
                            HorizontalOptions="FillAndExpand"/>
+                    
                     <Label Text="Web"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
-                    <Entry Text="{Binding Web}"
-                           HorizontalOptions="FillAndExpand"/>
+                    <Entry Text="{Binding Oferta.Web}"
+                           HorizontalOptions="FillAndExpand" Keyboard="Url"/>
+                    
+                    
                     <Button Text="Crear oferta"
                             Command="{Binding CrearOferta}"/>
+                    
                     <Label Text="{Binding Mensaje}"
                            FontSize="Medium"
                            TextColor="Green"

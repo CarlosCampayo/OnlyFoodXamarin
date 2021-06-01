@@ -17,9 +17,12 @@ namespace OnlyFoodXamarin.ViewModels
 
         public OfertasUsuarioViewModel(OnlyFoodService service)
         {
-            this.ShowLoading = true;
             this.service = service;
-            this.CargarMisOfertasFunction.Execute(1);
+            //this.CargarMisOfertas.Execute(1);
+            Task.Run(async() =>
+            {
+                this.CargarMisOfertasFunction();
+            });
         }
 
         #region ACTIVITY INDICATOR
@@ -61,12 +64,14 @@ namespace OnlyFoodXamarin.ViewModels
         private async Task MostrarDetalleOfertaFunction()
         {
             DetalleOfertaUsuarioView view = new DetalleOfertaUsuarioView();
-            DetalleOfertaUsuarioViewModel viewmodel = 
+            DetalleOfertaUsuarioViewModel viewmodel =
                 App.ServiceLocator.DetalleOfertaUsuarioViewModel;
             viewmodel.Oferta = this.OfertaSeleccionada;
             view.BindingContext = viewmodel;
             var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
-            masterDetailPage.Detail = new NavigationPage(view);
+            masterDetailPage.Detail = new NavigationPage(view) {
+                BarBackgroundColor = Color.FromHex("#e41b23")
+            };
             masterDetailPage.IsPresented = false;
         }
 
@@ -81,22 +86,24 @@ namespace OnlyFoodXamarin.ViewModels
             }
         }
 
-        public async Task CargarMisOfertas()
+        public async Task CargarMisOfertasFunction()
         {
+            this.ShowLoading = true;
             String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
             int idUsuario = 2;
             this.Ofertas = new ObservableCollection<Oferta>
                 (await this.service.GetOfertasByIdUserAsync(idUsuario, token));
+            this.ShowLoading = false;
         }
 
-        public Command CargarMisOfertasFunction
+        public Command CargarMisOfertas
         {
             get
             {
                 return new Command(async () =>
                 {
-                    await this.CargarMisOfertas();
-                    this.ShowLoading = false;
+
+                    await this.CargarMisOfertasFunction();
                 });
             }
         }
