@@ -1,4 +1,6 @@
-﻿using OnlyFoodXamarin.Views;
+﻿using OnlyFoodXamarin.Models;
+using OnlyFoodXamarin.ViewModels;
+using OnlyFoodXamarin.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,19 +93,37 @@ namespace OnlyFoodXamarin
         private void ListviewMenu_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var page= (MasterPageItem)e.SelectedItem;
-            if(page != null)
+            Type type = page.PaginaHija;
+            if (type == typeof(OfertasView))
             {
-                Type type = page.PaginaHija;
-                this.Detail = new NavigationPage(
-                    (Page)Activator.CreateInstance(type))
+                OfertasView view = new OfertasView();
+                OfertasViewModel viewmodel = App.ServiceLocator.OfertasViewModel;
+                FiltroOfertas filtroOfertas = new FiltroOfertas();
+                filtroOfertas.IdCadenas = new List<int>();
+                filtroOfertas.Preciomax = 100;
+                filtroOfertas.Preciomin = 0;
+                viewmodel.Filtro = filtroOfertas;
+                Task.Run(async () =>
+                {
+                    await viewmodel.LoadOfertas();
+                });
+                view.BindingContext = viewmodel;
+                Detail = new NavigationPage(view)
                 {
                     BarBackgroundColor = Color.FromHex("#e41b23"),
                 };
-
-                this.IsPresented = false;
-                this.listviewMenu.SelectedItem = null;
-                this.listviewMenuUsuario.SelectedItem = null;
             }
+            else
+            {
+                this.Detail = new NavigationPage(
+                                (Page)Activator.CreateInstance(type))
+                {
+                    BarBackgroundColor = Color.FromHex("#e41b23"),
+                };
+            }
+            //this.listviewMenu.SelectedItem = null;
+            //this.listviewMenuUsuario.SelectedItem = null;
+            this.IsPresented = false;
         }
     }
 }

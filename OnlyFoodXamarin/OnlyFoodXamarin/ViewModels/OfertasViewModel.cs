@@ -25,13 +25,6 @@ namespace OnlyFoodXamarin.ViewModels
                 this.Filtro.Preciomax = 100;
                 this.Filtro.Preciomin = 0;
             }
-            if (this.Ofertas == null)
-            {
-                Task.Run(async () =>
-                {
-                    await this.LoadOfertas();
-                });
-            }
         }
 
         #region ACTIVITY INDICATOR

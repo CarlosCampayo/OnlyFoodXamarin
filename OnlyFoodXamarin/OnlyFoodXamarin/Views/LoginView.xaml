@@ -6,7 +6,7 @@
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=LoginViewModel}">
 
     <ContentPage.Content>
-        <StackLayout BackgroundColor="Red" Padding="10, 15">
+        <StackLayout BackgroundColor="#e41b23" Padding="10, 15">
             <Grid Padding="10, 15" HeightRequest="250">
                 <!--Estructura Grid-->
                 <Grid.ColumnDefinitions>

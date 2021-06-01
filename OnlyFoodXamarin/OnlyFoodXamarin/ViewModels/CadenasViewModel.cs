@@ -77,8 +77,12 @@ namespace OnlyFoodXamarin.ViewModels
             OfertasViewModel viewmodel = App.ServiceLocator.OfertasViewModel;
 
             FiltroOfertas filtroOfertas = new FiltroOfertas();
+            filtroOfertas.IdCadenas = new List<int>();
             filtroOfertas.IdCadenas.Add(this.CadenaSeleccionada.Id);
+            filtroOfertas.Preciomax = 100;
+            filtroOfertas.Preciomin = 0;
             viewmodel.Filtro = filtroOfertas;
+            await viewmodel.LoadOfertas();
             view.BindingContext = viewmodel;
 
             // LISTA NULA
@@ -91,11 +95,10 @@ namespace OnlyFoodXamarin.ViewModels
             //this.CadenaSeleccionada = null;
 
             var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
-            masterDetailPage.Detail = new NavigationPage(
-                (Page)Activator.CreateInstance(typeof(OfertasView)))
+            masterDetailPage.Detail = new NavigationPage(view)
             {
                 BarBackgroundColor = Color.FromHex("#e41b23")
-            };
+            }; 
             masterDetailPage.IsPresented = false;
         }
 
