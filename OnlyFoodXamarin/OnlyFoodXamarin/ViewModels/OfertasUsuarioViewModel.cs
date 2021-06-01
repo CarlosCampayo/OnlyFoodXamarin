@@ -76,8 +76,10 @@ namespace OnlyFoodXamarin.ViewModels
         public async Task CargarMisOfertasAsync()
         {
             this.ShowLoading = true;
-            String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
-            int idUsuario = 2;
+            //String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
+            //int idUsuario = 2;
+            String token = App.ServiceLocator.SessionService.Token;
+            int idUsuario = App.ServiceLocator.SessionService.Usuario.Id;
             this.Ofertas = new ObservableCollection<Oferta>
                 (await this.service.GetOfertasByIdUserAsync(idUsuario, token));
             this.ShowLoading = false;

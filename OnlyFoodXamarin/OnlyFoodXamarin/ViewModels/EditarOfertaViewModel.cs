@@ -102,10 +102,11 @@ namespace OnlyFoodXamarin.ViewModels
 
         private async Task EditarOfertaFunction()
         {
-            String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
-            int idUsaurio = 2;
-
-            if(this.CadenaSeleccionada == null)
+            //String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
+            //int idUsaurio = 2;
+            String token = App.ServiceLocator.SessionService.Token;
+            int idUsaurio = App.ServiceLocator.SessionService.Usuario.Id;
+            if (this.CadenaSeleccionada == null)
             {
                 this.CadenaSeleccionada = this.CadenaSeleccionadaAux;
             }

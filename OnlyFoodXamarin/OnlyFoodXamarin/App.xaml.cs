@@ -21,7 +21,10 @@ namespace OnlyFoodXamarin
             InitializeComponent();
             MainPage = new MenuPrincipal();
         }
-
+        public static void LoadMainPage()
+        {
+            App.Current.MainPage = new MenuPrincipal();
+        }
         protected override void OnStart()
         {
         }

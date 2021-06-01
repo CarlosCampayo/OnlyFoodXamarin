@@ -101,7 +101,8 @@ namespace OnlyFoodXamarin.ViewModels
                 {
                     this.ShowLoading = true;
                     //llamada de api de BuscarUsuario
-                    String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
+                    String token = App.ServiceLocator.SessionService.Token;
+                    //String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
                     List<Usuario> usuarios = await this.service.GetUsuariosByEmailOrUsernameAsync(this.Filtro, token);
                     this.Usuarios = new ObservableCollection<Usuario>(usuarios);
                     this.ShowLoading = false;

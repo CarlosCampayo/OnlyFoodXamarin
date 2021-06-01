@@ -40,7 +40,8 @@ namespace OnlyFoodXamarin.ViewModels
                 return new Command(async() =>
                 {
                     //añadir accion de api de eliminar User
-                    String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
+                    //String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
+                    String token = App.ServiceLocator.SessionService.Token;
                     await this.service.DeleteUserAsync(this.Usuario.Id, token);
                     EliminarUsuarioBuscadorViewModel viewModel = App.ServiceLocator.EliminarUsuarioBuscadorViewModel;
                     await viewModel.LoadUsuariosAsync();

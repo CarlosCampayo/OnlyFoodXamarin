@@ -22,6 +22,14 @@ namespace OnlyFoodXamarin.ViewModels
             {
                 await this.LoadCadenasAsync();
             });
+            if (App.ServiceLocator.SessionService.Usuario != null)
+            {
+                Task.Run(async () =>
+                {
+                    App.ServiceLocator.SessionService.Token = await service.GetApiTokenAsync(App.ServiceLocator.SessionService.Usuario.Email, App.ServiceLocator.SessionService.Password);
+                    App.ServiceLocator.SessionService.Usuario = await service.GetUserByIdAsync(App.ServiceLocator.SessionService.Usuario.Id, App.ServiceLocator.SessionService.Token);
+                });
+            }
         }
 
         #region ACTIVITY INDICATOR
