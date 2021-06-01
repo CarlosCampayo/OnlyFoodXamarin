@@ -37,7 +37,6 @@ namespace OnlyFoodXamarin.Views
                     UploadService service = new UploadService();
                     vm.Imagen = await service.UploadImageBlobAzureAsycn(stream, result.FileName);
                 }
-
             }
         }
     }

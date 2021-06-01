@@ -279,6 +279,37 @@ namespace OnlyFoodXamarin.Services
                 await client.PostAsync(request, content);
             }
         }
+
+        public async Task NewCadenaAsync(string nombre, string descripcion,
+            String imagen, string web, String token)
+        {
+            Cadena c = new Cadena();
+            c.Nombre = nombre;
+            c.Descripcion = descripcion;
+            //String name = await this.uploadService.UploadFileAsycn(imagen, Folders.Images);
+            //String name = await this.uploadService.UploadImageBlobAzureAsycn(imagen);
+            //using (var memoryStream = new MemoryStream())
+            //{
+            //    await imagen.CopyToAsync(memoryStream);
+            //    bool respuesta = await this.uploadService.UploadFileAWSAsync(memoryStream, imagen.FileName);
+            //}
+            c.Imagen = imagen;
+            //c.Imagen = name;
+            c.Web = web;
+            using (HttpClient client = new HttpClient())
+            {
+                String request = "api/Cadenas/";
+                client.BaseAddress = new Uri(this.url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(this.header);
+                client.DefaultRequestHeaders.Add("Authorization", "bearer " + token);
+                String json = JsonConvert.SerializeObject(c);
+                StringContent content =
+                    new StringContent(json, Encoding.UTF8, "application/json");
+                await client.PostAsync(request, content);
+            }
+        }
+
         public async Task DeleteCadenaAsync(int id, String token)
         {
             using (HttpClient client = new HttpClient())
