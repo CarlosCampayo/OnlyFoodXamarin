@@ -23,7 +23,8 @@
                 <StackLayout Orientation="Vertical">
                     <CollectionView ItemsSource="{Binding Ofertas}"
                                     SelectedItem="{Binding OfertaSeleccionada}"
-                                    SelectionMode="Single">
+                                    SelectionMode="Single"
+                                    x:Name="cvOfertas">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <!--<ViewCell>-->

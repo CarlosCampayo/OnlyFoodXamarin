@@ -55,9 +55,8 @@ namespace OnlyFoodXamarin.ViewModels
             set
             {
                 this._UsuarioSeleccionado = value;
-                //this.SeleccionarUsuarioEliminar.Execute(1);
                 Task.Run(async() => {
-                    this.SeleccionarUsuarioAsync();
+                    await this.SeleccionarUsuarioAsync();
                 });
                 
                 OnPropertyChanged("UsuarioSeleccionado");
@@ -85,16 +84,12 @@ namespace OnlyFoodXamarin.ViewModels
 
         private async Task SeleccionarUsuarioAsync()
         {
-
             EliminarUsuarioViewModel viewModel = App.ServiceLocator.EliminarUsuarioViewModel;
             EliminarUsuarioView view = new EliminarUsuarioView();
             viewModel.Usuario = this.UsuarioSeleccionado;
             view.BindingContext = viewModel;
             var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
-            masterDetailPage.Detail = new NavigationPage(view)
-            {
-                BarBackgroundColor = Color.FromHex("e41b23")
-            };
+            masterDetailPage.Detail = new NavigationPage(view);
             masterDetailPage.IsPresented = false;
         }
 

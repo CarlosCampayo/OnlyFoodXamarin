@@ -20,7 +20,7 @@ namespace OnlyFoodXamarin.ViewModels
             this.service = service;
             Task.Run(async() =>
             {
-                this.CargarMisOfertasAsync();
+                await this.CargarMisOfertasAsync();
             });
         }
 
@@ -56,20 +56,21 @@ namespace OnlyFoodXamarin.ViewModels
             {
                 this._OfertaSeleccionada = value;
                 OnPropertyChanged("OfertaSeleccionada");
-                Task.Run(async() => await this.MostrarDetalleOfertaAsync());
+                //Task.Run(async() => await this.MostrarDetalleOfertaAsync());
             }
         }
 
-        private async Task MostrarDetalleOfertaAsync()
+        public  async Task<DetalleOfertaUsuarioView> MostrarDetalleOfertaAsync()
         {
             DetalleOfertaUsuarioView view = new DetalleOfertaUsuarioView();
             DetalleOfertaUsuarioViewModel viewmodel =
                 App.ServiceLocator.DetalleOfertaUsuarioViewModel;
             viewmodel.Oferta = this.OfertaSeleccionada;
             view.BindingContext = viewmodel;
-            var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
-            masterDetailPage.Detail = new NavigationPage(view);
-            masterDetailPage.IsPresented = false;
+            return view;
+            //var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
+            //masterDetailPage.Detail = new NavigationPage(view);
+            //masterDetailPage.IsPresented = false;
         }
 
         public async Task CargarMisOfertasAsync()
