@@ -541,6 +541,42 @@ namespace OnlyFoodXamarin.Services
                 await client.PostAsync(request, content);
             }
         }
+
+        public async Task NewOfertaAsync(int cadena, string titulo, string descripcion,
+            String imagen, string web, string codigo, double precio, int usuario, String token)
+        {
+            Oferta oferta = new Oferta();
+            oferta.IdCadena = cadena;
+            oferta.Titulo = titulo;
+            oferta.Descripcion = descripcion;
+            if (imagen != null)
+            {
+                //String name = await this.uploadService.UploadFileAsycn(imagen, Folders.Images);
+                //String name = await this.uploadService.UploadImageBlobAzureAsycn(imagen);
+                //using (var memoryStream = new MemoryStream())
+                //{
+                //    await imagen.CopyToAsync(memoryStream);
+                //    bool respuesta = await this.uploadService.UploadFileAWSAsync(memoryStream, imagen.FileName);
+                //}
+                oferta.Imagen = imagen;
+            }
+            oferta.Web = web;
+            oferta.Codigo = codigo;
+            oferta.Precio = precio;
+            oferta.IdUsuario = usuario;
+            using (HttpClient client = new HttpClient())
+            {
+                String request = "api/Ofertas/";
+                client.BaseAddress = new Uri(this.url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(this.header);
+                client.DefaultRequestHeaders.Add("Authorization", "bearer " + token);
+                String json = JsonConvert.SerializeObject(oferta);
+                StringContent content =
+                    new StringContent(json, Encoding.UTF8, "application/json");
+                await client.PostAsync(request, content);
+            }
+        }
         public async Task EditOfertaAsync(int idoferta, int cadena, string titulo, string descripcion,
             IFormFile imagen, string web, string codigo, double precio, int usuario, String token)
         {
@@ -559,6 +595,43 @@ namespace OnlyFoodXamarin.Services
                 //    bool respuesta = await this.uploadService.UploadFileAWSAsync(memoryStream, imagen.FileName);
                 //}
                 oferta.Imagen = imagen.FileName;
+            }
+            oferta.Web = web;
+            oferta.Codigo = codigo;
+            oferta.Precio = precio;
+            oferta.IdUsuario = usuario;
+            using (HttpClient client = new HttpClient())
+            {
+                String request = "api/Ofertas/";
+                client.BaseAddress = new Uri(this.url);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(this.header);
+                client.DefaultRequestHeaders.Add("Authorization", "bearer " + token);
+                String json = JsonConvert.SerializeObject(oferta);
+                StringContent content =
+                    new StringContent(json, Encoding.UTF8, "application/json");
+                await client.PutAsync(request, content);
+            }
+        }
+
+        public async Task EditOfertaAsync(int idoferta, int cadena, string titulo, string descripcion,
+            String imagen, string web, string codigo, double precio, int usuario, String token)
+        {
+            Oferta oferta = new Oferta();
+            oferta.Id = idoferta;
+            oferta.IdCadena = cadena;
+            oferta.Titulo = titulo;
+            oferta.Descripcion = descripcion;
+            if (imagen != null)
+            {
+                //String name = await this.uploadService.UploadFileAsycn(imagen, Folders.Images);
+                //String name = await this.uploadService.UploadImageBlobAzureAsycn(imagen);
+                //using (var memoryStream = new MemoryStream())
+                //{
+                //    await imagen.CopyToAsync(memoryStream);
+                //    bool respuesta = await this.uploadService.UploadFileAWSAsync(memoryStream, imagen.FileName);
+                //}
+                oferta.Imagen = imagen;
             }
             oferta.Web = web;
             oferta.Codigo = codigo;

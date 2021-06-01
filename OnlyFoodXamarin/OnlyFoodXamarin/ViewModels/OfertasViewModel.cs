@@ -59,7 +59,7 @@ namespace OnlyFoodXamarin.ViewModels
             {
                 this._OfertaSeleccionada = value;
                 OnPropertyChanged("OfertaSeleccionada");
-                //this.MostrarDetalleOferta.Execute(1);
+                this.MostrarDetalleOferta.Execute(1);
                 Task.Run(async () =>
                 {
                     await this.MostrarDetalleOfertaFunction();

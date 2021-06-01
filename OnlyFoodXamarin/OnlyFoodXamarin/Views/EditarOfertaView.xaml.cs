@@ -1,7 +1,9 @@
-﻿using OnlyFoodXamarin.Models;
+﻿using OnlyFoodXamarin.Helpers;
+using OnlyFoodXamarin.Models;
 using OnlyFoodXamarin.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -15,6 +17,7 @@ namespace OnlyFoodXamarin.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditarOfertaView : ContentPage
     {
+
         public EditarOfertaView()
         {
             InitializeComponent();
@@ -29,15 +32,13 @@ namespace OnlyFoodXamarin.Views
             });
             if(result != null)
             {
-                var content = new MultipartFormDataContent();
-                content.Add(new StreamContent(await result.OpenReadAsync())) ;
-
+                Stream stream2 = await result.OpenReadAsync();
+                this.resultImg.Source = ImageSource.FromStream(() => stream2);
                 using (var stream = await result.OpenReadAsync()) {
-                    //this.resultImg.Source = ImageSource.FromStream(() => stream);
                     EditarOfertaViewModel vm = (EditarOfertaViewModel)this.BindingContext;
-                    vm.ResultImagen = stream;
+                    UploadService service = new UploadService();
+                    vm.NewImagen = await service.UploadImageBlobAzureAsycn(stream, result.FileName);
                 }
-                
             }
         }
 

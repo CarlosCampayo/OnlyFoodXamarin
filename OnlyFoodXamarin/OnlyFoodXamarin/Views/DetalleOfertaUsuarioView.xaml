@@ -25,7 +25,8 @@
                        FontSize="Medium"/>
 
                 <Button Text="Editar" Command="{Binding Editar}"/>
-                <Button Text="Eliminar" Command="{Binding Eliminar}" />
+                <Button Text="Eliminar" x:Name="btnEliminar" />
+                <!--Command="{Binding Eliminar}" />-->
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -15,16 +15,13 @@
                 <Label Text="Cadena"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand" />
-                <Label Text="{Binding CadenaSeleccionada.Nombre, 
+                <Label Text="{Binding CadenaSeleccionadaAux.Nombre, 
                     StringFormat='Cadena Seleccionada: {0}'}"
                        FontSize="Small"/>
-                <!--<Entry Text="{Binding CadenaSeleccionada.Nombre}"/>-->
-                <!--<Button Text="Editar" x:Name="btneeditarcadena"/>-->
                 <Picker ItemsSource="{Binding Cadenas}"
                             Title="Selecciona una cadena"
                             ItemDisplayBinding="{Binding Nombre}"
                         SelectedItem="{Binding CadenaSeleccionada}" />
-                <!--x:Name="pckCadenas"/>-->
 
                 <Label Text="Titulo"
                            FontSize="Medium"
@@ -35,18 +32,16 @@
                 <Label Text="Descripcion"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
-                <Entry Text="{Binding Oferta.Descripcion}"
-                        HorizontalOptions="FillAndExpand"/>
+                <Editor Text="{Binding Oferta.Descripcion}" 
+                        AutoSize="TextChanges"/>
 
                 <Label Text="Imagen"
                         FontSize="Medium"
                         HorizontalOptions="StartAndExpand"/>
-                <!--<Entry Text="{Binding Oferta.Imagen}"
-                        HorizontalOptions="FillAndExpand"/>-->
                 <Label Text="Imagen Actual" FontSize="Micro"/>
                 <Image Source="{Binding Oferta.Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}" />
-                <Button Text="Seleccionar Imagen" x:Name="btnpickimage"/>
-                <!--<Image x:Name="resultImg" />-->
+                <Button Text="Cambiar Imagen" x:Name="btnpickimage"/>
+                <Image x:Name="resultImg" />
 
 
                 <Label Text="Precio"

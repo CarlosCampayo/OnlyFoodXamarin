@@ -24,11 +24,9 @@ namespace OnlyFoodXamarin.ViewModels
             //UploadService uploadService = new UploadService();
             //service = new OnlyFoodService(uploadService);
             //this.Usuarios = new ObservableCollection<Usuario>();
-            this.ShowLoading = true;
             Task.Run(async () =>
             {
                 await this.LoadUsuarios();
-                this.ShowLoading = false;
             });
         }
 
@@ -78,9 +76,11 @@ namespace OnlyFoodXamarin.ViewModels
         }
         public async Task LoadUsuarios()
         {
+            this.ShowLoading = true;
             String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
             List<Usuario> usuarios = await this.service.GetUsuariosAsync(token);
             this.Usuarios = new ObservableCollection<Usuario>(usuarios);
+            this.ShowLoading = false;
         }
         public Command SeleccionarUsuarioEliminar
         {

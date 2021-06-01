@@ -59,9 +59,9 @@ namespace OnlyFoodXamarin.Helpers
             return name;
         }
 
-        public async Task<String> UploadImageBlobAzureAsycn(Stream stream, String name)
+        public async Task<String> UploadImageBlobAzureAsycn(Stream stream, String nombre)
         {
-            //String name = HelperToolkit.NormalizeName(fichero.FileName);
+            String name = HelperToolkit.NormalizeName(nombre);
             var blobClient = this.account.CreateCloudBlobClient();
             var container = blobClient.GetContainerReference("imagenes");
             //await container.CreateIfNotExistsAsync();
@@ -70,9 +70,28 @@ namespace OnlyFoodXamarin.Helpers
             //    PublicAccess = BlobContainerPublicAccessType.Blob
             //});
             var blob = container.GetBlockBlobReference(name);
-            await blob.UploadFromStreamAsync(stream);
+                await blob.UploadFromStreamAsync(stream);
+            //using (var stream = fichero.OpenReadStream())
+            //{
+            //    await blob.UploadFromStreamAsync(stream);
+            //}
             return name;
         }
+
+        //public async Task<String> UploadImageBlobAzureAsycn(Stream stream, String name)
+        //{
+        //    //String name = HelperToolkit.NormalizeName(fichero.FileName);
+        //    var blobClient = this.account.CreateCloudBlobClient();
+        //    var container = blobClient.GetContainerReference("imagenes");
+        //    //await container.CreateIfNotExistsAsync();
+        //    //container.SetPermissionsAsync(new BlobContainerPermissions()
+        //    //{
+        //    //    PublicAccess = BlobContainerPublicAccessType.Blob
+        //    //});
+        //    var blob = container.GetBlockBlobReference(name);
+        //    await blob.UploadFromStreamAsync(stream);
+        //    return name;
+        //}
         //public async Task<bool> UploadFileAWSAsync(Stream stream, String filename)
         //{
         //    PutObjectRequest request = new PutObjectRequest()
