@@ -2,34 +2,57 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlyFoodXamarin.Views.EliminarCadenaView"
-             xmlns:local="clr-namespace:OnlyFoodXamarin"
-             BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=EliminarCadenaViewModel}">
+             xmlns:local="clr-namespace:OnlyFoodXamarin">
+
     
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout x:Name="stackCadenas" 
+                     BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=EliminarCadenaViewModel}">
             <ScrollView>
                 <StackLayout Orientation="Vertical">
                     <Label Text="Eliminar Cadena"
                            FontSize="Title"
                            VerticalOptions="CenterAndExpand" 
                            HorizontalOptions="CenterAndExpand" />
-                    <Label Text="Cadena"
-                           FontSize="Medium"
-                           HorizontalOptions="StartAndExpand"
-                           />
-                    <Picker ItemsSource="{Binding Cadenas}"
-                            Title="Selecciona una cadena"
-                            ItemDisplayBinding="{Binding Nombre}"
-                            SelectedItem="{Binding CadenaSeleccionda}"/>
-                    <Button Text="Eliminar cadena"
-                            Command="{Binding EliminarCadena}"/>
-                    <Label Text="{Binding Mensaje}"
-                           FontSize="Medium"
-                           TextColor="Green"
-                           HorizontalOptions="StartAndExpand"
-                           Margin="10"
-                           Padding="10"
-                           />
+
+                    <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
+                               Color="Red"
+                               VerticalOptions="CenterAndExpand" />
+                    <CollectionView ItemsSource="{Binding Cadenas}"
+                                x:Name="cvcadenas">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <SwipeView>
+                                        <SwipeView.RightItems>
+                                        <SwipeItem Text="Eliminar"
+                                                   BackgroundColor="Red"
+                                                   Command="{Binding BindingContext.EliminarCadena,
+                                            Source={x:Reference stackCadenas}}"
+                                                   CommandParameter="{Binding .}"/>
+                                    </SwipeView.RightItems>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Source="{Binding Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}" 
+                                                   Grid.RowSpan="2"
+                                                   Grid.Column="0"
+                                                   HeightRequest="50"/>
+                                        <Label Text="{Binding Nombre}"
+                                                   FontSize="Large"
+                                                   Grid.RowSpan="2"
+                                                   Grid.Column="1"/>
+                                    </Grid>
+                                </SwipeView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                 </StackLayout>
             </ScrollView>
         </StackLayout>

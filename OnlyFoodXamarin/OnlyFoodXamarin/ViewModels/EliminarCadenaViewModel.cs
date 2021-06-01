@@ -1,6 +1,7 @@
 ﻿using OnlyFoodXamarin.Base;
 using OnlyFoodXamarin.Models;
 using OnlyFoodXamarin.Services;
+using OnlyFoodXamarin.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,6 +33,20 @@ namespace OnlyFoodXamarin.ViewModels
                 OnPropertyChanged("Cadenas");
             }
         }
+
+        #region ACTIVITY INDICATOR
+        private bool _ShowLoading;
+        public bool ShowLoading
+        {
+            get { return this._ShowLoading; }
+            set
+            {
+                this._ShowLoading = value;
+                OnPropertyChanged("ShowLoading");
+            }
+        }
+        #endregion
+
         private Cadena _CadenaSeleccionada;
         public Cadena CadenaSeleccionada
         {
@@ -42,6 +57,7 @@ namespace OnlyFoodXamarin.ViewModels
                 OnPropertyChanged("CadenaSeleccionada");
             }
         }
+
         private String _Mensaje;
         public String Mensaje
         {
@@ -52,20 +68,25 @@ namespace OnlyFoodXamarin.ViewModels
                 OnPropertyChanged("Mensaje");
             }
         }
+
         public async Task LoadCadenas()
         {
+            this.ShowLoading = true;
             List<Cadena> cadenas = await this.service.GetCadenasAsync();
             this.Cadenas = new ObservableCollection<Cadena>(cadenas);
+            this.ShowLoading = false;
         }
+
         public Command EliminarCadena
         {
             get
             {
-                return new Command(async() =>
+                return new Command(async(cadena) =>
                 {
-                    this.Mensaje = "Cadena eliminada";
                     String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
-                    await this.service.DeleteCadenaAsync(this.CadenaSeleccionada.Id,token);
+                    Cadena c = (Cadena)cadena;
+                    await this.service.DeleteCadenaAsync(c.Id,token);
+                    this.Mensaje = "Cadena eliminada";
                     await this.LoadCadenas();
                 });
             }
