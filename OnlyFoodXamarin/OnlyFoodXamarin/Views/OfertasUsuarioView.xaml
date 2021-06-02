@@ -65,11 +65,12 @@
                         HorizontalOptions="FillAndExpand"
                         Command="{Binding MostrarMasOfertas}"/>-->
                     <StackLayout Orientation="Vertical">
-                        <Image Source="sold.gif" IsVisible="{Binding Imagen}"
-                                   HeightRequest="200" HorizontalOptions="Center"
+                        <Image Source="homer.gif" IsVisible="{Binding Imagen}"
+                                   HeightRequest="300" HorizontalOptions="Center"
                                    IsAnimationPlaying="True"/>
-                        <!--<Label Text="No hay ofertas" IsVisible="{Binding Mensaje}"
-                                   FontSize="Large" HorizontalOptions="Center"/>-->
+                        <Label Text="¡Vaya! Todavía no has creado no tienes ninguna oferta" 
+                               IsVisible="{Binding Mensaje}"
+                               FontSize="Large" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
                     </StackLayout>
                 </CollectionView.Footer>
             </CollectionView>

@@ -18,6 +18,7 @@ namespace OnlyFoodXamarin.ViewModels
         public RegisterViewModel(OnlyFoodService service, RepositoryRealm repositoryRealm)
         {
             this.service = service;
+            this.repositoryRealm = repositoryRealm;
             this.Usuario = new UsuarioLogin();
         }
 
@@ -48,11 +49,11 @@ namespace OnlyFoodXamarin.ViewModels
                     App.ServiceLocator.SessionService.Token = token;
                     App.ServiceLocator.SessionService.Password = this.Usuario.Password;
                     App.ServiceLocator.SessionService.Usuario = user;
-
-                    var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
-                    masterDetailPage.Detail = new NavigationPage(
-                        (Page)Activator.CreateInstance(typeof(CadenasView)));
-                    masterDetailPage.IsPresented = false;
+                    App.LoadMainPage();
+                    //var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
+                    //masterDetailPage.Detail = new NavigationPage(
+                    //    (Page)Activator.CreateInstance(typeof(CadenasView)));
+                    //masterDetailPage.IsPresented = false;
                 });
             }
         }

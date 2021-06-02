@@ -65,11 +65,12 @@
                                 TextColor="Black"
                                 HorizontalOptions="FillAndExpand"
                                 Command="{Binding MostrarMasOfertas}"/>
-                            <Image Source="sold.gif" IsVisible="{Binding Imagen}"
-                                   HeightRequest="200" HorizontalOptions="Center"
+                            <Image Source="homer2.gif" IsVisible="{Binding Imagen}" 
+                                   HeightRequest="300" HorizontalOptions="Center"
                                    IsAnimationPlaying="True"/>
-                            <!--<Label Text="No hay ofertas" IsVisible="{Binding Mensaje}"
-                                   FontSize="Large" HorizontalOptions="Center"/>-->
+                            <Label Text="¡Vaya! Todavía no hay ofertas de tu selección" 
+                                   IsVisible="{Binding Mensaje}"
+                                   FontSize="Large" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
                         </StackLayout>
                         
                     </CollectionView.Footer>
