@@ -166,11 +166,6 @@
                 </CollectionView.ItemTemplate>
 
                 <CollectionView.Footer>
-                    <Button Text="Cargar más" 
-                        BackgroundColor="Red" 
-                        TextColor="Black"
-                        HorizontalOptions="FillAndExpand"
-                        Command="{Binding MostrarMasOfertas}"/>
                     <StackLayout Orientation="Vertical">
                         <Image Source="homer.gif" IsVisible="{Binding Imagen}"
                                    HeightRequest="300" HorizontalOptions="Center"
@@ -179,7 +174,9 @@
                                IsVisible="{Binding Mensaje}"
                                FontSize="Large" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
                     </StackLayout>
+
                 </CollectionView.Footer>
+                
             </CollectionView>
         </StackLayout>
     </ContentPage.Content>
