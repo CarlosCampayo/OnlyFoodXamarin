@@ -12,20 +12,18 @@
     </NavigationPage.TitleView>
     
     <ContentPage.Content>
-            <StackLayout x:Name="stackUsuarios" 
-                         BindingContext="{Binding Source={x:Static local:App.ServiceLocator},
+        <StackLayout x:Name="stackUsuarios" 
+            BindingContext="{Binding Source={x:Static local:App.ServiceLocator},
                 Path=EliminarUsuarioBuscadorViewModel}">
             <Label Text="Buscar usuario"
                         FontSize="Medium"
                         HorizontalOptions="StartAndExpand"/>
-                <Entry Text="{Binding Filtro}"
+            <Entry Text="{Binding Filtro}"
                        x:Name="searchBox"
                         Placeholder="Introduce el email o username del usuario"
                         HorizontalOptions="FillAndExpand"/>
-                <!--<Button Text="Buscar"
-                        Command="{Binding BuscarUsuarios}"/>-->
-            
-                <StackLayout Orientation="Vertical">
+
+            <StackLayout Orientation="Vertical">
                     <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
                                 Color="Red"
                                 VerticalOptions="CenterAndExpand" />
@@ -43,7 +41,7 @@
                                                   Command="{Binding BindingContext.EliminarUsuario,
                                             Source={x:Reference stackUsuarios}}"
                                                   CommandParameter="{Binding .}"/>
-                                </ViewCell.ContextActions>
+                                    </ViewCell.ContextActions>
                                     
                                     <StackLayout Orientation="Horizontal"
                                                     HorizontalOptions="Fill"

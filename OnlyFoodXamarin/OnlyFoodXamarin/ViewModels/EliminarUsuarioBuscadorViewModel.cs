@@ -67,9 +67,9 @@ namespace OnlyFoodXamarin.ViewModels
             set
             {
                 this._UsuarioSeleccionado = value;
-                Task.Run(async() => {
-                    await this.SeleccionarUsuarioAsync();
-                });
+                //Task.Run(async() => {
+                //    await this.SeleccionarUsuarioAsync();
+                //});
                 
                 OnPropertyChanged("UsuarioSeleccionado");
             }
@@ -97,8 +97,8 @@ namespace OnlyFoodXamarin.ViewModels
 
         public async Task<EliminarUsuarioView> SeleccionarUsuarioAsync()
         {
-            EliminarUsuarioViewModel viewModel = App.ServiceLocator.EliminarUsuarioViewModel;
             EliminarUsuarioView view = new EliminarUsuarioView();
+            EliminarUsuarioViewModel viewModel = App.ServiceLocator.EliminarUsuarioViewModel;
             viewModel.Usuario = this.UsuarioSeleccionado;
             view.BindingContext = viewModel;
             return view;

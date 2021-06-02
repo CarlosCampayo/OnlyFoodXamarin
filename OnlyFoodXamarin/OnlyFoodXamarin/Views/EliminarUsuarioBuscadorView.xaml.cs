@@ -1,4 +1,5 @@
-﻿using OnlyFoodXamarin.ViewModels;
+﻿using OnlyFoodXamarin.Models;
+using OnlyFoodXamarin.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,9 @@ namespace OnlyFoodXamarin.Views
 
         private async void LvUsuarios_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            EliminarUsuarioBuscadorViewModel vm = (EliminarUsuarioBuscadorViewModel)this.BindingContext;
+            //EliminarUsuarioBuscadorViewModel vm = (EliminarUsuarioBuscadorViewModel)this.BindingContext;
+            EliminarUsuarioBuscadorViewModel vm = (EliminarUsuarioBuscadorViewModel)this.stackUsuarios.BindingContext;
+            vm.UsuarioSeleccionado = (Usuario)e.SelectedItem;
             EliminarUsuarioView view = await vm.SeleccionarUsuarioAsync();
             await Navigation.PushAsync(view);
         }
