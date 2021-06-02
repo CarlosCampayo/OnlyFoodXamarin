@@ -15,6 +15,12 @@ namespace OnlyFoodXamarin.Views
         public LoginView()
         {
             InitializeComponent();
+            this.btnregister.Clicked += Btnregister_Clicked;
+        }
+
+        private void Btnregister_Clicked(object sender, EventArgs e)
+        {
+            this.Navigation.PushAsync(new RegisterView());
         }
     }
 }

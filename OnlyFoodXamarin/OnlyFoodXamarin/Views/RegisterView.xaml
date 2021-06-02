@@ -5,49 +5,55 @@
              xmlns:local="clr-namespace:OnlyFoodXamarin"
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=RegisterViewModel}">
 
+    <NavigationPage.TitleView>
+        <Label Text="Registro" TextColor="White"
+               FontSize="Medium"/>
+    </NavigationPage.TitleView>
+    
     <ContentPage.Content>
-        <StackLayout>
             <ScrollView>
-                <StackLayout Orientation="Vertical">
-                    <Label Text="Nueva Cadena"
-                           FontSize="Title"
-                           VerticalOptions="CenterAndExpand" 
-                           HorizontalOptions="CenterAndExpand" />
+                <StackLayout Orientation="Vertical" Padding="10, 15">
+                    <Label Text="Nombre de usuario"
+                            FontSize="Medium"
+                            HorizontalOptions="StartAndExpand"/>
+                    <Entry Text="{Binding Usuario.UserName}"
+                            HorizontalOptions="FillAndExpand"/>
+                    
                     <Label Text="Email"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
                     <Entry Text="{Binding Usuario.Email}"
+                           Keyboard="Email"
                            HorizontalOptions="FillAndExpand"/>
+                    
                     <Label Text="Contraseña"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
                     <Entry Text="{Binding Usuario.Password}"
                            IsPassword="True"
                            HorizontalOptions="FillAndExpand"/>
-                    <Label Text="UserName"
-                           FontSize="Medium"
-                           HorizontalOptions="StartAndExpand"/>
-                    <Entry Text="{Binding Usuario.UserName}"
-                           HorizontalOptions="FillAndExpand"/>
+
                     <Label Text="Nombre"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
                     <Entry Text="{Binding Usuario.Nombre}"
                            HorizontalOptions="FillAndExpand"/>
+                    
                     <Label Text="Apellidos"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
                     <Entry Text="{Binding Usuario.Apellidos}"
                            HorizontalOptions="FillAndExpand"/>
+                    
                     <Label Text="Fecha de nacimiento"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>
                     <DatePicker Date="{Binding Usuario.FechaNacimiento}"
                            HorizontalOptions="FillAndExpand"/>
+                    
                     <Button Text="Registrarse"
                             Command="{Binding Registrar}"/>
                 </StackLayout>
             </ScrollView>
-        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

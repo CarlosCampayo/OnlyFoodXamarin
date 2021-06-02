@@ -73,7 +73,7 @@
                             <!--<Label Text="No hay ofertas" IsVisible="{Binding Mensaje}"
                                    FontSize="Large" HorizontalOptions="Center"/>-->
                         </StackLayout>
-
+                        
                     </CollectionView.Footer>
                 </CollectionView>
             </StackLayout>

@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlyFoodXamarin.Views.CambiarUsernameView">
+    
     <NavigationPage.TitleView>
         <Label Text="Cambiar Username" TextColor="White"
                FontSize="Medium"/>
@@ -19,7 +20,7 @@
                     <Entry Text="{Binding Usuario.UserName}"
                            HorizontalOptions="FillAndExpand"/>
                     <Button Text="Cambiar"
-                            Command="{Binding CambiarUsername}"/>
+                            x:Name="btnGuardar"/>
                 </StackLayout>
             </ScrollView>
         </StackLayout>

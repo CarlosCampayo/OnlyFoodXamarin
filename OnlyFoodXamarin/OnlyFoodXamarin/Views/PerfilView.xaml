@@ -6,12 +6,17 @@
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=PerfilViewModel}">
 
     <NavigationPage.TitleView>
-        <Label Text="Mi perfil" TextColor="White"
-               FontSize="Medium"/>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Mi perfil" TextColor="White" FontSize="Medium" 
+                   HorizontalOptions="Start" VerticalOptions="Center" />
+            <Button Text="Cerrar sesión" x:Name="btnclose" FontSize="Micro" 
+                    BackgroundColor="#bc171d" 
+                    HorizontalOptions="EndAndExpand" VerticalOptions="Center"/>
+        </StackLayout>
     </NavigationPage.TitleView>
     
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="10, 15">
             <Label Text="Mi perfil"
                         FontSize="40"
                         FontAttributes="Bold"
@@ -19,80 +24,23 @@
                         HorizontalOptions="CenterAndExpand" 
                         TextColor="#000000"  />
             <Label Text="Email"
-                        FontSize="20"
-                        FontAttributes="Bold"
-                        HorizontalOptions="Center"
-                        TextColor="#000000"/>
-            <Frame CornerRadius="40">
-                <Entry Text="{Binding Usuario.Email}"
-                            IsReadOnly="True"
-                            HorizontalOptions="FillAndExpand"
-                            HeightRequest="40"
-                            Opacity="5"/>
-            </Frame>
-            <Button Text="Cambiar" Command="{Binding CambiarEmail}"
-                    CornerRadius="20"
-                    BorderWidth="1"
-                    BorderColor="#e41b23"
-                    BackgroundColor="#ffffff"/>
+                        FontSize="Medium"
+                        HorizontalOptions="StartAndExpand"/>
+            <Entry Text="{Binding Usuario.Email}"
+                        IsReadOnly="True"
+                        HorizontalOptions="FillAndExpand"/>
+            <Button Text="Cambiar"  x:Name="btnEmail"/>
+            
             <Label Text="Username"
-                        FontSize="20"
-                        FontAttributes="Bold"
-                        HorizontalOptions="Center"
-                        TextColor="#000000"/>
-            <Frame CornerRadius="40">
-                <Entry Text="{Binding Usuario.UserName}"
-                            IsReadOnly="True"
-                            HorizontalOptions="FillAndExpand"
-                            HeightRequest="40"
-                            Opacity="5"/>
-            </Frame>
-            <Button Text="Cambiar" Command="{Binding CambiarUsername}"
-                    CornerRadius="20"
-                    BorderWidth="1"
-                    BorderColor="#e41b23"
-                    BackgroundColor="#ffffff"/>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                </Grid>
-                <Button Text="Cambiar contraseña"  Command="{Binding CambiarPassword}"
-                        CornerRadius="20"
-                        BorderWidth="1"
-                        BorderColor="Black"
-                        BackgroundColor="#ffffff"
-                        TextColor="#e41b23"
-                        FontAttributes="Bold"
-                        Grid.Row="0"
-                        Grid.Column="0"
-                        FontSize="12"/>
-                <Button Text="Eliminar cuenta" Command="{Binding EliminarCuenta}"
-                        CornerRadius="20"
-                        BorderWidth="1"
-                        BorderColor="Black"
-                        BackgroundColor="#e41b23"
-                        TextColor="White"
-                        Grid.Row="0"
-                        Grid.Column="1"
-                        FontSize="12"/>
-                <Button Text="Cerrar sesión" Command="{Binding CerrarSesion}"
-                        CornerRadius="20"
-                        BorderWidth="1"
-                        BorderColor="Black"
-                        BackgroundColor="#e41b23"
-                        TextColor="White"
-                        Grid.Row="0"
-                        Grid.Column="2"
-                        FontSize="12"/>
-
-            </StackLayout>
+                        FontSize="Medium"
+                        HorizontalOptions="StartAndExpand"/>
+            <Entry Text="{Binding Usuario.UserName}"
+                        IsReadOnly="True"
+                        HorizontalOptions="FillAndExpand"/>
+            <Button Text="Cambiar" x:Name="btnUserName"/>
+            
+            <Button Text="Eliminar cuenta" Command="{Binding EliminarCuenta}"
+                    BackgroundColor="#e41b23" Margin="0, 10"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

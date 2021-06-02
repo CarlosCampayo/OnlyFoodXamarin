@@ -4,7 +4,11 @@
              x:Class="OnlyFoodXamarin.Views.LoginView"
              xmlns:local="clr-namespace:OnlyFoodXamarin"
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=LoginViewModel}">
-
+    
+    <NavigationPage.TitleView>
+        <Button Text="Registro" FontSize="Small"
+                    HorizontalOptions="End" x:Name="btnregister"/>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
         <StackLayout BackgroundColor="#e41b23" Padding="10, 15">
             <Grid Padding="10, 15" HeightRequest="250">
@@ -16,24 +20,18 @@
                 <Image Source="https://onlyfood.blob.core.windows.net/imagenes/logo_only_r.jpg"
                                            WidthRequest="100"
                                            Grid.Column="1"/>
-            </Grid>
-            <Frame CornerRadius="30">
-                <Entry Placeholder="Introduce tu email" Text="{Binding Usuario.Email}" BackgroundColor="White"/>
-            </Frame>
-            <Label Text="Contraseña" FontSize="Medium" TextColor="White" FontAttributes="Bold"/>
-            <Frame CornerRadius="30" BorderColor="White">
-                <Entry Placeholder="Introduce tu contraseña" 
-                    IsPassword="True" Text="{Binding Usuario.Password}" BackgroundColor="White" Opacity="1"/>
-            </Frame>
-            <Button Text="Login" Command="{Binding Login}"
-                    CornerRadius="10"
-                    FontAttributes="Bold"
-                    BorderWidth="3"
-                    BorderColor="#ffffff"
-                    TextColor="White"
-                    BackgroundColor="#e41b23"/>
-            <Button Text="Registro" FontSize="Small" Command="{Binding Register}"
-                    HorizontalOptions="End"/>
+            </Grid> 
+            <Label Text="Email" FontSize="Medium" TextColor="White"/>
+            <Entry Placeholder="Introduce tu email" Text="{Binding Usuario.Email}" BackgroundColor="White"
+                   Keyboard="Email"/>
+            
+            <Label Text="Contraseña" FontSize="Medium" TextColor="White"/>
+            <Entry Placeholder="Introduce tu contraseña" 
+                   IsPassword="True" Text="{Binding Usuario.Password}" BackgroundColor="White"/>
+
+            <Button Text="Login" Command="{Binding Login}"/>
+            
+            <Label Text="{Binding Mensaje}" TextColor="White" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

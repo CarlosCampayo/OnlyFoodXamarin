@@ -71,7 +71,26 @@ namespace OnlyFoodXamarin.ViewModels
                 //Task.Run(async() => await this.MostrarDetalleOfertaAsync());
             }
         }
-
+        private bool _Imagen;
+        public bool Imagen
+        {
+            get { return _Imagen; }
+            set
+            {
+                this._Imagen = value;
+                OnPropertyChanged("Imagen");
+            }
+        }
+        private bool _Mensaje;
+        public bool Mensaje
+        {
+            get { return _Mensaje; }
+            set
+            {
+                this._Mensaje = value;
+                OnPropertyChanged("Mensaje");
+            }
+        }
         public  async Task<DetalleOfertaUsuarioView> MostrarDetalleOfertaAsync()
         {
             DetalleOfertaUsuarioView view = new DetalleOfertaUsuarioView();
@@ -94,6 +113,16 @@ namespace OnlyFoodXamarin.ViewModels
             int idUsuario = App.ServiceLocator.SessionService.Usuario.Id;
             this.Ofertas = new ObservableCollection<Oferta>
                 (await this.service.GetOfertasByIdUserAsync(idUsuario, token));
+            if (this.Ofertas.Count == 0)
+            {
+                this.Mensaje = true;
+                this.Imagen = true;
+            }
+            else
+            {
+                this.Mensaje = false;
+                this.Imagen = false;
+            }
             this.ShowLoading = false;
         }
     }

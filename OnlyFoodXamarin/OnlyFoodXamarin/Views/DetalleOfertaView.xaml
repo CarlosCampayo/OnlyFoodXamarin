@@ -19,26 +19,31 @@
                     <Label Text="{Binding Oferta.Precio}"
                            FontSize="Large"
                            HorizontalOptions="CenterAndExpand"/>
-                    <Label Text="{Binding Likes}" FontSize="Large"/>
                     <Label Text="{Binding Cadena.Nombre}"
                            FontSize="Medium"
                            HorizontalOptions="CenterAndExpand"/>
-                    <Label Text="{Binding DisLikes}" FontSize="Large"/>
                 </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Image Source="https://img.favpng.com/10/9/6/thumb-signal-font-awesome-computer-icons-clip-art-png-favpng-ZpSc5KfNAuc3ixKCZ4Zpe1qDi.jpg"
-                           HorizontalOptions="CenterAndExpand"
-                           WidthRequest="75"/>
-                    <Image Source="https://w7.pngwing.com/pngs/917/982/png-transparent-thumb-signal-computer-icons-font-awesome-like-button-dislike-text-hand-facebook-like-button.png"
-                           HorizontalOptions="CenterAndExpand"
-                           WidthRequest="175"/>
+                <StackLayout Orientation="Horizontal" Padding="10,15">
+                    <Label Text="{Binding Likes}" FontSize="Large" VerticalOptions="Center"/>
+                    <ImageButton Source="{Binding LikesImagen}"
+                                 HorizontalOptions="CenterAndExpand"
+                                 WidthRequest="75"
+                                 CommandParameter="like"
+                                 Command="{Binding Votar}"/>
+                    <ImageButton  Source="{Binding DisLikesImagen}"
+                                  HorizontalOptions="CenterAndExpand"
+                                  WidthRequest="75"
+                                  CommandParameter="dislike"
+                                  Command="{Binding Votar}"/>
+                    <Label Text="{Binding DisLikes}" FontSize="Large" VerticalOptions="Center"/>
                 </StackLayout>
                 <Label Text="{Binding Oferta.Descripcion}"
                        FontSize="Medium"/>
                 <Label Text="Comentarios"
                        FontSize="Medium"
                        HorizontalOptions="Center"/>
-                <Entry Placeholder="Escribe tu comentario"/>
+                <Entry Placeholder="Escribe tu comentario" Text="{Binding Mensaje}"/>
+                <Button Text="Comentar" Command="{Binding Comentar}"/>
                 <ListView ItemsSource="{Binding Comentarios}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -53,6 +58,10 @@
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
+                    <ListView.Footer>
+                        <Button Text="Cargar más comentarios" 
+                                Command="{Binding CargarMasComentarios}"/>
+                    </ListView.Footer>
                 </ListView>
             </StackLayout>    
         </ScrollView>
