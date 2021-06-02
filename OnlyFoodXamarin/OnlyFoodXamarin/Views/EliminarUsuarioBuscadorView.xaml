@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlyFoodXamarin.Views.EliminarUsuarioBuscadorView"
              x:Name="PageEliminarUsuarioBuscador"
-             xmlns:local="clr-namespace:OnlyFoodXamarin"
-             BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=EliminarUsuarioBuscadorViewModel}">
+             xmlns:local="clr-namespace:OnlyFoodXamarin">
+    <!--BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=EliminarUsuarioBuscadorViewModel}">-->
 
     <NavigationPage.TitleView>
         <Label Text="Eliminar usuario" TextColor="White"
@@ -12,7 +12,9 @@
     </NavigationPage.TitleView>
     
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
+            <StackLayout x:Name="stackUsuarios" 
+                         BindingContext="{Binding Source={x:Static local:App.ServiceLocator},
+                Path=EliminarUsuarioBuscadorViewModel}">
             <Label Text="Buscar usuario"
                         FontSize="Medium"
                         HorizontalOptions="StartAndExpand"/>
@@ -27,15 +29,22 @@
                     <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
                                 Color="Red"
                                 VerticalOptions="CenterAndExpand" />
-                        
-                    <ListView ItemsSource="{Binding Usuarios}" 
+
+                <ListView ItemsSource="{Binding Usuarios}" 
                                 SelectedItem="{Binding UsuarioSeleccionado}"
                                 HasUnevenRows="True"
                                 x:Name="lvUsuarios"
                               IsVisible="{Binding ShowContent}">
-                        <ListView.ItemTemplate>
+                    <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
+                                    <ViewCell.ContextActions>
+                                        <MenuItem Text="Eliminar" 
+                                                  Command="{Binding BindingContext.EliminarUsuario,
+                                            Source={x:Reference stackUsuarios}}"
+                                                  CommandParameter="{Binding .}"/>
+                                </ViewCell.ContextActions>
+                                    
                                     <StackLayout Orientation="Horizontal"
                                                     HorizontalOptions="Fill"
                                                     Margin="10"

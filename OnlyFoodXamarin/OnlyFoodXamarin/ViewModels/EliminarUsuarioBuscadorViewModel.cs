@@ -133,5 +133,21 @@ namespace OnlyFoodXamarin.ViewModels
                 });
             }
         }
+
+        public Command EliminarUsuario
+        {
+            get
+            {
+                return new Command(async (usuario) =>
+                {
+                    //añadir accion de api de eliminar User
+                    //String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
+                    Usuario user = (Usuario)usuario;
+                    String token = App.ServiceLocator.SessionService.Token;
+                    this.LoadUsuariosAsync();
+                    await this.service.DeleteUserAsync(user.Id, token);
+                });
+            }
+        }
     }
 }

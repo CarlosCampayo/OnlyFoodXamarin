@@ -29,12 +29,15 @@
                             <DataTemplate>
                                 <SwipeView>
                                         <SwipeView.RightItems>
-                                        <SwipeItem Text="Eliminar"
-                                                   BackgroundColor="Red"
-                                                   Command="{Binding BindingContext.EliminarCadena,
-                                            Source={x:Reference stackCadenas}}"
-                                                   CommandParameter="{Binding .}"/>
-                                    </SwipeView.RightItems>
+                                            <SwipeItems>
+                                                <SwipeItem Text="Eliminar"
+                                                    BackgroundColor="Red"
+                                                    IconImageSource="https://ayudawp.com/wp-content/uploads/2018/04/borrar-plugins-wordpress.png"
+                                                    Command="{Binding BindingContext.EliminarCadena,
+                                                    Source={x:Reference stackCadenas}}"
+                                                    CommandParameter="{Binding .}"/>
+                                            </SwipeItems>
+                                        </SwipeView.RightItems>
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
@@ -48,7 +51,7 @@
                                         <Image Source="{Binding Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}" 
                                                    Grid.RowSpan="2"
                                                    Grid.Column="0"
-                                                   HeightRequest="50"/>
+                                                   HeightRequest="80"/>
                                         <Label Text="{Binding Nombre}"
                                                    FontSize="Large"
                                                    Grid.RowSpan="2"
