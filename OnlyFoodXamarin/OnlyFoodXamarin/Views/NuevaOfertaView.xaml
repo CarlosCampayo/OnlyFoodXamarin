@@ -15,60 +15,104 @@
             <ScrollView>
                 <StackLayout Orientation="Vertical">
                     <Label Text="Nueva Oferta"
-                           FontSize="Title"
-                           VerticalOptions="CenterAndExpand" 
-                           HorizontalOptions="CenterAndExpand" />
+                        FontSize="40"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
                     
                     <Label Text="Cadena"
-                           FontSize="Medium"
-                           HorizontalOptions="StartAndExpand" />
-                    <Picker x:Name="selectcadenas"
-                            ItemsSource="{Binding Cadenas}"
-                            Title="Selecciona una cadena"
-                            SelectedItem="{Binding CadenaSeleccionada}"
-                            ItemDisplayBinding="{Binding Nombre}"/>
-
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="StartAndExpand" />
+                    <Frame CornerRadius="20">
+                        <Picker x:Name="selectcadenas"
+                                ItemsSource="{Binding Cadenas}"
+                                Title="Selecciona una cadena"
+                                SelectedItem="{Binding CadenaSeleccionada}"
+                                ItemDisplayBinding="{Binding Nombre}"/>
+                    </Frame>
                     <Label Text="Titulo"
-                           FontSize="Medium"
-                           HorizontalOptions="StartAndExpand"/>
-                    <Entry Text="{Binding Oferta.Titulo}"
-                           HorizontalOptions="FillAndExpand"/>
-                    
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        VerticalOptions="Start" 
+                        TextColor="#000000"
+                        HorizontalOptions="StartAndExpand"/>
+                    <Frame CornerRadius="20">
+                         <Entry Text="{Binding Oferta.Titulo}"
+                            HeightRequest="40"
+                            Opacity="5"
+                            HorizontalOptions="FillAndExpand"/>
+                    </Frame>
                     <Label Text="Descripcion"
-                           FontSize="Medium"
-                           HorizontalOptions="StartAndExpand"/>
-                    <Editor Text="{Binding Oferta.Descripcion}"
-                            AutoSize="TextChanges"
-                           HorizontalOptions="FillAndExpand"/>
-                    
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="StartAndExpand"/>
+                    <Frame CornerRadius="20">
+                        <Editor Text="{Binding Oferta.Descripcion}"
+                               AutoSize="TextChanges"
+                               HorizontalOptions="FillAndExpand"/>
+                    </Frame>
                     <Label Text="Imagen"
-                           FontSize="Medium"
-                           HorizontalOptions="StartAndExpand"/>
-                    <Button Text="Seleccionar Imagen" x:Name="btnpickimage"/>
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="StartAndExpand"/>
+                    <Button Text="Seleccionar Imagen" x:Name="btnpickimage" 
+                            BorderColor="#e41b23" 
+                            BackgroundColor="White" 
+                            TextColor="#e41b23"
+                            BorderWidth="1.5"
+                            CornerRadius="5"/>
                     <Image x:Name="resultImg" />
 
                     <Label Text="Precio"
-                           FontSize="Medium"
-                           HorizontalOptions="StartAndExpand"/>
-                    <Entry Text="{Binding Oferta.Precio}"
-                           Keyboard="Numeric"
-                           HorizontalOptions="FillAndExpand"/>
-                    
+                        FontSize="20"
+                        FontAttributes="Bold" 
+                        TextColor="#000000"
+                        HorizontalOptions="StartAndExpand"/>
+                    <Frame CornerRadius="20">
+                        <Entry Text="{Binding Oferta.Precio}"
+                                Keyboard="Numeric"
+                                HorizontalOptions="FillAndExpand"
+                                HeightRequest="40"
+                                Opacity="5"/>
+                    </Frame>
+
                     <Label Text="Codigo"
-                           FontSize="Medium"
-                           HorizontalOptions="StartAndExpand"/>
-                    <Entry Text="{Binding Oferta.Codigo}"
-                           HorizontalOptions="FillAndExpand"/>
-                    
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="StartAndExpand"/>
+                    <Frame CornerRadius="20">
+                        <Entry Text="{Binding Oferta.Codigo}"
+                                HorizontalOptions="FillAndExpand"
+                                HeightRequest="40"
+                                Opacity="50"/>
+                    </Frame>
+
                     <Label Text="Web"
-                           FontSize="Medium"
-                           HorizontalOptions="StartAndExpand"/>
-                    <Entry Text="{Binding Oferta.Web}"
-                           HorizontalOptions="FillAndExpand" Keyboard="Url"/>
-                    
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="StartAndExpand"/>
+                    <Frame CornerRadius="20">
+                        <Entry Text="{Binding Oferta.Web}"
+                               HorizontalOptions="FillAndExpand"
+                               HeightRequest="40"
+                               Opacity="5"
+                               Keyboard="Url"/>
+                    </Frame>
                     
                     <Button Text="Crear oferta"
-                            Command="{Binding CrearOferta}"/>
+                            Command="{Binding CrearOferta}"                            
+                            BorderColor="#e41b23" 
+                            BackgroundColor="White" 
+                            TextColor="#e41b23"
+                            BorderWidth="1.5"
+                            CornerRadius="50"/>
                     
                     <Label Text="{Binding Mensaje}"
                            FontSize="Medium"

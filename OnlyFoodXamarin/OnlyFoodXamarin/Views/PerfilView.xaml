@@ -13,27 +13,84 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Mi perfil"
-                        FontSize="Title"
+                        FontSize="40"
+                        FontAttributes="Bold"
                         VerticalOptions="Start" 
-                        HorizontalOptions="CenterAndExpand" />
+                        HorizontalOptions="CenterAndExpand" 
+                        TextColor="#000000"  />
             <Label Text="Email"
-                        FontSize="Medium"
-                        HorizontalOptions="StartAndExpand"/>
-            <Entry Text="{Binding Usuario.Email}"
-                        IsReadOnly="True"
-                        HorizontalOptions="FillAndExpand"/>
-            <Button Text="Cambiar" Command="{Binding CambiarEmail}"/>
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        TextColor="#000000"/>
+            <Frame CornerRadius="40">
+                <Entry Text="{Binding Usuario.Email}"
+                            IsReadOnly="True"
+                            HorizontalOptions="FillAndExpand"
+                            HeightRequest="40"
+                            Opacity="5"/>
+            </Frame>
+            <Button Text="Cambiar" Command="{Binding CambiarEmail}"
+                    CornerRadius="20"
+                    BorderWidth="1"
+                    BorderColor="#e41b23"
+                    BackgroundColor="#ffffff"/>
             <Label Text="Username"
-                        FontSize="Medium"
-                        HorizontalOptions="StartAndExpand"/>
-            <Entry Text="{Binding Usuario.UserName}"
-                        IsReadOnly="True"
-                        HorizontalOptions="FillAndExpand"/>
-            <Button Text="Cambiar" Command="{Binding CambiarUsername}"/>
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        TextColor="#000000"/>
+            <Frame CornerRadius="40">
+                <Entry Text="{Binding Usuario.UserName}"
+                            IsReadOnly="True"
+                            HorizontalOptions="FillAndExpand"
+                            HeightRequest="40"
+                            Opacity="5"/>
+            </Frame>
+            <Button Text="Cambiar" Command="{Binding CambiarUsername}"
+                    CornerRadius="20"
+                    BorderWidth="1"
+                    BorderColor="#e41b23"
+                    BackgroundColor="#ffffff"/>
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Button Text="Cambiar contraseña"  Command="{Binding CambiarPassword}" />
-                <Button Text="Eliminar cuenta" Command="{Binding EliminarCuenta}"/>
-                <Button Text="Cerrar sesión" Command="{Binding CerrarSesion}"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                </Grid>
+                <Button Text="Cambiar contraseña"  Command="{Binding CambiarPassword}"
+                        CornerRadius="20"
+                        BorderWidth="1"
+                        BorderColor="Black"
+                        BackgroundColor="#ffffff"
+                        TextColor="#e41b23"
+                        FontAttributes="Bold"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontSize="12"/>
+                <Button Text="Eliminar cuenta" Command="{Binding EliminarCuenta}"
+                        CornerRadius="20"
+                        BorderWidth="1"
+                        BorderColor="Black"
+                        BackgroundColor="#e41b23"
+                        TextColor="White"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        FontSize="12"/>
+                <Button Text="Cerrar sesión" Command="{Binding CerrarSesion}"
+                        CornerRadius="20"
+                        BorderWidth="1"
+                        BorderColor="Black"
+                        BackgroundColor="#e41b23"
+                        TextColor="White"
+                        Grid.Row="0"
+                        Grid.Column="2"
+                        FontSize="12"/>
 
             </StackLayout>
         </StackLayout>

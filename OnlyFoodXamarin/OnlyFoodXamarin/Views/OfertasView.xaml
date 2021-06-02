@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlyFoodXamarin.Views.OfertasView"
              xmlns:local="clr-namespace:OnlyFoodXamarin"
-             BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=OfertasViewModel}">
+             xmlns:viewmodel="clr-namespace:OnlyFoodXamarin.ViewModels"
+             xmlns:controls="clr-namespace:OnlyFoodXamarin.Controls"
+             BindingContext="{Binding Source={x:Static local:App.ServiceLocator, viewmodel:OfertasViewModel},Path=OfertasViewModel}">
 
     <NavigationPage.TitleView>
         <Label Text="Ofertas" TextColor="White"
@@ -21,7 +23,7 @@
             <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
                                Color="Red"
                                VerticalOptions="CenterAndExpand" />
-            
+
             <StackLayout Orientation="Vertical">
                 <CollectionView ItemsSource="{Binding Ofertas}"
                                 SelectedItem="{Binding OfertaSeleccionada}"
@@ -30,39 +32,48 @@
                                 IsVisible="{Binding ShowContent}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                                <StackLayout>
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
+                            <StackLayout>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
 
-                                        <Image Source="{Binding Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}" 
+                                    <Image Source="{Binding Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}" 
                                                 Grid.RowSpan="2"
                                                 Grid.Column="0"
                                                 HeightRequest="50"/>
-                                        <Label Text="{Binding Titulo}"
+                                    <Label Text="{Binding Titulo}"
                                                 FontSize="Large"
                                                 Grid.Row="0"
                                                 Grid.Column="1"/>
-                                        <Label Text="{Binding Precio, StringFormat='{0} €'}"
+                                    <Label Text="{Binding Precio, StringFormat='{0} €'}"
                                                 Grid.Row="1"
                                                 Grid.Column="1"
                                                 FontSize="Caption"/>
-                                    </Grid>
-                                </StackLayout>
+                                </Grid>
+                            </StackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                     <CollectionView.Footer>
-                        <Button Text="Cargar más" 
-                        BackgroundColor="Red" 
-                        TextColor="Black"
-                        HorizontalOptions="FillAndExpand"
-                        Command="{Binding MostrarMasOfertas}"/>
+                        <StackLayout Orientation="Vertical">
+                            <Button Text="Cargar más" 
+                                IsVisible="{Binding Botoncargar}"
+                                BackgroundColor="Red" 
+                                TextColor="Black"
+                                HorizontalOptions="FillAndExpand"
+                                Command="{Binding MostrarMasOfertas}"/>
+                            <Image Source="sold.gif" IsVisible="{Binding Imagen}"
+                                   HeightRequest="200" HorizontalOptions="Center"
+                                   IsAnimationPlaying="True"/>
+                            <!--<Label Text="No hay ofertas" IsVisible="{Binding Mensaje}"
+                                   FontSize="Large" HorizontalOptions="Center"/>-->
+                        </StackLayout>
+
                     </CollectionView.Footer>
                 </CollectionView>
             </StackLayout>

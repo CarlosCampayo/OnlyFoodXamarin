@@ -3,7 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlyFoodXamarin.Views.OfertasUsuarioView"
              xmlns:local="clr-namespace:OnlyFoodXamarin"
-             BindingContext="{Binding Source={x:Static local:App.ServiceLocator}, 
+             xmlns:viewmodel="clr-namespace:OnlyFoodXamarin.ViewModels"
+             xmlns:controls="clr-namespace:OnlyFoodXamarin.Controls"
+             BindingContext="{Binding Source={x:Static local:App.ServiceLocator, viewmodel:OfertasViewModel}, 
                 Path=OfertasUsuarioViewModel}">
 
     <NavigationPage.TitleView>
@@ -11,7 +13,112 @@
                FontSize="Medium"/>
     </NavigationPage.TitleView>
 
-    <ContentPage.Content>
+
+
+    <ContentPage.Resources>
+        <ControlTemplate x:Key="CardViewControlTemplate">
+            <Frame BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
+                       BackgroundColor="{Binding CardColor}"
+                       BorderColor="{Binding BorderColor}"
+                       CornerRadius="5"
+                       HasShadow="True"
+                       Padding="8"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       WidthRequest="500">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75" />
+                        <RowDefinition Height="4" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                    </Grid.RowDefinitions>
+                    <Frame IsClippedToBounds="True"
+                               BorderColor="{Binding BorderColor}"
+                               BackgroundColor="{Binding IconBackgroundColor}"
+                               HeightRequest="60"
+                               WidthRequest="60"
+                               HorizontalOptions="Start">
+                        <Image Source="{Binding IconImageSource, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}"
+                                   Margin="-20"
+                                   WidthRequest="100"
+                                   HeightRequest="100"
+                                   Aspect="AspectFill" />
+                    </Frame>
+                    <Label Text="{Binding CardTitle}"
+                               FontAttributes="Bold"
+                               FontSize="Large"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="End" 
+                               VerticalOptions="CenterAndExpand"
+                               TextColor="{Binding CardTextColor}"/>
+                    <BoxView Grid.Row="1"
+                                 BackgroundColor="{Binding CardLine}"
+                                 HeightRequest="2"
+                                 HorizontalOptions="Fill" />
+                    <Label Grid.Row="4"
+                           Text="{Binding CardPrice, StringFormat='Precio: {0:C2}'}"
+                           HorizontalOptions="Start"
+                           FontAttributes="Bold"/>
+                    <Label Grid.Row="4"
+                           Text="{Binding CardCode}"
+                           HorizontalOptions="End"
+                           FontAttributes="Bold"/>
+                    <controls:HyperlinkLabel Grid.Row="3"
+                           Url="{Binding CardUrl}"
+                           Text="{Binding CardUrl}"
+                           TextColor="#0231ee"
+                           HorizontalOptions="Center"/>
+                    <Label Grid.Row="2"
+                               Text="{Binding CardDescription}"
+                               VerticalTextAlignment="Start"
+                               VerticalOptions="Fill"
+                               HorizontalOptions="Fill" 
+                               TextColor="{Binding CardTextColor}"/>
+                </Grid>
+            </Frame>
+        </ControlTemplate>
+
+        <DataTemplate x:Key="PersonTemplate">
+            <controls:CardView BorderColor="Black"
+                                   CardTextColor="Black"
+                                   CardTitle="{Binding Titulo}"
+                                   CardDescription="{Binding Descripcion}"
+                                   CardCode="{Binding Codigo}"
+                                   CardPrice="{Binding Precio}"
+                                   CardUrl="{Binding Web}"
+                                   IconImageSource="{Binding Imagen}"
+                                   ControlTemplate="{StaticResource CardViewControlTemplate}" />
+        </DataTemplate>
+    </ContentPage.Resources>
+
+    <StackLayout>
+
+        <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
+                               Color="#e41b23"
+                               VerticalOptions="CenterAndExpand" />
+
+        <ScrollView>
+            <CollectionView ItemsSource="{Binding Ofertas}"
+                                        SelectedItem="{Binding OfertaSeleccionada}"
+                                        SelectionMode="Single"
+                                        ItemTemplate="{StaticResource PersonTemplate}"
+                                        x:Name="cvOfertas"
+                                        IsVisible="{Binding ShowContent}">
+
+            </CollectionView>
+        </ScrollView>
+        <Button Text="Cargar más" 
+                BackgroundColor="#e41b23"
+                TextColor="White"
+                HorizontalOptions="FillAndExpand"                
+                Command="{Binding MostrarMasOfertas}"/>
+    </StackLayout>
+
+
+
+    <!--<ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <Label Text="Mis Ofertas"
                    FontSize="Large"
@@ -67,5 +174,5 @@
                 </CollectionView.Footer>
             </CollectionView>
         </StackLayout>
-    </ContentPage.Content>
+    </ContentPage.Content>-->
 </ContentPage>

@@ -16,13 +16,22 @@
                 <Image Source="https://onlyfood.blob.core.windows.net/imagenes/logo_only_r.jpg"
                                            WidthRequest="100"
                                            Grid.Column="1"/>
-            </Grid> 
-            <Label Text="Email" FontSize="Medium" TextColor="White"/>
-            <Entry Placeholder="Introduce tu email" Text="{Binding Usuario.Email}" BackgroundColor="White"/>
-            <Label Text="Contraseña" FontSize="Medium" TextColor="White"/>
-            <Entry Placeholder="Introduce tu contraseña" 
-                   IsPassword="True" Text="{Binding Usuario.Password}" BackgroundColor="White"/>
-            <Button Text="Login" Command="{Binding Login}"/>
+            </Grid>
+            <Frame CornerRadius="30">
+                <Entry Placeholder="Introduce tu email" Text="{Binding Usuario.Email}" BackgroundColor="White"/>
+            </Frame>
+            <Label Text="Contraseña" FontSize="Medium" TextColor="White" FontAttributes="Bold"/>
+            <Frame CornerRadius="30" BorderColor="White">
+                <Entry Placeholder="Introduce tu contraseña" 
+                    IsPassword="True" Text="{Binding Usuario.Password}" BackgroundColor="White" Opacity="1"/>
+            </Frame>
+            <Button Text="Login" Command="{Binding Login}"
+                    CornerRadius="10"
+                    FontAttributes="Bold"
+                    BorderWidth="3"
+                    BorderColor="#ffffff"
+                    TextColor="White"
+                    BackgroundColor="#e41b23"/>
             <Button Text="Registro" FontSize="Small" Command="{Binding Register}"
                     HorizontalOptions="End"/>
         </StackLayout>

@@ -15,21 +15,29 @@
             <ScrollView>
                 <StackLayout Orientation="Vertical">
                     <Label Text="Registro"
-                           FontSize="Title"
-                           HorizontalOptions="CenterAndExpand" />
+                        FontSize="40"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="CenterAndExpand" />
                     
                     <Label Text="Nombre"
-                           FontSize="Medium"
-                           HorizontalOptions="StartAndExpand"/>
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="StartAndExpand"/>
+                    <Frame CornerRadius="20">
                     <Entry Text="{Binding Cadena.Nombre}"
                            HorizontalOptions="FillAndExpand"/>
-                    
+                    </Frame>
                     <Label Text="Descripcion"
-                           FontSize="Medium"
-                           HorizontalOptions="StartAndExpand"/>
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="StartAndExpand"/>
+                    <Frame CornerRadius="20">
                     <Editor Text="{Binding Cadena.Descripcion}"
                            AutoSize="TextChanges"/>
-                    
+                    </Frame>
                     <Label Text="Imagen"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>

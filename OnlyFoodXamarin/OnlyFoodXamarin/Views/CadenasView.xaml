@@ -35,6 +35,17 @@
                         <!--<ViewCell>-->
                         <!--<customcontrols:CustomViewCellControl SelectedItemBackgroundColor="White">-->
                         <Grid Padding="10, 15">
+                            <!--ColorTap-->
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal"/>
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="#e41b23"/>
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
                             <!--Estructura Grid-->
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
