@@ -15,6 +15,7 @@ namespace OnlyFoodXamarin.ViewModels
     {
         RepositoryRealm repositoryRealm;
         OnlyFoodService service;
+
         public PerfilViewModel(OnlyFoodService service, RepositoryRealm repositoryRealm)
         {
             this.service = service;
@@ -24,6 +25,7 @@ namespace OnlyFoodXamarin.ViewModels
                 await this.CargarUsuario();
             });
         }
+
         private Usuario _Usuario;
         public Usuario Usuario
         {
@@ -34,6 +36,7 @@ namespace OnlyFoodXamarin.ViewModels
                 OnPropertyChanged("Usuario");
             }
         }
+
         public async Task CargarUsuario()
         {
             //String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
@@ -61,60 +64,31 @@ namespace OnlyFoodXamarin.ViewModels
         //    //masterDetailPage.Detail = new NavigationPage(view);
         //    //masterDetailPage.IsPresented = false;
         //}
-        public Command CambiarPaswword
+        
+        public async Task<CambiarUsernameView> CambiarUsername()
         {
-            get
-            {
-                return new Command(() =>
-                {
-                    String token = App.ServiceLocator.SessionService.Token;
-                    int idUsaurio = App.ServiceLocator.SessionService.Usuario.Id;
-                    //CambiarPasswordView view = new CambiarPasswordView();
-                    //CambiarPasswordViewViewModel viewmodel = App.ServiceLocator.CambiarPasswordViewViewModel;
-                    //viewmodel.Usuario = this.Usuario;
-                    ////view.BindingContext = viewmodel;
-                    //Application.Current.MainPage.Navigation.PushModalAsync(view);
-                });
-            }
+            String token = App.ServiceLocator.SessionService.Token;
+            int idUsaurio = App.ServiceLocator.SessionService.Usuario.Id;
+
+            CambiarUsernameView view = new CambiarUsernameView();
+            CambiarUsernameViewModel viewmodel = App.ServiceLocator.CambiarUsernameViewModel;
+            viewmodel.Usuario = this.Usuario;
+            view.BindingContext = viewmodel;
+            return view;
         }
-        public Command CambiarUsername
+
+        public async Task<CambiarEmailView> CambiarEmail()
         {
-            get
-            {
-                return new Command(() =>
-                {
-                    String token = App.ServiceLocator.SessionService.Token;
-                    int idUsaurio = App.ServiceLocator.SessionService.Usuario.Id;
-                    CambiarUsernameView view = new CambiarUsernameView();
-                    CambiarUsernameViewModel viewmodel = App.ServiceLocator.CambiarUsernameViewModel;
-                    viewmodel.Usuario = this.Usuario;
-                    view.BindingContext = viewmodel;
-                    var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
-                    masterDetailPage.Detail = new NavigationPage(view);
-                    masterDetailPage.IsPresented = false;
-                    //Application.Current.MainPage.Navigation.PushModalAsync(view);
-                });
-            }
+            String token = App.ServiceLocator.SessionService.Token;
+            int idUsaurio = App.ServiceLocator.SessionService.Usuario.Id;
+
+            CambiarEmailView view = new CambiarEmailView();
+            CambiarEmailViewModel viewmodel = App.ServiceLocator.CambiarEmailViewModel;
+            viewmodel.Usuario = this.Usuario;
+            view.BindingContext = viewmodel;
+            return view;
         }
-        public Command CambiarEmail
-        {
-            get
-            {
-                return new Command(() =>
-                {
-                    String token = App.ServiceLocator.SessionService.Token;
-                    int idUsaurio = App.ServiceLocator.SessionService.Usuario.Id;
-                    CambiarEmailView view = new CambiarEmailView();
-                    CambiarEmailViewModel viewmodel = App.ServiceLocator.CambiarEmailViewModel;
-                    viewmodel.Usuario = this.Usuario;
-                    view.BindingContext = viewmodel;
-                    var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
-                    masterDetailPage.Detail = new NavigationPage(view);
-                    masterDetailPage.IsPresented = false;
-                    //Application.Current.MainPage.Navigation.PushModalAsync(view);
-                });
-            }
-        }
+
         public Command EliminarCuenta
         {
             get
@@ -125,19 +99,14 @@ namespace OnlyFoodXamarin.ViewModels
                     String token = App.ServiceLocator.SessionService.Token;
                     int idUsaurio = App.ServiceLocator.SessionService.Usuario.Id;
                     await this.service.DeleteUserAsync(this.Usuario.Id, token);
+
                     LoginView view = new LoginView();
                     this.repositoryRealm.DeleteUsuario(idUsaurio);
-                    App.ServiceLocator.SessionService.Password = null;
-                    App.ServiceLocator.SessionService.Token = null;
-                    App.ServiceLocator.SessionService.Usuario = null;
+                    this.EliminarUserSession();
                     //var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
                     //masterDetailPage.Detail = new NavigationPage(new CadenasView());
                     //masterDetailPage.IsPresented = false;
                     App.LoadMainPage();
-
-
-                    //await Application.Current.MainPage.Navigation.PushAsync(new MenuPrincipal());
-
                 });
             }
         }
@@ -149,12 +118,17 @@ namespace OnlyFoodXamarin.ViewModels
                 {
                     int idUsaurio = App.ServiceLocator.SessionService.Usuario.Id;
                     this.repositoryRealm.DeleteUsuario(idUsaurio);
-                    App.ServiceLocator.SessionService.Password = null;
-                    App.ServiceLocator.SessionService.Token = null;
-                    App.ServiceLocator.SessionService.Usuario = null;
+                    this.EliminarUserSession();
                     App.LoadMainPage();
                 });
             }
+        }
+
+        private void EliminarUserSession()
+        {
+            App.ServiceLocator.SessionService.Password = null;
+            App.ServiceLocator.SessionService.Token = null;
+            App.ServiceLocator.SessionService.Usuario = null;
         }
     }
 }

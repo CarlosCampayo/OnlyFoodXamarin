@@ -19,11 +19,8 @@ namespace OnlyFoodXamarin.ViewModels
         {
             this.service = service;
             this.repositoryRealm = repositoryRealm;
-            //Task.Run(async () =>
-            //{
-            //    await this.CargarUsuario();
-            //});
         }
+
         private Usuario _Usuario;
         public Usuario Usuario
         {
@@ -34,6 +31,7 @@ namespace OnlyFoodXamarin.ViewModels
                 OnPropertyChanged("Usuario");
             }
         }
+
         public Command CambiarEmail
         {
             get
@@ -46,18 +44,10 @@ namespace OnlyFoodXamarin.ViewModels
                     App.ServiceLocator.SessionService.Usuario.Email = this.Usuario.Email;
                     this.repositoryRealm.DeleteUsuario(idUsuario);
                     this.repositoryRealm.InsertarUsuario(
-                        App.ServiceLocator.SessionService.Usuario.Id,
-                        App.ServiceLocator.SessionService.Usuario.Email,
-                        App.ServiceLocator.SessionService.Password,
-                        App.ServiceLocator.SessionService.Usuario.Rol);
-                    PerfilView view = new PerfilView();
-                    PerfilViewModel viewmodel = App.ServiceLocator.PerfilViewModel;
-                    viewmodel.Usuario = this.Usuario;
-                    view.BindingContext = viewmodel;
-                    var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
-                    masterDetailPage.Detail = new NavigationPage(view);
-                    masterDetailPage.IsPresented = false;
-                    //Application.Current.MainPage.Navigation.PushModalAsync(view);
+                    App.ServiceLocator.SessionService.Usuario.Id,
+                    App.ServiceLocator.SessionService.Usuario.Email,
+                    App.ServiceLocator.SessionService.Password,
+                    App.ServiceLocator.SessionService.Usuario.Rol);
                 });
             }
         }
