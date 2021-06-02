@@ -90,13 +90,54 @@ namespace OnlyFoodXamarin.ViewModels
         }
 
         private int _Ultimo;
-
+        private bool _Botoncargar;
+        public bool Botoncargar
+        {
+            get { return _Botoncargar; }
+            set
+            {
+                this._Botoncargar = value;
+                OnPropertyChanged("Botoncargar");
+            }
+        }
+        private bool _Imagen;
+        public bool Imagen
+        {
+            get { return _Imagen; }
+            set
+            {
+                this._Imagen = value;
+                OnPropertyChanged("Imagen");
+            }
+        }
+        private bool _Mensaje;
+        public bool Mensaje
+        {
+            get { return _Mensaje; }
+            set
+            {
+                this._Mensaje = value;
+                OnPropertyChanged("Mensaje");
+            }
+        }
         public async Task LoadOfertas()
         {
             this.ShowLoading = true;
             OfertasListApi ofertas = await this.service.GetOfertasPaginadosAsync(this.Filtro,0,4);
             this.Ofertas = new ObservableCollection<Oferta>(ofertas.Ofertas);
             this._Ultimo = ofertas.Ultimo;
+            if (this.Ofertas.Count == 0)
+            {
+                this.Mensaje = true;
+                this.Imagen = true;
+                this.Botoncargar = false;
+            }
+            else
+            {
+                this.Mensaje = false;
+                this.Imagen = false;
+                this.Botoncargar = true;
+            }
             this.ShowLoading = false;
         }
 

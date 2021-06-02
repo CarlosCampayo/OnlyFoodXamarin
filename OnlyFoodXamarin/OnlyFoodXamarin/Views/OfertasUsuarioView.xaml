@@ -59,11 +59,18 @@
                 </CollectionView.ItemTemplate>
 
                 <CollectionView.Footer>
-                    <Button Text="Cargar más" 
+                    <!--<Button Text="Cargar más" 
                         BackgroundColor="Red" 
                         TextColor="Black"
                         HorizontalOptions="FillAndExpand"
-                        Command="{Binding MostrarMasOfertas}"/>
+                        Command="{Binding MostrarMasOfertas}"/>-->
+                    <StackLayout Orientation="Vertical">
+                        <Image Source="sold.gif" IsVisible="{Binding Imagen}"
+                                   HeightRequest="200" HorizontalOptions="Center"
+                                   IsAnimationPlaying="True"/>
+                        <!--<Label Text="No hay ofertas" IsVisible="{Binding Mensaje}"
+                                   FontSize="Large" HorizontalOptions="Center"/>-->
+                    </StackLayout>
                 </CollectionView.Footer>
             </CollectionView>
         </StackLayout>
