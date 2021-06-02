@@ -6,36 +6,40 @@
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=PerfilViewModel}">
 
     <NavigationPage.TitleView>
-        <Label Text="Mi perfil" TextColor="White"
-               FontSize="Medium"/>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Mi perfil" TextColor="White" FontSize="Medium" 
+                   HorizontalOptions="Start" VerticalOptions="Center" />
+            <Button Text="Cerrar sesión" x:Name="btnclose" FontSize="Micro" 
+                    BackgroundColor="#bc171d" 
+                    HorizontalOptions="EndAndExpand" VerticalOptions="Center"/>
+        </StackLayout>
     </NavigationPage.TitleView>
     
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="10, 15">
             <Label Text="Mi perfil"
                         FontSize="Title"
                         VerticalOptions="Start" 
                         HorizontalOptions="CenterAndExpand" />
+            
             <Label Text="Email"
                         FontSize="Medium"
                         HorizontalOptions="StartAndExpand"/>
             <Entry Text="{Binding Usuario.Email}"
                         IsReadOnly="True"
                         HorizontalOptions="FillAndExpand"/>
-            <Button Text="Cambiar" Command="{Binding CambiarEmail}"/>
+            <Button Text="Cambiar"  x:Name="btnEmail"/>
+            
             <Label Text="Username"
                         FontSize="Medium"
                         HorizontalOptions="StartAndExpand"/>
             <Entry Text="{Binding Usuario.UserName}"
                         IsReadOnly="True"
                         HorizontalOptions="FillAndExpand"/>
-            <Button Text="Cambiar" Command="{Binding CambiarUsername}"/>
-            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Button Text="Cambiar contraseña"  Command="{Binding CambiarPassword}" />
-                <Button Text="Eliminar cuenta" Command="{Binding EliminarCuenta}"/>
-                <Button Text="Cerrar sesión" Command="{Binding CerrarSesion}"/>
-
-            </StackLayout>
+            <Button Text="Cambiar" x:Name="btnUserName"/>
+            
+            <Button Text="Eliminar cuenta" Command="{Binding EliminarCuenta}"
+                    BackgroundColor="#e41b23" Margin="0, 10"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -14,11 +14,13 @@ namespace OnlyFoodXamarin.ViewModels
     {
         RepositoryRealm repositoryRealm;
         OnlyFoodService service;
+
         public RegisterViewModel(OnlyFoodService service, RepositoryRealm repositoryRealm)
         {
             this.service = service;
             this.Usuario = new UsuarioLogin();
         }
+
         private UsuarioLogin _Usuario;
         public UsuarioLogin Usuario
         {
@@ -39,12 +41,14 @@ namespace OnlyFoodXamarin.ViewModels
                     await this.service.NewUserAsync(this.Usuario.Email, this.Usuario.UserName, 
                         this.Usuario.Password, this.Usuario.Nombre, this.Usuario.Apellidos, 
                         this.Usuario.FechaNacimiento);
+
                     Usuario user = await this.service.LoginAsync(this.Usuario.Email, this.Usuario.Password);
                     this.repositoryRealm.InsertarUsuario(user.Id, user.Email, this.Usuario.Password, user.Rol);
                     String token = await this.service.GetApiTokenAsync(this.Usuario.Email, this.Usuario.Password);
                     App.ServiceLocator.SessionService.Token = token;
                     App.ServiceLocator.SessionService.Password = this.Usuario.Password;
                     App.ServiceLocator.SessionService.Usuario = user;
+
                     var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
                     masterDetailPage.Detail = new NavigationPage(
                         (Page)Activator.CreateInstance(typeof(CadenasView)));

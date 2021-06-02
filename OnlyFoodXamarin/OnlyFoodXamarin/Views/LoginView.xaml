@@ -4,7 +4,11 @@
              x:Class="OnlyFoodXamarin.Views.LoginView"
              xmlns:local="clr-namespace:OnlyFoodXamarin"
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=LoginViewModel}">
-
+    
+    <NavigationPage.TitleView>
+        <Button Text="Registro" FontSize="Small"
+                    HorizontalOptions="End" x:Name="btnregister"/>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
         <StackLayout BackgroundColor="#e41b23" Padding="10, 15">
             <Grid Padding="10, 15" HeightRequest="250">
@@ -18,13 +22,16 @@
                                            Grid.Column="1"/>
             </Grid> 
             <Label Text="Email" FontSize="Medium" TextColor="White"/>
-            <Entry Placeholder="Introduce tu email" Text="{Binding Usuario.Email}" BackgroundColor="White"/>
+            <Entry Placeholder="Introduce tu email" Text="{Binding Usuario.Email}" BackgroundColor="White"
+                   Keyboard="Email"/>
+            
             <Label Text="Contraseña" FontSize="Medium" TextColor="White"/>
             <Entry Placeholder="Introduce tu contraseña" 
                    IsPassword="True" Text="{Binding Usuario.Password}" BackgroundColor="White"/>
+
             <Button Text="Login" Command="{Binding Login}"/>
-            <Button Text="Registro" FontSize="Small" Command="{Binding Register}"
-                    HorizontalOptions="End"/>
+            
+            <Label Text="{Binding Mensaje}" TextColor="White" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

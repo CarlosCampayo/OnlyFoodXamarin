@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlyFoodXamarin.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,14 @@ namespace OnlyFoodXamarin.Views
         public CambiarEmailView()
         {
             InitializeComponent();
+            this.btnGuardar.Clicked += BtnGuardar_Clicked;
+        }
+
+        private void BtnGuardar_Clicked(object sender, EventArgs e)
+        {
+            CambiarEmailViewModel vm = (CambiarEmailViewModel)this.BindingContext;
+            vm.CambiarEmail.Execute(1);
+            Navigation.PopAsync();
         }
     }
 }

@@ -14,12 +14,14 @@ namespace OnlyFoodXamarin.ViewModels
     {
         OnlyFoodService service;
         RepositoryRealm repositoryRealm;
+
         public LoginViewModel(OnlyFoodService service,RepositoryRealm repositoryRealm)
         {
             this.service = service;
             this.repositoryRealm = repositoryRealm;
             this.Usuario = new LoginModel();
         }
+
         private LoginModel _Usuario;
         public LoginModel Usuario
         {
@@ -30,6 +32,7 @@ namespace OnlyFoodXamarin.ViewModels
                 OnPropertyChanged("Usuario");
             }
         }
+
         private String _Mensaje;
         public String Mensaje
         {
@@ -40,6 +43,7 @@ namespace OnlyFoodXamarin.ViewModels
                 OnPropertyChanged("Mensaje");
             }
         }
+
         public Command Login
         {
             get
@@ -55,32 +59,13 @@ namespace OnlyFoodXamarin.ViewModels
                         App.ServiceLocator.SessionService.Token = token;
                         App.ServiceLocator.SessionService.Password = this.Usuario.Password;
                         App.ServiceLocator.SessionService.Usuario = user;
-                        var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
-                        //masterDetailPage.Detail = new NavigationPage(
-                        //    (Page)Activator.CreateInstance(typeof(CadenasView)));
-                        //masterDetailPage.Detail = new NavigationPage(new CadenasView());
-                        //masterDetailPage.IsPresented = false;
-                        //await Application.Current.MainPage.Navigation.PushAsync(new MenuPrincipal());
+
                         App.LoadMainPage();
-                        //await App.Current.MainPage.Navigation.PushAsync(new CadenasView());
                     }
                     else
                     {
                         this.Mensaje = "Email o contraseña incorrectos";
                     }
-                });
-            }
-        }
-        public Command Register
-        {
-            get
-            {
-                return new Command(async () =>
-                {
-                    var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
-                    masterDetailPage.Detail = new NavigationPage(
-                        (Page)Activator.CreateInstance(typeof(RegisterView)));
-                    masterDetailPage.IsPresented = false;
                 });
             }
         }
