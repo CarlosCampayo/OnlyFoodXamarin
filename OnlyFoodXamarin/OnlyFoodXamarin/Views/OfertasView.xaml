@@ -92,12 +92,15 @@
     </ContentPage.Resources>
     
     <StackLayout>
+        <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
+                               Color="Red"
+                               VerticalOptions="CenterAndExpand" />
         <ScrollView>
             <CollectionView ItemsSource="{Binding Ofertas}"
                                         SelectedItem="{Binding OfertaSeleccionada}"
                                         SelectionMode="Single"
                                         ItemTemplate="{StaticResource PersonTemplate}"
-                            x:Name="cvOfertas">
+                                        x:Name="cvOfertas">
                 <CollectionView.Footer>
                     <StackLayout Orientation="Vertical">
                         <Button Text="Cargar más" 
