@@ -61,13 +61,13 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                         
-                        <CollectionView.Footer>
+                        <!--<CollectionView.Footer>
                             <Button Text="Cargar más" 
                             BackgroundColor="Red" 
                             TextColor="Black"
                             HorizontalOptions="FillAndExpand"
                             Command="{Binding MostrarMasOfertas}"/>
-                        </CollectionView.Footer>
+                        </CollectionView.Footer>-->
                     </CollectionView>
                 </StackLayout>
             </ScrollView>

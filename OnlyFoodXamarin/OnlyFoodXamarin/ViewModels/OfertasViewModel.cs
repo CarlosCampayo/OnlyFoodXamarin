@@ -90,7 +90,12 @@ namespace OnlyFoodXamarin.ViewModels
 
         public async Task CargarMasOfertas()
         {
-            OfertasListApi ofertas = await this.service.GetOfertasPaginadosAsync(this.Filtro, this._Ultimo, 4);
+            int posicion = 0;
+            if (this.Ofertas != null)
+            {
+                posicion = this.Ofertas.Count;
+            }
+            OfertasListApi ofertas = await this.service.GetOfertasPaginadosAsync(this.Filtro, posicion, 4);
             ObservableCollection<Oferta> nuevas = this.Ofertas;
             foreach(Oferta o in ofertas.Ofertas)
             {
