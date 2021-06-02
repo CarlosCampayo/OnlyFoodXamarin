@@ -1,5 +1,6 @@
 ﻿using OnlyFoodXamarin.Base;
 using OnlyFoodXamarin.Models;
+using OnlyFoodXamarin.Repositories;
 using OnlyFoodXamarin.Services;
 using OnlyFoodXamarin.Views;
 using System;
@@ -11,8 +12,9 @@ namespace OnlyFoodXamarin.ViewModels
 {
     public class RegisterViewModel : ViewModelBase
     {
+        RepositoryRealm repositoryRealm;
         OnlyFoodService service;
-        public RegisterViewModel(OnlyFoodService service)
+        public RegisterViewModel(OnlyFoodService service, RepositoryRealm repositoryRealm)
         {
             this.service = service;
             this.Usuario = new UsuarioLogin();
@@ -38,6 +40,7 @@ namespace OnlyFoodXamarin.ViewModels
                         this.Usuario.Password, this.Usuario.Nombre, this.Usuario.Apellidos, 
                         this.Usuario.FechaNacimiento);
                     Usuario user = await this.service.LoginAsync(this.Usuario.Email, this.Usuario.Password);
+                    this.repositoryRealm.InsertarUsuario(user.Id, user.Email, this.Usuario.Password, user.Rol);
                     String token = await this.service.GetApiTokenAsync(this.Usuario.Email, this.Usuario.Password);
                     App.ServiceLocator.SessionService.Token = token;
                     App.ServiceLocator.SessionService.Password = this.Usuario.Password;

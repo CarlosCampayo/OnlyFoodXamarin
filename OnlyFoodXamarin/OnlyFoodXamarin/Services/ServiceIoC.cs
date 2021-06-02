@@ -37,9 +37,18 @@ namespace OnlyFoodXamarin.Services
             builder.RegisterType<LoginViewModel>();
             builder.RegisterType<SessionService>().SingleInstance();
             builder.RegisterType<RegisterViewModel>();
-
+            builder.RegisterType<CambiarEmailViewModel>();
+            builder.RegisterType<CambiarUsernameViewModel>();
 
             this.container = builder.Build();
+        }
+        public CambiarEmailViewModel CambiarEmailViewModel
+        {
+            get { return this.container.Resolve<CambiarEmailViewModel>(); }
+        }
+        public CambiarUsernameViewModel CambiarUsernameViewModel
+        {
+            get { return this.container.Resolve<CambiarUsernameViewModel>(); }
         }
         public RegisterViewModel RegisterViewModel
         {

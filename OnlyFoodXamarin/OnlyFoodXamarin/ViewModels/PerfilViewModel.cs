@@ -42,6 +42,25 @@ namespace OnlyFoodXamarin.ViewModels
             this.Usuario = await this.service.GetUserByIdAsync(idUsuario, token);
             //this.Usuario = await this.service.GetUserByIdAsync(this.Usuario.Id,token);
         }
+        //public async Task<OfertasView> CambiarEmailAsycn()
+        //{
+        //    OfertasView view = new OfertasView();
+        //    OfertasViewModel viewmodel = App.ServiceLocator.OfertasViewModel;
+
+        //    FiltroOfertas filtroOfertas = new FiltroOfertas();
+        //    filtroOfertas.IdCadenas = new List<int>();
+        //    filtroOfertas.IdCadenas.Add(this.CadenaSeleccionada.Id);
+        //    filtroOfertas.Preciomax = 100;
+        //    filtroOfertas.Preciomin = 0;
+        //    viewmodel.Filtro = filtroOfertas;
+        //    await viewmodel.LoadOfertas();
+        //    view.BindingContext = viewmodel;
+        //    return view;
+
+        //    //var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
+        //    //masterDetailPage.Detail = new NavigationPage(view);
+        //    //masterDetailPage.IsPresented = false;
+        //}
         public Command CambiarPaswword
         {
             get
@@ -66,10 +85,13 @@ namespace OnlyFoodXamarin.ViewModels
                 {
                     String token = App.ServiceLocator.SessionService.Token;
                     int idUsaurio = App.ServiceLocator.SessionService.Usuario.Id;
-                    //CambiarUsernameView view = new CambiarUsernameView();
-                    //CambiarUsernameViewViewModel viewmodel = App.ServiceLocator.CambiarUsernameViewViewModel;
-                    //viewmodel.Usuario = this.Usuario;
-                    ////view.BindingContext = viewmodel;
+                    CambiarUsernameView view = new CambiarUsernameView();
+                    CambiarUsernameViewModel viewmodel = App.ServiceLocator.CambiarUsernameViewModel;
+                    viewmodel.Usuario = this.Usuario;
+                    view.BindingContext = viewmodel;
+                    var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
+                    masterDetailPage.Detail = new NavigationPage(view);
+                    masterDetailPage.IsPresented = false;
                     //Application.Current.MainPage.Navigation.PushModalAsync(view);
                 });
             }
@@ -82,10 +104,13 @@ namespace OnlyFoodXamarin.ViewModels
                 {
                     String token = App.ServiceLocator.SessionService.Token;
                     int idUsaurio = App.ServiceLocator.SessionService.Usuario.Id;
-                    //CambiarEmailView view = new CambiarEmailView();
-                    //CambiarEmailViewViewModel viewmodel = App.ServiceLocator.CambiarEmailViewViewModel;
-                    //viewmodel.Usuario = this.Usuario;
-                    ////view.BindingContext = viewmodel;
+                    CambiarEmailView view = new CambiarEmailView();
+                    CambiarEmailViewModel viewmodel = App.ServiceLocator.CambiarEmailViewModel;
+                    viewmodel.Usuario = this.Usuario;
+                    view.BindingContext = viewmodel;
+                    var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
+                    masterDetailPage.Detail = new NavigationPage(view);
+                    masterDetailPage.IsPresented = false;
                     //Application.Current.MainPage.Navigation.PushModalAsync(view);
                 });
             }
