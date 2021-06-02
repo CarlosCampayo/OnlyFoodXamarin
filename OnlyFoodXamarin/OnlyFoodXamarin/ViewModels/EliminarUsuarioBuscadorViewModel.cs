@@ -33,6 +33,18 @@ namespace OnlyFoodXamarin.ViewModels
             {
                 this._ShowLoading = value;
                 OnPropertyChanged("ShowLoading");
+                this.ShowContent = !this.ShowLoading;
+            }
+        }
+
+        private bool _ShowContent;
+        public bool ShowContent
+        {
+            get { return this._ShowContent; }
+            set
+            {
+                this._ShowContent = value;
+                OnPropertyChanged("ShowContent");
             }
         }
         #endregion
@@ -55,9 +67,9 @@ namespace OnlyFoodXamarin.ViewModels
             set
             {
                 this._UsuarioSeleccionado = value;
-                Task.Run(async() => {
-                    await this.SeleccionarUsuarioAsync();
-                });
+                //Task.Run(async() => {
+                //    await this.SeleccionarUsuarioAsync();
+                //});
                 
                 OnPropertyChanged("UsuarioSeleccionado");
             }
@@ -85,8 +97,8 @@ namespace OnlyFoodXamarin.ViewModels
 
         public async Task<EliminarUsuarioView> SeleccionarUsuarioAsync()
         {
-            EliminarUsuarioViewModel viewModel = App.ServiceLocator.EliminarUsuarioViewModel;
             EliminarUsuarioView view = new EliminarUsuarioView();
+            EliminarUsuarioViewModel viewModel = App.ServiceLocator.EliminarUsuarioViewModel;
             viewModel.Usuario = this.UsuarioSeleccionado;
             view.BindingContext = viewModel;
             return view;
@@ -118,6 +130,22 @@ namespace OnlyFoodXamarin.ViewModels
                 return new Command(async() =>
                 {
                     await this.BuscarUsuariosAsync();
+                });
+            }
+        }
+
+        public Command EliminarUsuario
+        {
+            get
+            {
+                return new Command(async (usuario) =>
+                {
+                    //añadir accion de api de eliminar User
+                    //String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
+                    Usuario user = (Usuario)usuario;
+                    String token = App.ServiceLocator.SessionService.Token;
+                    this.LoadUsuariosAsync();
+                    await this.service.DeleteUserAsync(user.Id, token);
                 });
             }
         }

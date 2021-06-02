@@ -36,7 +36,7 @@ namespace OnlyFoodXamarin.Views
                 DetalleOfertaUsuarioViewModel vm = 
                     (DetalleOfertaUsuarioViewModel)this.BindingContext;
                 await vm.EliminarAsync();
-                Navigation.PopAsync();
+                await Navigation.PopAsync();
 
             }
         }

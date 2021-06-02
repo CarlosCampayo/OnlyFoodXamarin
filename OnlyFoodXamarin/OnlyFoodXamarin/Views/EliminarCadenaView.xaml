@@ -11,9 +11,8 @@
     
     <ContentPage.Content>
         <StackLayout x:Name="stackCadenas" 
-                     BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=EliminarCadenaViewModel}">
-            <ScrollView>
-                <StackLayout Orientation="Vertical">
+                     BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=EliminarCadenaViewModel}"
+                     Orientation="Vertical">
                     <Label Text="Eliminar Cadena"
                            FontSize="Title"
                            VerticalOptions="CenterAndExpand" 
@@ -22,18 +21,23 @@
                     <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
                                Color="Red"
                                VerticalOptions="CenterAndExpand" />
+            
                     <CollectionView ItemsSource="{Binding Cadenas}"
-                                x:Name="cvcadenas">
+                                x:Name="cvcadenas"
+                                IsVisible="{Binding ShowContent}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <SwipeView>
                                         <SwipeView.RightItems>
-                                        <SwipeItem Text="Eliminar"
-                                                   BackgroundColor="Red"
-                                                   Command="{Binding BindingContext.EliminarCadena,
-                                            Source={x:Reference stackCadenas}}"
-                                                   CommandParameter="{Binding .}"/>
-                                    </SwipeView.RightItems>
+                                            <SwipeItems>
+                                                <SwipeItem Text="Eliminar"
+                                                    BackgroundColor="Red"
+                                                    IconImageSource="https://ayudawp.com/wp-content/uploads/2018/04/borrar-plugins-wordpress.png"
+                                                    Command="{Binding BindingContext.EliminarCadena,
+                                                    Source={x:Reference stackCadenas}}"
+                                                    CommandParameter="{Binding .}"/>
+                                            </SwipeItems>
+                                        </SwipeView.RightItems>
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="Auto"/>
@@ -47,7 +51,7 @@
                                         <Image Source="{Binding Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}" 
                                                    Grid.RowSpan="2"
                                                    Grid.Column="0"
-                                                   HeightRequest="50"/>
+                                                   HeightRequest="80"/>
                                         <Label Text="{Binding Nombre}"
                                                    FontSize="Large"
                                                    Grid.RowSpan="2"
@@ -57,8 +61,6 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-                </StackLayout>
-            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
