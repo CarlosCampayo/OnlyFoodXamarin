@@ -22,6 +22,14 @@ namespace OnlyFoodXamarin.Views
         {
             InitializeComponent();
             this.btnpickimage.Clicked += Btnpickimage_Clicked;
+            this.btnEditar.Clicked += BtnEditar_Clicked;
+        }
+
+        private async void BtnEditar_Clicked(object sender, EventArgs e)
+        {
+            EditarOfertaViewModel vm = (EditarOfertaViewModel)this.BindingContext;
+            vm.EditarOfertaAsync();
+            await Navigation.PopAsync();
         }
 
         private async void Btnpickimage_Clicked(object sender, EventArgs e)

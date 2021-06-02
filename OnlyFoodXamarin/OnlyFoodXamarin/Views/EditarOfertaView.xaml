@@ -2,6 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlyFoodXamarin.Views.EditarOfertaView">
+
+    <NavigationPage.TitleView>
+        <Label Text="Editar oferta" TextColor="White"
+               FontSize="Medium"/>
+    </NavigationPage.TitleView>
     
     <ContentPage.Content>
         <ScrollView >
@@ -62,8 +67,7 @@
                 <Entry Text="{Binding Oferta.Web}"
                         HorizontalOptions="FillAndExpand"/>
 
-                <Button Text="Actualizar datos"
-                        Command="{Binding EditarOferta}"/>
+                <Button Text="Actualizar datos" x:Name="btnEditar" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

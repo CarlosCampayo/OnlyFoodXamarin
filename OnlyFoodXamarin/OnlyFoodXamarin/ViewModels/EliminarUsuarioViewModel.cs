@@ -13,12 +13,12 @@ namespace OnlyFoodXamarin.ViewModels
     public class EliminarUsuarioViewModel:ViewModelBase
     {
         OnlyFoodService service;
+
         public EliminarUsuarioViewModel(OnlyFoodService service)
         {
             this.service = service;
-            //UploadService uploadService = new UploadService();
-            //service = new OnlyFoodService(uploadService);
         }
+
         private Usuario _Usuario;
         public Usuario Usuario
         {
@@ -29,10 +29,12 @@ namespace OnlyFoodXamarin.ViewModels
                 OnPropertyChanged("Usuario");
             }
         }
+
         public String Fullname
         {
             get { return this.Usuario.Nombre+" "+this.Usuario.Apellidos; }
         }
+
         public Command EliminarUsuario
         {
             get
@@ -43,13 +45,15 @@ namespace OnlyFoodXamarin.ViewModels
                     //String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
                     String token = App.ServiceLocator.SessionService.Token;
                     await this.service.DeleteUserAsync(this.Usuario.Id, token);
-                    EliminarUsuarioBuscadorViewModel viewModel = App.ServiceLocator.EliminarUsuarioBuscadorViewModel;
-                    await viewModel.LoadUsuariosAsync();
-                    EliminarUsuarioBuscadorView view = new EliminarUsuarioBuscadorView();
-                    view.BindingContext = viewModel;
-                    var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
-                    masterDetailPage.Detail = new NavigationPage(view);
-                    masterDetailPage.IsPresented = false;
+
+                    //EliminarUsuarioBuscadorViewModel viewModel = App.ServiceLocator.EliminarUsuarioBuscadorViewModel;
+                    //await viewModel.LoadUsuariosAsync();
+
+                    //EliminarUsuarioBuscadorView view = new EliminarUsuarioBuscadorView();
+                    //view.BindingContext = viewModel;
+                    //var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
+                    //masterDetailPage.Detail = new NavigationPage(view);
+                    //masterDetailPage.IsPresented = false;
                 });
             }
         }

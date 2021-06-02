@@ -6,6 +6,10 @@
              xmlns:local="clr-namespace:OnlyFoodXamarin"
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=CadenasViewModel}">
 
+    <NavigationPage.TitleView>
+        <Label Text="Cadenas" TextColor="White"
+               FontSize="Medium"/>
+    </NavigationPage.TitleView>
     
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">

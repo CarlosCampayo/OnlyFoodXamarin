@@ -78,7 +78,7 @@ namespace OnlyFoodXamarin.ViewModels
             this.ShowLoading = false;
         }
 
-        private async Task MostrarOfertaAsync()
+        public async Task<OfertasView> MostrarOfertaAsync()
         {
             OfertasView view = new OfertasView();
             OfertasViewModel viewmodel = App.ServiceLocator.OfertasViewModel;
@@ -91,10 +91,11 @@ namespace OnlyFoodXamarin.ViewModels
             viewmodel.Filtro = filtroOfertas;
             await viewmodel.LoadOfertas();
             view.BindingContext = viewmodel;
+            return view;
 
-            var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
-            masterDetailPage.Detail = new NavigationPage(view);
-            masterDetailPage.IsPresented = false;
+            //var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
+            //masterDetailPage.Detail = new NavigationPage(view);
+            //masterDetailPage.IsPresented = false;
         }
     }
 }

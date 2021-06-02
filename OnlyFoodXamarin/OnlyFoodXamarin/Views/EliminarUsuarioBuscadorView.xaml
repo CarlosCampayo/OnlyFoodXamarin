@@ -2,38 +2,43 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="OnlyFoodXamarin.Views.EliminarUsuarioBuscadorView"
-             xmlns:viewmodels="clr-namespace:OnlyFoodXamarin.ViewModels"
              x:Name="PageEliminarUsuarioBuscador"
              xmlns:local="clr-namespace:OnlyFoodXamarin"
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=EliminarUsuarioBuscadorViewModel}">
-    <!--<ContentPage.BindingContext>
-        <viewmodels:EliminarUsuarioBuscadorViewModel/>
-    </ContentPage.BindingContext>-->
+
+    <NavigationPage.TitleView>
+        <Label Text="Eliminar usuario" TextColor="White"
+               FontSize="Medium"/>
+    </NavigationPage.TitleView>
+    
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
                 <Label Text="Eliminar usuario"
                         FontSize="Title"
                         VerticalOptions="CenterAndExpand" 
                         HorizontalOptions="CenterAndExpand" />
+            
                 <Label Text="Buscar usuario"
                         FontSize="Medium"
                         HorizontalOptions="StartAndExpand"/>
                 <Entry Text="{Binding Filtro}"
+                       x:Name="searchBox"
                         Placeholder="Introduce el email o username del usuario"
                         HorizontalOptions="FillAndExpand"/>
-                <Button Text="Buscar"
-                        Command="{Binding BuscarUsuarios}"/>
+                <!--<Button Text="Buscar"
+                        Command="{Binding BuscarUsuarios}"/>-->
             
             
                 <ScrollView>
                     <StackLayout Orientation="Vertical">
-                    <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
-                               Color="Red"
-                               VerticalOptions="CenterAndExpand" />
+                        <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
+                                   Color="Red"
+                                   VerticalOptions="CenterAndExpand" />
                         
-                    <ListView ItemsSource="{Binding Usuarios}" 
+                        <ListView ItemsSource="{Binding Usuarios}" 
                                   SelectedItem="{Binding UsuarioSeleccionado}"
-                                  HasUnevenRows="True">
+                                  HasUnevenRows="True"
+                                  x:Name="lvUsuarios">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>
@@ -58,9 +63,6 @@
                                                     <Label Text="{Binding UserName}"
                                                         FontSize="Subtitle"
                                                         HorizontalOptions="End"/>
-                                                    <!--<Button Text="Eliminar" FontAttributes="Bold" 
-                                                        Style="{DynamicResource SocialStyle}" 
-                                                        Command="{Binding BindingContext.SeleccionarUsuarioEliminar, Source={x:Reference PageEliminarUsuarioBuscador}}"/>-->
                                                 </StackLayout>
                                             </Grid>
                                         </StackLayout>

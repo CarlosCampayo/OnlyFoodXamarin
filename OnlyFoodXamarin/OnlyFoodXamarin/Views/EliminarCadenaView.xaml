@@ -4,6 +4,10 @@
              x:Class="OnlyFoodXamarin.Views.EliminarCadenaView"
              xmlns:local="clr-namespace:OnlyFoodXamarin">
 
+    <NavigationPage.TitleView>
+        <Label Text="Eliminar cadena" TextColor="White"
+               FontSize="Medium"/>
+    </NavigationPage.TitleView>
     
     <ContentPage.Content>
         <StackLayout x:Name="stackCadenas" 

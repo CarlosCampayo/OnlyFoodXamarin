@@ -4,15 +4,18 @@
              x:Class="OnlyFoodXamarin.Views.EliminarUsuarioView" 
              xmlns:local="clr-namespace:OnlyFoodXamarin">
     <!--BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=EliminarUsuarioViewModel}">-->
-    <!--<ContentPage.BindingContext>
-        <viewmodels:EliminarUsuarioViewModel/>
-    </ContentPage.BindingContext>-->
+
+    <NavigationPage.TitleView>
+        <Label Text="Detalles usuario" TextColor="White"
+               FontSize="Medium"/>
+    </NavigationPage.TitleView>
+    
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <Label Text="Eliminar usuario"
                         FontSize="Title"
-                        VerticalOptions="CenterAndExpand" 
                         HorizontalOptions="CenterAndExpand" />
+            
             <Label Text="Email"
                         FontSize="Medium"
                         HorizontalOptions="StartAndExpand"/>
@@ -31,8 +34,9 @@
             <Entry Text="{Binding Fullname}"
                         IsReadOnly="True"
                         HorizontalOptions="FillAndExpand"/>
-            <Button Text="Eliminar" Command="{Binding EliminarUsuario}"
+            <Button Text="Eliminar" x:Name="btnEliminar"
                     HorizontalOptions="Center"/>
+            <!--Command="{Binding EliminarUsuario}"-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -100,7 +100,7 @@ namespace OnlyFoodXamarin.ViewModels
             this.Cadenas = new ObservableCollection<Cadena>(cadenas);
         }
 
-        private async Task EditarOfertaFunction()
+        public async Task EditarOfertaAsync()
         {
             //String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
             //int idUsaurio = 2;
@@ -114,6 +114,8 @@ namespace OnlyFoodXamarin.ViewModels
                 Oferta.Id, this.CadenaSeleccionada.Id, Oferta.Titulo,
                 Oferta.Descripcion, this.NewImagen, Oferta.Web, Oferta.Codigo, Oferta.Precio,
                 idUsaurio, token);
+            //await Application.Current.MainPage.Navigation.PushModalAsync
+            //    (new OfertasUsuarioView());
         }
 
         public Command EditarOferta
@@ -122,10 +124,8 @@ namespace OnlyFoodXamarin.ViewModels
             {
                 return new Command(async () => 
                 {
-                    await this.EditarOfertaFunction();
+                    await this.EditarOfertaAsync();
                     //EditarOfertaViewModel vm = this;
-                    await Application.Current.MainPage.Navigation.PushModalAsync
-                        (new OfertasUsuarioView());
                 });
             }
         }

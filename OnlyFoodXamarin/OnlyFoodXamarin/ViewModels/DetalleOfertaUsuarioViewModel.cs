@@ -50,14 +50,15 @@ namespace OnlyFoodXamarin.ViewModels
             this.Cadena = await this.service.GetCadenaByIdAsync(this.Oferta.IdCadena);
         }
 
-        private async Task EditarAsync()
+        public  async Task<EditarOfertaView> EditarAsync()
         {
             EditarOfertaView view = new EditarOfertaView();
             EditarOfertaViewModel viewmodel = App.ServiceLocator.EditarOfertaViewModel;
             viewmodel.Oferta = this.Oferta;
             viewmodel.CadenaSeleccionada = this.Cadena;
             view.BindingContext = viewmodel;
-            await Application.Current.MainPage.Navigation.PushModalAsync(view);
+            return view;
+            //await Application.Current.MainPage.Navigation.PushModalAsync(view);
         }
 
         public Command Editar
@@ -71,13 +72,13 @@ namespace OnlyFoodXamarin.ViewModels
             }
         }
 
-        private async Task EliminarAsync()
+        public async Task EliminarAsync()
         {
             //String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
             String token = App.ServiceLocator.SessionService.Token;
 
             await this.service.DeleteOfertaAsync(this.Oferta.Id, token);
-            await Application.Current.MainPage.Navigation.PushModalAsync(new OfertasUsuarioView());
+            //await Application.Current.MainPage.Navigation.PushModalAsync(new OfertasUsuarioView());
         }
         public Command Eliminar
         {

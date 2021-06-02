@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlyFoodXamarin.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,14 @@ namespace OnlyFoodXamarin.Views
         public EliminarUsuarioView()
         {
             InitializeComponent();
+            this.btnEliminar.Clicked += BtnEliminar_Clicked;
+        }
+
+        private async void BtnEliminar_Clicked(object sender, EventArgs e)
+        {
+            EliminarUsuarioViewModel vm = (EliminarUsuarioViewModel)this.BindingContext;
+            vm.EliminarUsuario.Execute(1);
+            await Navigation.PopAsync();
         }
     }
 }

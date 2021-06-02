@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OnlyFoodXamarin.Models;
+using OnlyFoodXamarin.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,14 @@ namespace OnlyFoodXamarin.Views
         public OfertasView()
         {
             InitializeComponent();
+            this.cvOfertas.SelectionChanged += CvOfertas_SelectionChanged;
+        }
+
+        private async void CvOfertas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            OfertasViewModel vm = (OfertasViewModel)this.BindingContext;
+            DetalleOfertaView view = await vm.MostrarDetalleOfertaAsync();
+            await Navigation.PushAsync(view);
         }
     }
 }

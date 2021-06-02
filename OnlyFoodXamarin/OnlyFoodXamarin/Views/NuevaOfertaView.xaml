@@ -5,6 +5,10 @@
              xmlns:local="clr-namespace:OnlyFoodXamarin"
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=NuevaOfertaViewModel}">
 
+    <NavigationPage.TitleView>
+        <Label Text="Nueva oferta" TextColor="White"
+               FontSize="Medium"/>
+    </NavigationPage.TitleView>
     
     <ContentPage.Content>
         <StackLayout>

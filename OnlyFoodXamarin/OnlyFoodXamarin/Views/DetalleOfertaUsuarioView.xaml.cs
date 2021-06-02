@@ -17,6 +17,14 @@ namespace OnlyFoodXamarin.Views
         {
             InitializeComponent();
             this.btnEliminar.Clicked += BtnEliminar_Clicked;
+            this.btnEditar.Clicked += BtnEditar_Clicked;
+        }
+
+        private async void BtnEditar_Clicked(object sender, EventArgs e)
+        {
+            DetalleOfertaUsuarioViewModel vm = (DetalleOfertaUsuarioViewModel)this.BindingContext;
+            EditarOfertaView view = await vm.EditarAsync();
+            await Navigation.PushAsync(view);
         }
 
         private async void BtnEliminar_Clicked(object sender, EventArgs e)
@@ -27,8 +35,9 @@ namespace OnlyFoodXamarin.Views
             {
                 DetalleOfertaUsuarioViewModel vm = 
                     (DetalleOfertaUsuarioViewModel)this.BindingContext;
-                this.btnEliminar.Command = vm.Eliminar;
-                this.btnEliminar.Command.Execute(1);
+                await vm.EliminarAsync();
+                Navigation.PopAsync();
+
             }
         }
     }

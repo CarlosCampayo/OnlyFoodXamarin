@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OnlyFoodXamarin.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,14 @@ namespace OnlyFoodXamarin.Views
         public CadenasView()
         {
             InitializeComponent();
+            this.cvcadenas.SelectionChanged += Cvcadenas_SelectionChanged;
+        }
+
+        private async void Cvcadenas_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CadenasViewModel vm = (CadenasViewModel)this.BindingContext;
+            OfertasView view = await vm.MostrarOfertaAsync();
+            await Navigation.PushAsync(view);
         }
     }
 }

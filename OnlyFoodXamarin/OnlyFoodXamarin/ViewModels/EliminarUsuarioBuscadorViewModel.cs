@@ -62,6 +62,7 @@ namespace OnlyFoodXamarin.ViewModels
                 OnPropertyChanged("UsuarioSeleccionado");
             }
         }
+
         private String _Filtro;
         public String Filtro
         {
@@ -82,15 +83,32 @@ namespace OnlyFoodXamarin.ViewModels
             this.ShowLoading = false;
         }
 
-        private async Task SeleccionarUsuarioAsync()
+        public async Task<EliminarUsuarioView> SeleccionarUsuarioAsync()
         {
             EliminarUsuarioViewModel viewModel = App.ServiceLocator.EliminarUsuarioViewModel;
             EliminarUsuarioView view = new EliminarUsuarioView();
             viewModel.Usuario = this.UsuarioSeleccionado;
             view.BindingContext = viewModel;
-            var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
-            masterDetailPage.Detail = new NavigationPage(view);
-            masterDetailPage.IsPresented = false;
+            return view;
+            //var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
+            //masterDetailPage.Detail = new NavigationPage(view);
+            //masterDetailPage.IsPresented = false;
+        }
+
+        private async Task BuscarUsuariosAsync()
+        {
+            this.ShowLoading = true;
+            String token = App.ServiceLocator.SessionService.Token;
+            //String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
+            if(this.Filtro != "")
+            {
+                List<Usuario> usuarios = await this.service.GetUsuariosByEmailOrUsernameAsync(this.Filtro, token);
+                this.Usuarios = new ObservableCollection<Usuario>(usuarios);
+            } else
+            {
+                await this.LoadUsuariosAsync();
+            }
+            this.ShowLoading = false;
         }
 
         public Command BuscarUsuarios
@@ -99,13 +117,7 @@ namespace OnlyFoodXamarin.ViewModels
             {
                 return new Command(async() =>
                 {
-                    this.ShowLoading = true;
-                    //llamada de api de BuscarUsuario
-                    String token = App.ServiceLocator.SessionService.Token;
-                    //String token = await this.service.GetApiTokenAsync("onlyfoodes@gmail.com", "Admin123");
-                    List<Usuario> usuarios = await this.service.GetUsuariosByEmailOrUsernameAsync(this.Filtro, token);
-                    this.Usuarios = new ObservableCollection<Usuario>(usuarios);
-                    this.ShowLoading = false;
+                    await this.BuscarUsuariosAsync();
                 });
             }
         }

@@ -5,6 +5,11 @@
              xmlns:local="clr-namespace:OnlyFoodXamarin"
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=PerfilViewModel}">
 
+    <NavigationPage.TitleView>
+        <Label Text="Mi perfil" TextColor="White"
+               FontSize="Medium"/>
+    </NavigationPage.TitleView>
+    
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Mi perfil"
