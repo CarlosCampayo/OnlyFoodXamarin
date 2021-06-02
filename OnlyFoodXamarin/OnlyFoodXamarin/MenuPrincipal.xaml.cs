@@ -81,8 +81,8 @@ namespace OnlyFoodXamarin
                 App.ServiceLocator.SessionService.Password = user.Password;
                 App.ServiceLocator.SessionService.Usuario = new Usuario()
                 {
-                    Id=user.Id,
-                    UserName=user.UserName,
+                    Id = user.Id,
+                    UserName = user.UserName,
                     Email=user.Email,
                     Rol=user.Rol
                 };
