@@ -41,6 +41,18 @@ namespace OnlyFoodXamarin.ViewModels
             {
                 this._ShowLoading = value;
                 OnPropertyChanged("ShowLoading");
+                this.ShowContent = !this.ShowLoading;
+            }
+        }
+
+        private bool _ShowContent;
+        public bool ShowContent
+        {
+            get { return this._ShowContent; }
+            set
+            {
+                this._ShowContent = value;
+                OnPropertyChanged("ShowContent");
             }
         }
         #endregion

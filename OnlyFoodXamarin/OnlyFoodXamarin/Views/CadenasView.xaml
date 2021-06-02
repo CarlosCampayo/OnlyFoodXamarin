@@ -24,33 +24,32 @@
                                Color="Red"
                                VerticalOptions="CenterAndExpand" />
             
-            <ScrollView>
             <!-- CADENAS -->
-                <CollectionView ItemsSource="{Binding Cadenas}"
-                                SelectedItem="{Binding CadenaSeleccionada}"
-                                SelectionMode="Single"
-                                x:Name="cvcadenas">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <!--<ViewCell>-->
-                            <!--<customcontrols:CustomViewCellControl SelectedItemBackgroundColor="White">-->
-                                <Grid Padding="10, 15">
-                                    <!--Estructura Grid-->
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <!--Contenido-->
-                                <Image Source="{Binding Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}"
-                                           WidthRequest="100"
-                                           HeightRequest="100"
-                                           Grid.Column="1"/>
-                                </Grid>
-                            <!--</ViewCell>-->
-                            <!--</customcontrols:CustomViewCellControl>-->
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </ScrollView>
+            <CollectionView ItemsSource="{Binding Cadenas}"
+                            SelectedItem="{Binding CadenaSeleccionada}"
+                            SelectionMode="Single"
+                            x:Name="cvcadenas"
+                            IsVisible="{Binding ShowContent}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <!--<ViewCell>-->
+                        <!--<customcontrols:CustomViewCellControl SelectedItemBackgroundColor="White">-->
+                        <Grid Padding="10, 15">
+                            <!--Estructura Grid-->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <!--Contenido-->
+                            <Image Source="{Binding Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}"
+                                        WidthRequest="100"
+                                        HeightRequest="100"
+                                        Grid.Column="1"/>
+                        </Grid>
+                        <!--</ViewCell>-->
+                        <!--</customcontrols:CustomViewCellControl>-->
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -22,55 +22,50 @@
             <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
                                Color="Red"
                                VerticalOptions="CenterAndExpand" />
-            
-            <ScrollView>
-                <StackLayout Orientation="Vertical">
-                    <CollectionView ItemsSource="{Binding Ofertas}"
-                                    SelectedItem="{Binding OfertaSeleccionada}"
-                                    SelectionMode="Single"
-                                    x:Name="cvOfertas">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <!--<ViewCell>-->
-                                <StackLayout>
-                                    <Grid RowSpacing="30">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
 
-                                        <Image Source="{Binding Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}" 
-                                                   Grid.RowSpan="2"
-                                                   Grid.Column="0"
-                                                   HeightRequest="50"/>
-                                        <Label Text="{Binding Titulo}"
-                                                   FontSize="Large"
-                                                   Grid.Row="0"
-                                                   Grid.Column="1"/>
-                                        <Label Text="{Binding Precio, StringFormat='{0} €'}"
-                                                   Grid.Row="1"
-                                                   Grid.Column="1"
-                                                   FontSize="Caption"/>
-                                    </Grid>
-                                </StackLayout>
-                                <!--</ViewCell>-->
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                        
-                        <CollectionView.Footer>
-                            <Button Text="Cargar más" 
-                            BackgroundColor="Red" 
-                            TextColor="Black"
-                            HorizontalOptions="FillAndExpand"
-                            Command="{Binding MostrarMasOfertas}"/>
-                        </CollectionView.Footer>
-                    </CollectionView>
-                </StackLayout>
-            </ScrollView>
+            <CollectionView ItemsSource="{Binding Ofertas}"
+                                SelectedItem="{Binding OfertaSeleccionada}"
+                                SelectionMode="Single"
+                                x:Name="cvOfertas"
+                                IsVisible="{Binding ShowContent}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Grid RowSpacing="30">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Image Source="{Binding Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}" 
+                                                Grid.RowSpan="2"
+                                                Grid.Column="0"
+                                                HeightRequest="50"/>
+                                <Label Text="{Binding Titulo}"
+                                                FontSize="Large"
+                                                Grid.Row="0"
+                                                Grid.Column="1"/>
+                                <Label Text="{Binding Precio, StringFormat='{0} €'}"
+                                                Grid.Row="1"
+                                                Grid.Column="1"
+                                                FontSize="Caption"/>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.Footer>
+                    <Button Text="Cargar más" 
+                        BackgroundColor="Red" 
+                        TextColor="Black"
+                        HorizontalOptions="FillAndExpand"
+                        Command="{Binding MostrarMasOfertas}"/>
+                </CollectionView.Footer>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

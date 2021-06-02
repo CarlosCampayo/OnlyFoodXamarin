@@ -11,9 +11,8 @@
     
     <ContentPage.Content>
         <StackLayout x:Name="stackCadenas" 
-                     BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=EliminarCadenaViewModel}">
-            <ScrollView>
-                <StackLayout Orientation="Vertical">
+                     BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=EliminarCadenaViewModel}"
+                     Orientation="Vertical">
                     <Label Text="Eliminar Cadena"
                            FontSize="Title"
                            VerticalOptions="CenterAndExpand" 
@@ -22,8 +21,10 @@
                     <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
                                Color="Red"
                                VerticalOptions="CenterAndExpand" />
+            
                     <CollectionView ItemsSource="{Binding Cadenas}"
-                                x:Name="cvcadenas">
+                                x:Name="cvcadenas"
+                                IsVisible="{Binding ShowContent}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <SwipeView>
@@ -57,8 +58,6 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
-                </StackLayout>
-            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

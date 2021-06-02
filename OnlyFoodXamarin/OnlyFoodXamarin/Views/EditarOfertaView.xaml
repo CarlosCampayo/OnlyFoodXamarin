@@ -9,8 +9,8 @@
     </NavigationPage.TitleView>
     
     <ContentPage.Content>
-        <ScrollView >
-            <StackLayout Orientation="Vertical">
+        <ScrollView VerticalOptions="FillAndExpand">
+            <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
                 <Label Text="Editar Oferta"
                            FontSize="Title"
                            VerticalOptions="CenterAndExpand" 
@@ -45,7 +45,7 @@
                 <Label Text="Imagen Actual" FontSize="Micro"/>
                 <Image Source="{Binding Oferta.Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}" />
                 <Button Text="Cambiar Imagen" x:Name="btnpickimage"/>
-                <Image x:Name="resultImg" />
+                <Image x:Name="resultImg"/>
 
 
                 <Label Text="Precio"

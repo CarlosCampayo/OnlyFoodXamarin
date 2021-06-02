@@ -13,12 +13,7 @@
     
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
-                <Label Text="Eliminar usuario"
-                        FontSize="Title"
-                        VerticalOptions="CenterAndExpand" 
-                        HorizontalOptions="CenterAndExpand" />
-            
-                <Label Text="Buscar usuario"
+            <Label Text="Buscar usuario"
                         FontSize="Medium"
                         HorizontalOptions="StartAndExpand"/>
                 <Entry Text="{Binding Filtro}"
@@ -28,50 +23,48 @@
                 <!--<Button Text="Buscar"
                         Command="{Binding BuscarUsuarios}"/>-->
             
-            
-                <ScrollView>
-                    <StackLayout Orientation="Vertical">
-                        <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
-                                   Color="Red"
-                                   VerticalOptions="CenterAndExpand" />
+                <StackLayout Orientation="Vertical">
+                    <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
+                                Color="Red"
+                                VerticalOptions="CenterAndExpand" />
                         
-                        <ListView ItemsSource="{Binding Usuarios}" 
-                                  SelectedItem="{Binding UsuarioSeleccionado}"
-                                  HasUnevenRows="True"
-                                  x:Name="lvUsuarios">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <StackLayout Orientation="Horizontal"
-                                                     HorizontalOptions="Fill"
-                                                     Margin="10"
-                                                     Spacing="10"
-                                                     Padding="10"
-                                                     BackgroundColor="LightGray">
-                                            <Grid>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="260"/>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-                                                <StackLayout Grid.Column="0" Spacing="0" Padding="0,5">
-                                                    <Label Text="{Binding Email}"
-                                                        FontSize="Medium"
-                                                        HorizontalOptions="Start"/>
-                                                </StackLayout>
-                                                <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="4" 
-                                                                HorizontalOptions="End" Padding="0" VerticalOptions="End">
-                                                    <Label Text="{Binding UserName}"
-                                                        FontSize="Subtitle"
-                                                        HorizontalOptions="End"/>
-                                                </StackLayout>
-                                            </Grid>
-                                        </StackLayout>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackLayout>
-                </ScrollView>
+                    <ListView ItemsSource="{Binding Usuarios}" 
+                                SelectedItem="{Binding UsuarioSeleccionado}"
+                                HasUnevenRows="True"
+                                x:Name="lvUsuarios"
+                              IsVisible="{Binding ShowContent}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal"
+                                                    HorizontalOptions="Fill"
+                                                    Margin="10"
+                                                    Spacing="10"
+                                                    Padding="10"
+                                                    BackgroundColor="LightGray">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="260"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackLayout Grid.Column="0" Spacing="0" Padding="0,5">
+                                                <Label Text="{Binding Email}"
+                                                    FontSize="Medium"
+                                                    HorizontalOptions="Start"/>
+                                            </StackLayout>
+                                            <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="4" 
+                                                            HorizontalOptions="End" Padding="0" VerticalOptions="End">
+                                                <Label Text="{Binding UserName}"
+                                                    FontSize="Subtitle"
+                                                    HorizontalOptions="End"/>
+                                            </StackLayout>
+                                        </Grid>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

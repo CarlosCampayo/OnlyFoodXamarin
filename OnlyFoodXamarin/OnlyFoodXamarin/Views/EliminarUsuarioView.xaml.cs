@@ -21,9 +21,15 @@ namespace OnlyFoodXamarin.Views
 
         private async void BtnEliminar_Clicked(object sender, EventArgs e)
         {
-            EliminarUsuarioViewModel vm = (EliminarUsuarioViewModel)this.BindingContext;
-            vm.EliminarUsuario.Execute(1);
-            await Navigation.PopAsync();
+            bool res = await DisplayAlert("Confirmar",
+                "¿Está seguro que quiere eliminar el usuario?", "Sí", "No");
+
+            if(res)
+            {
+                EliminarUsuarioViewModel vm = (EliminarUsuarioViewModel)this.BindingContext;
+                vm.EliminarUsuario.Execute(1);
+                await Navigation.PopAsync();
+            }
         }
     }
 }
