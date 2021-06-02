@@ -18,10 +18,11 @@
     <ContentPage.Content>
         <StackLayout Padding="10, 15">
             <Label Text="Mi perfil"
-                        FontSize="Title"
+                        FontSize="40"
+                        FontAttributes="Bold"
                         VerticalOptions="Start" 
-                        HorizontalOptions="CenterAndExpand" />
-            
+                        HorizontalOptions="CenterAndExpand" 
+                        TextColor="#000000"  />
             <Label Text="Email"
                         FontSize="Medium"
                         HorizontalOptions="StartAndExpand"/>
