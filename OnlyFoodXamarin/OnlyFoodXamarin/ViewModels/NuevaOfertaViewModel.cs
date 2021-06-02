@@ -115,7 +115,6 @@ namespace OnlyFoodXamarin.ViewModels
                     this.Limpiar();
                 });
             }
-            
         }
     }
 }

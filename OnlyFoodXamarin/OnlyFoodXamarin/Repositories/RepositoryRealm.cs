@@ -29,7 +29,7 @@ namespace OnlyFoodXamarin.Repositories
             return this.realmConnection.All<UsuarioLoginRealm>()
                 .FirstOrDefault();
         }
-        public void InsertarUsuario(int id,String email,String password)
+        public void InsertarUsuario(int id,String email,String password, int rol)
         {
             using (Transaction transaction = this.realmConnection.BeginWrite())
             {
@@ -37,6 +37,7 @@ namespace OnlyFoodXamarin.Repositories
                 usuario.Id = id;
                 usuario.Email = email;
                 usuario.Password = password;
+                usuario.Rol = rol;
                 this.realmConnection.Add(usuario);
                 transaction.Commit();
             }
