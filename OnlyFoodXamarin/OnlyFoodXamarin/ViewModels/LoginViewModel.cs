@@ -51,7 +51,7 @@ namespace OnlyFoodXamarin.ViewModels
                     if (user != null)
                     {
                         String token = await this.service.GetApiTokenAsync(this.Usuario.Email, this.Usuario.Password);
-                        this.repositoryRealm.InsertarUsuario(user.Id, user.Email, this.Usuario.Password);
+                        this.repositoryRealm.InsertarUsuario(user.Id, user.Email, this.Usuario.Password, user.Rol);
                         App.ServiceLocator.SessionService.Token = token;
                         App.ServiceLocator.SessionService.Password = this.Usuario.Password;
                         App.ServiceLocator.SessionService.Usuario = user;

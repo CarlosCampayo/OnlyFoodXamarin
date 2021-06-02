@@ -72,16 +72,19 @@ namespace OnlyFoodXamarin
             UsuarioLoginRealm user = repositoryRealm.GetUsuarioLogin();
             if (user == null)
             {
+                this.labelmenuusuario.Text = "";
                 paginas.Add(loginView);
             }
             else
             {
+                this.labelmenuusuario.Text = "Menu usuario";
                 App.ServiceLocator.SessionService.Password = user.Password;
                 App.ServiceLocator.SessionService.Usuario = new Usuario()
                 {
                     Id=user.Id,
                     UserName=user.UserName,
-                    Email=user.Email
+                    Email=user.Email,
+                    Rol=user.Rol
                 };
                 Task.Run(async () =>
                 {
@@ -89,11 +92,14 @@ namespace OnlyFoodXamarin
                     App.ServiceLocator.SessionService.Usuario = await service.GetUserByIdAsync(user.Id, App.ServiceLocator.SessionService.Token);
                 });
                 paginasUsuario.Add(perfilView);
-                paginasUsuario.Add(nuevaOfertaView);
                 paginasUsuario.Add(ofertasUsuarioView);
-                paginasUsuario.Add(nuevaCadenaView);
-                paginasUsuario.Add(eliminarCadenaView);
-                paginasUsuario.Add(eliminarUsuarioBuscadorView);
+                paginasUsuario.Add(nuevaOfertaView);
+                if (user.Rol == 1)
+                {
+                    paginasUsuario.Add(nuevaCadenaView);
+                    paginasUsuario.Add(eliminarCadenaView);
+                    paginasUsuario.Add(eliminarUsuarioBuscadorView);
+                }
             }
             paginas.Add(cadenasView);
             paginas.Add(ofertasView);

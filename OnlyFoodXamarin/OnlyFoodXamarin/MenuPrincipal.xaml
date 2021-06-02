@@ -36,10 +36,11 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <Label Text="Menu usuario"
+                    <Label Text=""
                             HorizontalOptions="Start"
                             FontSize="Subtitle"
-                            Padding="10"/>
+                            Padding="10"
+                            x:Name="labelmenuusuario"/>
                     <ScrollView>
                         <ListView x:Name="listviewMenuUsuario"
                                     RowHeight="50"
