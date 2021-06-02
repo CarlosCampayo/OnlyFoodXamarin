@@ -110,6 +110,7 @@ namespace OnlyFoodXamarin.ViewModels
             DetalleOfertaView view = new DetalleOfertaView();
             DetalleOfertaViewModel viewmodel = App.ServiceLocator.DetalleOfertaViewModel;
             viewmodel.Oferta=this.OfertaSeleccionada;
+            await viewmodel.CargarOfertaAsync();
             view.BindingContext = viewmodel;
             return view;
             //var masterDetailPage = Application.Current.MainPage as MasterDetailPage;
