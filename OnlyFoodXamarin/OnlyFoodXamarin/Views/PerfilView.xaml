@@ -13,12 +13,12 @@
             </Grid.ColumnDefinitions>
             
             <Image Source="https://onlyfood.s3.amazonaws.com/logo_only_r.jpg" HorizontalOptions="FillAndExpand"
-                   Grid.Column="1"/>
+                   Grid.Column="0"/>
             <ImageButton Source="https://image.flaticon.com/icons/png/512/77/77568.png"
                          WidthRequest="40"
                          HeightRequest="40"
                          BackgroundColor="Transparent"
-                         Grid.Column="2"
+                         Grid.Column="1"
                          x:Name="btnclose"
                          HorizontalOptions="EndAndExpand"
                          VerticalOptions="Center"/>
