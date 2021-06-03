@@ -23,12 +23,18 @@
             <!--<Button Text="Buscar" 
                     Command="{Binding Buscar}"
                     Clicked="ShowNewPopup"/>-->
-            <ImageButton Source="filtro_icon.png"
-                         BackgroundColor="white"
+
+            <ImageButton Source="https://cdn.pixabay.com/photo/2015/12/14/20/36/magnifier-1093184__340.png"
                          Command="{Binding Buscar}"
+                         HorizontalOptions="EndAndExpand" 
+                         VerticalOptions="Center"
+                         WidthRequest="40"
+                         HeightRequest="40"
+                         BackgroundColor="Transparent"
                          Clicked="ShowNewPopup"
-                         Grid.Column="1"/>
-            </Grid>
+                         Margin="32,0,5,0"
+                          Grid.Column="1"/>
+        </Grid>
     </NavigationPage.TitleView>
 
 

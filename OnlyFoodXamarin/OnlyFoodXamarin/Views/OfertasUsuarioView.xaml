@@ -18,7 +18,7 @@
 
             <Image Source="https://onlyfood.s3.amazonaws.com/logo_only_r.jpg" 
                    HorizontalOptions="CenterAndExpand"
-                   Margin="32,0,0,0"
+                   Margin="32,0,5,0"
                    Grid.Column="0"/>
 
             <!--<Button Text="Buscar" Command="{Binding Buscar}"
@@ -39,6 +39,7 @@
                          WidthRequest="40"
                          HeightRequest="40"
                          BackgroundColor="Transparent"
+                         Margin="32,0,5,0"
                           Grid.Column="1"/>
         </Grid>
     </NavigationPage.TitleView>
