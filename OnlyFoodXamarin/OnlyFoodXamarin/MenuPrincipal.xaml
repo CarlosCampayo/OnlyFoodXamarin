@@ -20,7 +20,8 @@
                             Padding="10"/>
                     <ListView x:Name="listviewMenu"
                                 RowHeight="50"
-                                SeparatorVisibility="Default">
+                                SeparatorVisibility="Default"
+                                SeparatorColor="#e41b23">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -44,7 +45,8 @@
                     <ScrollView>
                         <ListView x:Name="listviewMenuUsuario"
                                     RowHeight="50"
-                                    SeparatorVisibility="Default">
+                                    SeparatorVisibility="Default"
+                                    SeparatorColor="#e41b23">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <ViewCell>

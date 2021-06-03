@@ -12,72 +12,113 @@
                FontSize="Medium"/>
     </NavigationPage.TitleView>
 
-    <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
-            <Label Text="Ofertas"
-                   FontSize="Large"
-                   TextColor="Black"
-                   HorizontalTextAlignment="Center"
-                   Margin="0, 15, 0, 10"/>
 
-            <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
+    <ContentPage.Resources>
+        <ControlTemplate x:Key="CardViewControlTemplate">
+            <Frame BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
+                       BackgroundColor="{Binding CardColor}"
+                       BorderColor="{Binding BorderColor}"
+                       CornerRadius="5"
+                       HasShadow="True"
+                       Padding="8"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       WidthRequest="500">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75" />
+                        <RowDefinition Height="4" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                    </Grid.RowDefinitions>
+                    <Frame IsClippedToBounds="True"
+                               BorderColor="{Binding BorderColor}"
+                               BackgroundColor="{Binding IconBackgroundColor}"
+                               HeightRequest="60"
+                               WidthRequest="60"
+                               HorizontalOptions="Start">
+                        <Image Source="{Binding IconImageSource, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}"
+                                   Margin="-20"
+                                   WidthRequest="100"
+                                   HeightRequest="100"
+                                   Aspect="AspectFill" />
+                    </Frame>
+                    <Label Text="{Binding CardTitle}"
+                               FontAttributes="Bold"
+                               FontSize="Large"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="End" 
+                               VerticalOptions="CenterAndExpand"
+                               TextColor="{Binding CardTextColor}"/>
+                    <BoxView Grid.Row="1"
+                                 BackgroundColor="{Binding CardLine}"
+                                 HeightRequest="2"
+                                 HorizontalOptions="Fill" />
+                    <Label Grid.Row="4"
+                           Text="{Binding CardPrice, StringFormat='Precio: {0:C2}'}"
+                           HorizontalOptions="Start"
+                           FontAttributes="Bold"/>
+                    <Label Grid.Row="4"
+                           Text="{Binding CardCode}"
+                           HorizontalOptions="End"
+                           FontAttributes="Bold"/>
+                    <controls:HyperlinkLabel Grid.Row="3"
+                           Url="{Binding CardUrl}"
+                           Text="{Binding CardUrl}"
+                           TextColor="#0231ee"
+                           HorizontalOptions="Center"/>
+                    <Label Grid.Row="2"
+                               Text="{Binding CardDescription}"
+                               VerticalTextAlignment="Start"
+                               VerticalOptions="Fill"
+                               HorizontalOptions="Fill" 
+                               TextColor="{Binding CardTextColor}"/>
+                </Grid>
+            </Frame>
+        </ControlTemplate>
+
+        <DataTemplate x:Key="PersonTemplate">
+            <controls:CardView BorderColor="Black"
+                                   CardTextColor="Black"
+                                   CardTitle="{Binding Titulo}"
+                                   CardDescription="{Binding Descripcion}"
+                                   CardCode="{Binding Codigo}"
+                                   CardPrice="{Binding Precio}"
+                                   CardUrl="{Binding Web}"
+                                   IconImageSource="{Binding Imagen}"
+                                   ControlTemplate="{StaticResource CardViewControlTemplate}"/>
+        </DataTemplate>
+    </ContentPage.Resources>
+    
+    <StackLayout>
+        <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
                                Color="Red"
                                VerticalOptions="CenterAndExpand" />
+        <ScrollView>
+            <CollectionView ItemsSource="{Binding Ofertas}"
+                                        SelectedItem="{Binding OfertaSeleccionada}"
+                                        SelectionMode="Single"
+                                        ItemTemplate="{StaticResource PersonTemplate}"
+                                        x:Name="cvOfertas">
+                <CollectionView.Footer>
+                    <StackLayout Orientation="Vertical">
+                        <Button Text="Cargar más" 
+                                    IsVisible="{Binding Botoncargar}"
+                                    BackgroundColor="#e41b23" 
+                                    TextColor="White"
+                                    HorizontalOptions="FillAndExpand"
+                                    Command="{Binding MostrarMasOfertas}"/>
+                        <Image Source="sold.gif" IsVisible="{Binding Imagen}"
+                                       HeightRequest="200" HorizontalOptions="Center"
+                                       IsAnimationPlaying="True"/>
+                        <Label Text="No hay ofertas" IsVisible="{Binding Mensaje}"
+                                       FontSize="Large" HorizontalOptions="Center"/>
+                    </StackLayout>
 
-            <StackLayout Orientation="Vertical">
-                <CollectionView ItemsSource="{Binding Ofertas}"
-                                SelectedItem="{Binding OfertaSeleccionada}"
-                                SelectionMode="Single"
-                                x:Name="cvOfertas"
-                                IsVisible="{Binding ShowContent}">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="*" />
-                                    </Grid.ColumnDefinitions>
-
-                                    <Image Source="{Binding Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}" 
-                                                Grid.RowSpan="2"
-                                                Grid.Column="0"
-                                                HeightRequest="50"/>
-                                    <Label Text="{Binding Titulo}"
-                                                FontSize="Large"
-                                                Grid.Row="0"
-                                                Grid.Column="1"/>
-                                    <Label Text="{Binding Precio, StringFormat='{0} €'}"
-                                                Grid.Row="1"
-                                                Grid.Column="1"
-                                                FontSize="Caption"/>
-                                </Grid>
-                            </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                    <CollectionView.Footer>
-                        <StackLayout Orientation="Vertical">
-                            <Button Text="Cargar más" 
-                                IsVisible="{Binding Botoncargar}"
-                                BackgroundColor="Red" 
-                                TextColor="Black"
-                                HorizontalOptions="FillAndExpand"
-                                Command="{Binding MostrarMasOfertas}"/>
-                            <Image Source="homer2.gif" IsVisible="{Binding Imagen}" 
-                                   HeightRequest="300" HorizontalOptions="Center"
-                                   IsAnimationPlaying="True"/>
-                            <Label Text="¡Vaya! Todavía no hay ofertas de tu selección" 
-                                   IsVisible="{Binding Mensaje}"
-                                   FontSize="Large" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
-                        </StackLayout>
-                        
-                    </CollectionView.Footer>
-                </CollectionView>
-            </StackLayout>
-        </StackLayout>
-    </ContentPage.Content>
+                </CollectionView.Footer>
+            </CollectionView>
+        </ScrollView>
+    </StackLayout>
+    
 </ContentPage>

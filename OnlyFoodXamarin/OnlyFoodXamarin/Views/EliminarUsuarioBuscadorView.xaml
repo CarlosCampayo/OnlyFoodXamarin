@@ -16,13 +16,16 @@
             BindingContext="{Binding Source={x:Static local:App.ServiceLocator},
                 Path=EliminarUsuarioBuscadorViewModel}">
             <Label Text="Buscar usuario"
-                        FontSize="Medium"
-                        HorizontalOptions="StartAndExpand"/>
-            <Entry Text="{Binding Filtro}"
-                       x:Name="searchBox"
-                        Placeholder="Introduce el email o username del usuario"
-                        HorizontalOptions="FillAndExpand"/>
-
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="CenterAndExpand"/>
+            <Frame CornerRadius="20">
+                <Entry Text="{Binding Filtro}"
+                           x:Name="searchBox"
+                            Placeholder="Introduce el email o username del usuario"
+                            HorizontalOptions="FillAndExpand"/>
+            </Frame>
             <StackLayout Orientation="Vertical">
                     <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
                                 Color="Red"
@@ -32,7 +35,8 @@
                                 SelectedItem="{Binding UsuarioSeleccionado}"
                                 HasUnevenRows="True"
                                 x:Name="lvUsuarios"
-                              IsVisible="{Binding ShowContent}">
+                                IsVisible="{Binding ShowContent}"
+                                SeparatorColor="#e41b23">
                     <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
@@ -50,15 +54,28 @@
                                                     Padding="10"
                                                     BackgroundColor="LightGray">
                                         <Grid>
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup Name="CommonStates">
+                                                    <VisualState Name="Normal"/>
+                                                    <VisualState Name="Selected">
+                                                        <VisualState.Setters>
+                                                            <Setter Property="BackgroundColor" Value="#e41b23"/>
+                                                        </VisualState.Setters>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="260"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
+                                            
                                             <StackLayout Grid.Column="0" Spacing="0" Padding="0,5">
                                                 <Label Text="{Binding Email}"
                                                     FontSize="Medium"
                                                     HorizontalOptions="Start"/>
                                             </StackLayout>
+                                            
                                             <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="4" 
                                                             HorizontalOptions="End" Padding="0" VerticalOptions="End">
                                                 <Label Text="{Binding UserName}"
