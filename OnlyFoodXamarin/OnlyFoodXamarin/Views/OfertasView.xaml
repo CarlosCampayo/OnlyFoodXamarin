@@ -20,16 +20,15 @@
                     Margin="32,0,0,0"
                    Grid.Column="0"/>
 
-            <Button Text="Buscar" 
+            <!--<Button Text="Buscar" 
                     Command="{Binding Buscar}"
                     Clicked="ShowNewPopup"/>-->
-            <ImageButton Source="https://c0.klipartz.com/pngpicture/136/913/sticker-png-magnifying-glass-icon-magnifying-glass-icon-glass-magnifying-glass-icon.png"
-                         HeightRequest="50"
-                         WidthRequest="50"
-                         BackgroundColor="Transparent"
+            <ImageButton Source="filtro_icon.png"
+                         BackgroundColor="white"
                          Command="{Binding Buscar}"
-                         Clicked="ShowNewPopup"/>
-        </StackLayout>
+                         Clicked="ShowNewPopup"
+                         Grid.Column="1"/>
+            </Grid>
     </NavigationPage.TitleView>
 
 
