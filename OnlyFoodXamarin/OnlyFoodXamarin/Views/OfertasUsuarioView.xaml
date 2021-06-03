@@ -103,85 +103,12 @@
                                Color="#e41b23"
                                VerticalOptions="CenterAndExpand" />
 
-        <ScrollView>
-            <CollectionView ItemsSource="{Binding Ofertas}"
-                                        SelectedItem="{Binding OfertaSeleccionada}"
-                                        SelectionMode="Single"
-                                        ItemTemplate="{StaticResource PersonTemplate}"
-                                        x:Name="cvOfertas"
-                                        IsVisible="{Binding ShowContent}">
-
-            </CollectionView>
-        </ScrollView>
-        <Button Text="Cargar más" 
-                BackgroundColor="#e41b23"
-                TextColor="White"
-                HorizontalOptions="FillAndExpand"                
-                Command="{Binding MostrarMasOfertas}"/>
+        <CollectionView ItemsSource="{Binding Ofertas}"
+                                    SelectedItem="{Binding OfertaSeleccionada}"
+                                    SelectionMode="Single"
+                                    ItemTemplate="{StaticResource PersonTemplate}"
+                                    x:Name="cvOfertas"
+                                    IsVisible="{Binding ShowContent}">
+        </CollectionView>
     </StackLayout>
-
-
-
-    <!--<ContentPage.Content>
-        <StackLayout Orientation="Vertical">
-            <Label Text="Mis Ofertas"
-                   FontSize="Large"
-                   TextColor="Black"
-                   HorizontalTextAlignment="Center"
-                   Margin="0, 15, 0, 10"/>
-
-            <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
-                               Color="Red"
-                               VerticalOptions="CenterAndExpand" />
-
-            <CollectionView ItemsSource="{Binding Ofertas}"
-                                SelectedItem="{Binding OfertaSeleccionada}"
-                                SelectionMode="Single"
-                                x:Name="cvOfertas"
-                                IsVisible="{Binding ShowContent}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <Grid RowSpacing="30">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-
-                                <Image Source="{Binding Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}" 
-                                                Grid.RowSpan="2"
-                                                Grid.Column="0"
-                                                HeightRequest="50"/>
-                                <Label Text="{Binding Titulo}"
-                                                FontSize="Large"
-                                                Grid.Row="0"
-                                                Grid.Column="1"/>
-                                <Label Text="{Binding Precio, StringFormat='{0} €'}"
-                                                Grid.Row="1"
-                                                Grid.Column="1"
-                                                FontSize="Caption"/>
-                            </Grid>
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-
-                <CollectionView.Footer>
-                    <StackLayout Orientation="Vertical">
-                        <Image Source="homer.gif" IsVisible="{Binding Imagen}"
-                                   HeightRequest="300" HorizontalOptions="Center"
-                                   IsAnimationPlaying="True"/>
-                        <Label Text="¡Vaya! Todavía no has creado no tienes ninguna oferta" 
-                               IsVisible="{Binding Mensaje}"
-                               FontSize="Large" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
-                    </StackLayout>
-
-                </CollectionView.Footer>
-                
-            </CollectionView>
-        </StackLayout>
-    </ContentPage.Content>-->
 </ContentPage>

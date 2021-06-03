@@ -35,10 +35,10 @@ namespace OnlyFoodXamarin.Views
             await Navigation.PushAsync(view);
         }
 
-        private void Btnclose_Clicked(object sender, EventArgs e)
+        private async void Btnclose_Clicked(object sender, EventArgs e)
         {
             PerfilViewModel vm = (PerfilViewModel)this.BindingContext;
-            vm.CerrarSesion.Execute(1);
+            await vm.CerrarSesion();
         }
     }
 }

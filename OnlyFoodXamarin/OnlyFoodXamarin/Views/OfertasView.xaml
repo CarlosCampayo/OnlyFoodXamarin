@@ -99,30 +99,30 @@
         <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
                                Color="Red"
                                VerticalOptions="CenterAndExpand" />
-        <ScrollView>
-            <CollectionView ItemsSource="{Binding Ofertas}"
-                                        SelectedItem="{Binding OfertaSeleccionada}"
-                                        SelectionMode="Single"
-                                        ItemTemplate="{StaticResource PersonTemplate}"
-                                        x:Name="cvOfertas">
-                <CollectionView.Footer>
-                    <StackLayout Orientation="Vertical">
-                        <Button Text="Cargar más" 
-                                    IsVisible="{Binding Botoncargar}"
-                                    BackgroundColor="#e41b23" 
-                                    TextColor="White"
-                                    HorizontalOptions="FillAndExpand"
-                                    Command="{Binding MostrarMasOfertas}"/>
-                        <Image Source="sold.gif" IsVisible="{Binding Imagen}"
-                                       HeightRequest="200" HorizontalOptions="Center"
-                                       IsAnimationPlaying="True"/>
-                        <Label Text="No hay ofertas" IsVisible="{Binding Mensaje}"
-                                       FontSize="Large" HorizontalOptions="Center"/>
-                    </StackLayout>
+        
+        <CollectionView ItemsSource="{Binding Ofertas}"
+                                    SelectedItem="{Binding OfertaSeleccionada}"
+                                    SelectionMode="Single"
+                                    ItemTemplate="{StaticResource PersonTemplate}"
+                                    x:Name="cvOfertas"
+                                    IsVisible="{Binding ShowContent}">
+            <CollectionView.Footer>
+                <StackLayout Orientation="Vertical">
+                    <Button Text="Cargar más" 
+                                IsVisible="{Binding Botoncargar}"
+                                BackgroundColor="#e41b23" 
+                                TextColor="White"
+                                HorizontalOptions="FillAndExpand"
+                                Command="{Binding MostrarMasOfertas}"/>
+                    <Image Source="sold.gif" IsVisible="{Binding Imagen}"
+                                    HeightRequest="200" HorizontalOptions="Center"
+                                    IsAnimationPlaying="True"/>
+                    <Label Text="No hay ofertas" IsVisible="{Binding Mensaje}"
+                                    FontSize="Large" HorizontalOptions="Center"/>
+                </StackLayout>
 
-                </CollectionView.Footer>
-            </CollectionView>
-        </ScrollView>
+            </CollectionView.Footer>
+        </CollectionView>
     </StackLayout>
     
 </ContentPage>

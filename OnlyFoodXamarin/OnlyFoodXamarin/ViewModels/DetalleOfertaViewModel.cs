@@ -23,6 +23,19 @@ namespace OnlyFoodXamarin.ViewModels
             //});
         }
 
+        #region ACTIVITY INDICATOR
+        private bool _ShowLoading;
+        public bool ShowLoading
+        {
+            get { return this._ShowLoading; }
+            set
+            {
+                this._ShowLoading = value;
+                OnPropertyChanged("ShowLoading");
+            }
+        }
+        #endregion
+
         private Oferta _Oferta;
         public Oferta Oferta
         {
@@ -127,6 +140,8 @@ namespace OnlyFoodXamarin.ViewModels
         }
         public async Task CargarOfertaAsync()
         {
+            this.ShowLoading = true;
+
             this.Cadena = await this.service.GetCadenaByIdAsync(Oferta.IdCadena);
             await this.CargarComentarios();
             this.Likes = await this.service.GetLikesOfertaAsync(Oferta.Id);
@@ -160,7 +175,10 @@ namespace OnlyFoodXamarin.ViewModels
                 this.LikesImagen = "yellowlike_116080.png";
                 this.DisLikesImagen = "yellowunlike_116069.png";
             }
+            this.ShowLoading = false;
+
         }
+
         public Command CargarMasComentarios
         {
             get
