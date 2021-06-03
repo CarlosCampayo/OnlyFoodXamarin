@@ -1,8 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converter="clr-namespace:OnlyFoodXamarin.Converters"
              x:Class="OnlyFoodXamarin.App">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <converter:FiltroConverter x:Key="converterfiltro"/>
+            <converter:IntStringConvert x:Key="intstringconverter"/>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

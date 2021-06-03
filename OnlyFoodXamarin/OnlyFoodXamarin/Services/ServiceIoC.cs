@@ -39,8 +39,13 @@ namespace OnlyFoodXamarin.Services
             builder.RegisterType<RegisterViewModel>();
             builder.RegisterType<CambiarEmailViewModel>();
             builder.RegisterType<CambiarUsernameViewModel>();
-
+            builder.RegisterType<FiltroPopUpViewModel>().SingleInstance();
+            
             this.container = builder.Build();
+        }
+        public FiltroPopUpViewModel FiltroPopUpViewModel
+        {
+            get { return this.container.Resolve<FiltroPopUpViewModel>(); }
         }
         public CambiarEmailViewModel CambiarEmailViewModel
         {

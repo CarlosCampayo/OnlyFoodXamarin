@@ -2,6 +2,7 @@
 using OnlyFoodXamarin.Models;
 using OnlyFoodXamarin.Services;
 using OnlyFoodXamarin.Views;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,12 +20,12 @@ namespace OnlyFoodXamarin.ViewModels
         public OfertasViewModel(OnlyFoodService service)
         {
             this.service = service;
-            if (Filtro == null)
-            {
-                this.Filtro = new FiltroOfertas();
-                this.Filtro.Preciomax = 100;
-                this.Filtro.Preciomin = 0;
-            }
+            //if (this.Filtro == null)
+            //{
+            //    this.Filtro = new FiltroOfertas();
+            //    this.Filtro.Preciomax = 100;
+            //    this.Filtro.Preciomin = 0;
+            //}
         }
 
         #region ACTIVITY INDICATOR
@@ -181,5 +182,21 @@ namespace OnlyFoodXamarin.ViewModels
                 });
             }
         }
+        public Command Buscar
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    FiltroPopupPage view = new FiltroPopupPage();
+                    FiltroPopUpViewModel viewModel = App.ServiceLocator.FiltroPopUpViewModel;
+                    viewModel.Filtro = this.Filtro;
+                    await viewModel.LoadCadenasAsync();
+                    view.BindingContext = viewModel;
+                    await PopupNavigation.Instance.PushAsync(view);
+                });
+            }
+        }
+        
     }
 }
