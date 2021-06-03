@@ -11,9 +11,9 @@
     <ContentPage.Content>
             <ScrollView>
                 <StackLayout Orientation="Vertical" Padding="10, 15">
-                    <Label Text="Cambiar Email"
+                    <!--<Label Text="Cambiar Email"
                            FontSize="Title"
-                           HorizontalOptions="CenterAndExpand" />
+                           HorizontalOptions="CenterAndExpand" />-->
                     
                     <Label Text="Email"
                            FontSize="Medium"

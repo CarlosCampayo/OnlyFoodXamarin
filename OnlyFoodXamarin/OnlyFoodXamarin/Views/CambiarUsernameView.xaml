@@ -10,10 +10,10 @@
     <ContentPage.Content>
         <StackLayout>
             <ScrollView>
-                <StackLayout Orientation="Vertical">
-                    <Label Text="Cambiar Username"
+                <StackLayout Orientation="Vertical" Padding="10, 15">
+                    <!--<Label Text="Cambiar Username"
                            FontSize="Title"
-                           HorizontalOptions="CenterAndExpand" />
+                           HorizontalOptions="CenterAndExpand" />-->
                     <Label Text="Username"
                            FontSize="Medium"
                            HorizontalOptions="StartAndExpand"/>

@@ -11,19 +11,19 @@
     </NavigationPage.TitleView>
     
     <ContentPage.Content>
-        <StackLayout Orientation="Vertical">
-            <Label Text="Eliminar usuario"
+        <StackLayout Orientation="Vertical" Padding="10, 15">
+            <!--<Label Text="Eliminar usuario"
                         FontSize="40"
                         FontAttributes="Bold"
                         TextColor="#000000"
-                        HorizontalOptions="CenterAndExpand" />
+                        HorizontalOptions="CenterAndExpand" />-->
             
             <Label Text="Email"
                         FontSize="20"
                         FontAttributes="Bold"
                         TextColor="#000000"
                         HorizontalOptions="CenterAndExpand"/>
-            <Frame CornerRadius="20">
+            <Frame CornerRadius="20" Margin="0,0,0,10">
                 <Entry Text="{Binding Usuario.Email}"
                         IsReadOnly="True"
                         HorizontalOptions="FillAndExpand"/>
@@ -33,7 +33,7 @@
                         FontAttributes="Bold"
                         TextColor="#000000"
                         HorizontalOptions="CenterAndExpand"/>
-            <Frame CornerRadius="20">
+            <Frame CornerRadius="20" Margin="0,0,0,10">
                 <Entry Text="{Binding Usuario.UserName}"
                         IsReadOnly="True"
                         HorizontalOptions="FillAndExpand"/>
@@ -43,18 +43,18 @@
                         FontAttributes="Bold"
                         TextColor="#000000"
                         HorizontalOptions="CenterAndExpand"/>
-            <Frame CornerRadius="20">
+            <Frame CornerRadius="20" Margin="0,0,0,10">
                 <Entry Text="{Binding Fullname}"
                         IsReadOnly="True"
                         HorizontalOptions="FillAndExpand"/>
             </Frame>
-            <Button Text="Eliminar" x:Name="btnEliminar"
+            <Button Text="Eliminar Usuario" x:Name="btnEliminar"
                     BorderColor="White" 
                             BackgroundColor="#e41b23" 
                             TextColor="White"
                             BorderWidth="1.5"
-                            CornerRadius="5"
-                    HorizontalOptions="CenterAndExpand"/>
+                            CornerRadius="20"
+                    HorizontalOptions="FillAndExpand"/>
             <!--Command="{Binding EliminarUsuario}"-->
         </StackLayout>
     </ContentPage.Content>

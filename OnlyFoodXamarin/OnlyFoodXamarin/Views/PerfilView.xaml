@@ -8,22 +8,26 @@
     <NavigationPage.TitleView>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.5*" />
-                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.70*" />
+                <ColumnDefinition Width="0.30*" />
             </Grid.ColumnDefinitions>
             
-            <Image Source="https://onlyfood.s3.amazonaws.com/logo_only_r.jpg" HorizontalOptions="FillAndExpand"
-                   Grid.Column="1"/>
+            <Image Source="https://onlyfood.s3.amazonaws.com/logo_only_r.jpg" 
+                   HorizontalOptions="CenterAndExpand"
+                   Margin="32,0,0,0"
+                   Grid.Column="0"/>
 
-            <Button Text="Cerrar sesión" x:Name="btnclose" FontSize="10" 
+            <Button Text="Cerrar sesión" x:Name="btnclose" 
+                    FontSize="10" 
                     BackgroundColor="#bc171d" 
                     HorizontalOptions="EndAndExpand" 
                     VerticalOptions="Center"
                     TextColor="White"
                     BorderColor="#ffffff"
                     BorderWidth="1"
-                    CornerRadius="1"
-                    Grid.Column="2"/>
+                    CornerRadius="2"
+                    Margin="0,0,5,0"
+                    Grid.Column="1"/>
         </Grid>
     </NavigationPage.TitleView>
     

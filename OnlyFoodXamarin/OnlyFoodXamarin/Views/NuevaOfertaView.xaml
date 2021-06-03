@@ -6,14 +6,22 @@
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=NuevaOfertaViewModel}">
 
     <NavigationPage.TitleView>
-        <Label Text="Nueva oferta" TextColor="White"
-               FontSize="Medium"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.80*" />
+                <ColumnDefinition Width="0.20*" />
+            </Grid.ColumnDefinitions>
+
+            <Image Source="https://onlyfood.s3.amazonaws.com/logo_only_r.jpg" 
+               HorizontalOptions="CenterAndExpand"
+                Margin="0,0,4,0"
+               Grid.Column="0"/>
+        </Grid>
     </NavigationPage.TitleView>
     
     <ContentPage.Content>
-        <StackLayout>
             <ScrollView>
-                <StackLayout Orientation="Vertical">
+            <StackLayout Orientation="Vertical" Padding="10, 15">
                     <Label Text="Nueva Oferta"
                         FontSize="40"
                         FontAttributes="Bold"
@@ -122,6 +130,5 @@
                            Padding="10" />
                 </StackLayout>
             </ScrollView>
-        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
