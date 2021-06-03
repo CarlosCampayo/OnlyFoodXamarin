@@ -6,8 +6,15 @@
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=LoginViewModel}">
     
     <NavigationPage.TitleView>
-        <Button Text="Registro" FontSize="Small"
-                    HorizontalOptions="End" x:Name="btnregister"/>
+        <Button Text="Registro" 
+                x:Name="btnregister"
+                FontSize="15"
+                HorizontalOptions="End"
+                CornerRadius="20"
+                BorderWidth="1"
+                BorderColor="White"
+                BackgroundColor="#e41b23"
+                TextColor="White"/>
     </NavigationPage.TitleView>
     
     <ContentPage.Content>
@@ -26,17 +33,38 @@
                                            Grid.Column="1"/>
             </Grid>
 
-            <Label Text="Email" FontSize="Medium" TextColor="White"/>
-            <Entry Placeholder="Introduce tu email" Text="{Binding Usuario.Email}" BackgroundColor="White"
-                   Keyboard="Email"/>
+            <Label Text="Email"
+                   TextColor="White"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+            <Frame CornerRadius="20">
+                 <Entry Placeholder="Introduce tu email" Text="{Binding Usuario.Email}" BackgroundColor="White"
+                    Keyboard="Email"/>
+            </Frame>
+            <Label Text="Contraseña" 
+                   TextColor="White"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+            <Frame CornerRadius="20">
+                <Entry Placeholder="Introduce tu contraseña" 
+                    IsPassword="True" Text="{Binding Usuario.Password}" BackgroundColor="White"/>
+            </Frame>
+            <Button Text="Login" x:Name="btnLogin"
+                    CornerRadius="20"
+                    BorderWidth="1"
+                    BorderColor="#e41b23"
+                    BackgroundColor="White"
+                    FontSize="20"
+                    FontAttributes="Bold"
+                    TextColor="#e41b23"/>
             
-            <Label Text="Contraseña" FontSize="Medium" TextColor="White"/>
-            <Entry Placeholder="Introduce tu contraseña" 
-                   IsPassword="True" Text="{Binding Usuario.Password}" BackgroundColor="White"/>
-
-            <Button Text="Login" x:Name="btnLogin"/>
-            
-            <Label Text="{Binding Mensaje}" TextColor="White" />
+            <Label Text="{Binding Mensaje}" 
+                   TextColor="White" 
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand"/>
 
             <ActivityIndicator Color="White"
                                IsVisible="{Binding ShowLoading}" 

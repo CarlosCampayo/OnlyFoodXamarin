@@ -12,13 +12,19 @@
         <StackLayout Orientation="Horizontal">
             <Label Text="Ofertas" TextColor="White"
                FontSize="Medium" HorizontalOptions="Center"/>
-            <Button Text="Buscar" 
+            <!--<Button Text="Buscar" 
                     HorizontalOptions="End"
                     HeightRequest="35"
                     TextColor="Black" 
                     BackgroundColor="White"
                     Command="{Binding Buscar}"
-                    Clicked="ShowNewPopup"/>
+                    Clicked="ShowNewPopup"/>-->
+            <ImageButton Source="https://c0.klipartz.com/pngpicture/136/913/sticker-png-magnifying-glass-icon-magnifying-glass-icon-glass-magnifying-glass-icon.png"
+                         HeightRequest="50"
+                         WidthRequest="50"
+                         BackgroundColor="Transparent"
+                         Command="{Binding Buscar}"
+                         Clicked="ShowNewPopup"/>
         </StackLayout>
     </NavigationPage.TitleView>
 

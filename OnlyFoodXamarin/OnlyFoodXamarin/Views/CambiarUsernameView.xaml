@@ -12,15 +12,26 @@
             <ScrollView>
                 <StackLayout Orientation="Vertical">
                     <Label Text="Cambiar Username"
-                           FontSize="Title"
-                           HorizontalOptions="CenterAndExpand" />
+                           HorizontalOptions="CenterAndExpand"
+                           FontSize="35"
+                           FontAttributes="Bold"
+                           TextColor="#000000"/>
                     <Label Text="Username"
-                           FontSize="Medium"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#000000"
                            HorizontalOptions="StartAndExpand"/>
-                    <Entry Text="{Binding Usuario.UserName}"
-                           HorizontalOptions="FillAndExpand"/>
+                    <Frame CornerRadius="20">
+                         <Entry Text="{Binding Usuario.UserName}"
+                                HorizontalOptions="FillAndExpand"/>
+                    </Frame>
                     <Button Text="Cambiar"
-                            x:Name="btnGuardar"/>
+                            x:Name="btnGuardar"
+                            CornerRadius="20"
+                            BorderWidth="1"
+                            BorderColor="#e41b23"
+                            BackgroundColor="White"
+                            TextColor="#e41b23"/>
                 </StackLayout>
             </ScrollView>
         </StackLayout>

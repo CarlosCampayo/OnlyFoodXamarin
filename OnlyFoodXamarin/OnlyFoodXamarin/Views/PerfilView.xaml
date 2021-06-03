@@ -15,7 +15,7 @@
             <Image Source="https://onlyfood.s3.amazonaws.com/logo_only_r.jpg" HorizontalOptions="FillAndExpand"
                    Grid.Column="1"/>
 
-            <Button Text="Cerrar sesión" x:Name="btnclose" FontSize="10" 
+            <!--<Button Text="Cerrar sesión" x:Name="btnclose" FontSize="10" 
                     BackgroundColor="#bc171d" 
                     HorizontalOptions="EndAndExpand" 
                     VerticalOptions="Center"
@@ -23,7 +23,15 @@
                     BorderColor="#ffffff"
                     BorderWidth="1"
                     CornerRadius="1"
-                    Grid.Column="2"/>
+                    Grid.Column="2"/>-->
+            <ImageButton Source="https://img2.freepng.es/20180409/evq/kisspng-electrical-switches-power-symbol-button-network-sw-on-off-5acb58d1b41b58.6925565515232759857377.jpg"
+                         WidthRequest="50"
+                         HeightRequest="50"
+                         BackgroundColor="#e41b13"
+                         Grid.Column="2"
+                         x:Name="btnclose"
+                         HorizontalOptions="EndAndExpand"
+                         VerticalOptions="Center"/>
         </Grid>
     </NavigationPage.TitleView>
     

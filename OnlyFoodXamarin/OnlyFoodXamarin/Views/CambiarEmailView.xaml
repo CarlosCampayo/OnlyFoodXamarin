@@ -4,25 +4,37 @@
              x:Class="OnlyFoodXamarin.Views.CambiarEmailView">
     
     <NavigationPage.TitleView>
-        <Label Text="Cambiar Email" TextColor="White"
-               FontSize="Medium"/>
+        <Label Text="Cambiar Email" 
+               TextColor="White"
+               FontSize="20"
+               FontAttributes="Bold"/>
     </NavigationPage.TitleView>
     
     <ContentPage.Content>
             <ScrollView>
                 <StackLayout Orientation="Vertical" Padding="10, 15">
                     <Label Text="Cambiar Email"
-                           FontSize="Title"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#000000"
                            HorizontalOptions="CenterAndExpand" />
                     
                     <Label Text="Email"
-                           FontSize="Medium"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#000000"
                            HorizontalOptions="StartAndExpand"/>
+                <Frame CornerRadius="20">
                     <Entry Text="{Binding Usuario.Email}"
                            HorizontalOptions="FillAndExpand"/>
-                    
-                    <Button Text="Cambiar"
-                            x:Name="btnGuardar"/>
+                </Frame>
+                <Button Text="Cambiar"
+                        x:Name="btnGuardar"
+                        CornerRadius="20"
+                        BorderWidth="1"
+                        BorderColor="#e41b23"
+                        BackgroundColor="White"
+                        TextColor="#e41b23"/>
                 </StackLayout>
             </ScrollView>
     </ContentPage.Content>

@@ -7,52 +7,75 @@
 
     <NavigationPage.TitleView>
         <Label Text="Registro" TextColor="White"
-               FontSize="Medium"/>
+                FontSize="20"
+                FontAttributes="Bold"/>
     </NavigationPage.TitleView>
     
     <ContentPage.Content>
             <ScrollView>
                 <StackLayout Orientation="Vertical" Padding="10, 15">
                     <Label Text="Nombre de usuario"
-                            FontSize="Medium"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#000000"
                             HorizontalOptions="StartAndExpand"/>
+                <Frame CornerRadius="20">
                     <Entry Text="{Binding Usuario.UserName}"
                             HorizontalOptions="FillAndExpand"/>
-                    
-                    <Label Text="Email"
-                           FontSize="Medium"
+                </Frame>
+                <Label Text="Email"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#000000"
                            HorizontalOptions="StartAndExpand"/>
+                <Frame CornerRadius="20">
                     <Entry Text="{Binding Usuario.Email}"
                            Keyboard="Email"
                            HorizontalOptions="FillAndExpand"/>
-                    
-                    <Label Text="Contraseña"
-                           FontSize="Medium"
+                </Frame>
+                <Label Text="Contraseña"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#000000"
                            HorizontalOptions="StartAndExpand"/>
+                <Frame CornerRadius="20">
                     <Entry Text="{Binding Usuario.Password}"
                            IsPassword="True"
                            HorizontalOptions="FillAndExpand"/>
-
-                    <Label Text="Nombre"
-                           FontSize="Medium"
+                </Frame>
+                <Label Text="Nombre"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#000000"
                            HorizontalOptions="StartAndExpand"/>
+                <Frame CornerRadius="20">
                     <Entry Text="{Binding Usuario.Nombre}"
                            HorizontalOptions="FillAndExpand"/>
-                    
-                    <Label Text="Apellidos"
-                           FontSize="Medium"
+                </Frame>
+                <Label Text="Apellidos"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#000000"
                            HorizontalOptions="StartAndExpand"/>
+                <Frame CornerRadius="20">
                     <Entry Text="{Binding Usuario.Apellidos}"
                            HorizontalOptions="FillAndExpand"/>
-                    
-                    <Label Text="Fecha de nacimiento"
-                           FontSize="Medium"
+                </Frame>
+                <Label Text="Fecha de nacimiento"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#000000"
                            HorizontalOptions="StartAndExpand"/>
                     <DatePicker Date="{Binding Usuario.FechaNacimiento}"
                            HorizontalOptions="FillAndExpand"/>
                     
                     <Button Text="Registrarse"
-                            Command="{Binding Registrar}"/>
+                            Command="{Binding Registrar}"
+                            CornerRadius="20"
+                            BorderWidth="1"
+                            BorderColor="White"
+                            BackgroundColor="#e41b13"
+                            TextColor="White"/>
                 </StackLayout>
             </ScrollView>
     </ContentPage.Content>
