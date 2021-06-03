@@ -12,19 +12,31 @@
         <ScrollView>
             <StackLayout Orientation="Vertical">
                 <Image Source="{Binding Oferta.Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}"
-                       Aspect="AspectFit"/>
+                       Aspect="AspectFit"
+                       WidthRequest="200"
+                       HeightRequest="200"/>
                 <Label Text="{Binding Oferta.Titulo}"
-                       FontSize="Title"/>
+                       FontSize="25"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="CenterAndExpand" />
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="{Binding Oferta.Precio}"
-                           FontSize="Large"
-                           HorizontalOptions="CenterAndExpand"/>
+                    <Label Text="{Binding Oferta.Precio, StringFormat='{0} €'}"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="CenterAndExpand"/>
                     <Label Text="{Binding Cadena.Nombre}"
-                           FontSize="Medium"
-                           HorizontalOptions="CenterAndExpand"/>
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="CenterAndExpand"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" Padding="10,15">
-                    <Label Text="{Binding Likes}" FontSize="Large" VerticalOptions="Center"/>
+                    <Label Text="{Binding Likes}" FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        VerticalOptions="CenterAndExpand"/>
                     <ImageButton Source="{Binding LikesImagen}"
                                  HorizontalOptions="CenterAndExpand"
                                  WidthRequest="75"
@@ -35,32 +47,55 @@
                                   WidthRequest="75"
                                   CommandParameter="dislike"
                                   Command="{Binding Votar}"/>
-                    <Label Text="{Binding DisLikes}" FontSize="Large" VerticalOptions="Center"/>
+                    <Label Text="{Binding DisLikes}" FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        VerticalOptions="CenterAndExpand"/>
                 </StackLayout>
                 <Label Text="{Binding Oferta.Descripcion}"
-                       FontSize="Medium"/>
+                       FontSize="15"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="StartAndExpand"/>
                 <Label Text="Comentarios"
-                       FontSize="Medium"
-                       HorizontalOptions="Center"/>
-                <Entry Placeholder="Escribe tu comentario" Text="{Binding Mensaje}"/>
-                <Button Text="Comentar" Command="{Binding Comentar}"/>
-                <ListView ItemsSource="{Binding Comentarios}">
+                       FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="CenterAndExpand"/>
+                <Frame CornerRadius="20">
+                    <Entry Placeholder="Escribe tu comentario" Text="{Binding Mensaje}"/>
+                </Frame>
+                    <Button Text="Comentar" Command="{Binding Comentar}"
+                            BorderColor="#e41b23" 
+                            BackgroundColor="White" 
+                            TextColor="#e41b23"
+                            BorderWidth="1.5"
+                            CornerRadius="5"/>
+                <ListView ItemsSource="{Binding Comentarios}" SeparatorColor="#e41b23">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Orientation="Vertical">
                                     <Label Text="{Binding Mensaje}"
-                                           FontSize="Small"/>
+                                            FontSize="15"
+                                            TextColor="#000000"
+                                            HorizontalOptions="StartAndExpand"/>
                                     <Label Text="{Binding Username}"
-                                           FontSize="Subtitle"
-                                           HorizontalOptions="End"/>
+                                            FontSize="15"
+                                            TextColor="#000000"
+                                            HorizontalOptions="EndAndExpand"/>               
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                     <ListView.Footer>
                         <Button Text="Cargar más comentarios" 
-                                Command="{Binding CargarMasComentarios}"/>
+                            Command="{Binding CargarMasComentarios}"
+                            BorderColor="#e41b23" 
+                            BackgroundColor="White" 
+                            TextColor="#e41b23"
+                            BorderWidth="1.5"
+                            CornerRadius="5"/>
                     </ListView.Footer>
                 </ListView>
             </StackLayout>    

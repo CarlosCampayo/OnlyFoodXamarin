@@ -13,29 +13,48 @@
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <Label Text="Eliminar usuario"
-                        FontSize="Title"
+                        FontSize="40"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
                         HorizontalOptions="CenterAndExpand" />
             
             <Label Text="Email"
-                        FontSize="Medium"
-                        HorizontalOptions="StartAndExpand"/>
-            <Entry Text="{Binding Usuario.Email}"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="CenterAndExpand"/>
+            <Frame CornerRadius="20">
+                <Entry Text="{Binding Usuario.Email}"
                         IsReadOnly="True"
                         HorizontalOptions="FillAndExpand"/>
+            </Frame>
             <Label Text="Username"
-                        FontSize="Medium"
-                        HorizontalOptions="StartAndExpand"/>
-            <Entry Text="{Binding Usuario.UserName}"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="CenterAndExpand"/>
+            <Frame CornerRadius="20">
+                <Entry Text="{Binding Usuario.UserName}"
                         IsReadOnly="True"
                         HorizontalOptions="FillAndExpand"/>
+            </Frame>
             <Label Text="Nombre completo"
-                        FontSize="Medium"
-                        HorizontalOptions="StartAndExpand"/>
-            <Entry Text="{Binding Fullname}"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="CenterAndExpand"/>
+            <Frame CornerRadius="20">
+                <Entry Text="{Binding Fullname}"
                         IsReadOnly="True"
                         HorizontalOptions="FillAndExpand"/>
+            </Frame>
             <Button Text="Eliminar" x:Name="btnEliminar"
-                    HorizontalOptions="Center"/>
+                    BorderColor="White" 
+                            BackgroundColor="#e41b23" 
+                            TextColor="White"
+                            BorderWidth="1.5"
+                            CornerRadius="5"
+                    HorizontalOptions="CenterAndExpand"/>
             <!--Command="{Binding EliminarUsuario}"-->
         </StackLayout>
     </ContentPage.Content>
