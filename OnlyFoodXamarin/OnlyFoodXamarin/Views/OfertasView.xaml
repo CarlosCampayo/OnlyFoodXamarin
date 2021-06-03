@@ -22,18 +22,14 @@
 
             <Button Text="Buscar" 
                     Command="{Binding Buscar}"
-                    Clicked="ShowNewPopup"
-                    FontSize="10" 
-                    BackgroundColor="#bc171d" 
-                    HorizontalOptions="EndAndExpand" 
-                    VerticalOptions="Center"
-                    TextColor="White"
-                    BorderColor="#ffffff"
-                    BorderWidth="1"
-                    CornerRadius="2"
-                    Margin="0,0,5,0"
-                    Grid.Column="1"/>
-        </Grid>
+                    Clicked="ShowNewPopup"/>-->
+            <ImageButton Source="https://c0.klipartz.com/pngpicture/136/913/sticker-png-magnifying-glass-icon-magnifying-glass-icon-glass-magnifying-glass-icon.png"
+                         HeightRequest="50"
+                         WidthRequest="50"
+                         BackgroundColor="Transparent"
+                         Command="{Binding Buscar}"
+                         Clicked="ShowNewPopup"/>
+        </StackLayout>
     </NavigationPage.TitleView>
 
 
