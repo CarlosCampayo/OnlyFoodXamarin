@@ -135,7 +135,21 @@ namespace OnlyFoodXamarin
                     view.BindingContext = viewmodel;
                     Detail = new NavigationPage(view);
                 }
-                else
+                else if (type == typeof(OfertasUsuarioView)){
+                    OfertasUsuarioView view = new OfertasUsuarioView();
+                    OfertasUsuarioViewModel viewmodel = App.ServiceLocator.OfertasUsuarioViewModel;
+                    FiltroOfertas filtroOfertas = new FiltroOfertas();
+                    filtroOfertas.IdCadenas = new List<int>();
+                    filtroOfertas.Preciomax = 100;
+                    filtroOfertas.Preciomin = 0;
+                    viewmodel.Filtro = filtroOfertas;
+                    Task.Run(async () =>
+                    {
+                        await viewmodel.CargarMisOfertasAsync();
+                    });
+                    view.BindingContext = viewmodel;
+                    Detail = new NavigationPage(view);
+                }else
                 {
                     this.Detail = new NavigationPage(
                                     (Page)Activator.CreateInstance(type));

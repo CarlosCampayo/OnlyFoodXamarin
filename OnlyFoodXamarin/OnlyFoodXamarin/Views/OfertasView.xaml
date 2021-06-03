@@ -15,8 +15,8 @@
             <!--<Button Text="Buscar" 
                     HorizontalOptions="End"
                     HeightRequest="35"
-                    TextColor="Black" 
-                    BackgroundColor="White"
+                    BackgroundColor="White" 
+                    TextColor="#e41b23"
                     Command="{Binding Buscar}"
                     Clicked="ShowNewPopup"/>-->
             <ImageButton Source="https://c0.klipartz.com/pngpicture/136/913/sticker-png-magnifying-glass-icon-magnifying-glass-icon-glass-magnifying-glass-icon.png"
@@ -129,10 +129,10 @@
                                 TextColor="White"
                                 HorizontalOptions="FillAndExpand"
                                 Command="{Binding MostrarMasOfertas}"/>
-                    <Image Source="sold.gif" IsVisible="{Binding Imagen}"
+                    <Image Source="homer2.gif" IsVisible="{Binding Imagen}"
                                     HeightRequest="200" HorizontalOptions="Center"
                                     IsAnimationPlaying="True"/>
-                    <Label Text="No hay ofertas" IsVisible="{Binding Mensaje}"
+                    <Label Text="¡Vaya! Todavía no hay ofertas de tu selección" IsVisible="{Binding Mensaje}"
                                     FontSize="Large" HorizontalOptions="Center"/>
                 </StackLayout>
 
