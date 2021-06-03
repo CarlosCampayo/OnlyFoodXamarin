@@ -9,8 +9,8 @@
     <NavigationPage.TitleView>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.5*" />
-                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.80*" />
+                <ColumnDefinition Width="0.20*" />
             </Grid.ColumnDefinitions>
 
         <Image Source="https://onlyfood.s3.amazonaws.com/logo_only_r.jpg" 

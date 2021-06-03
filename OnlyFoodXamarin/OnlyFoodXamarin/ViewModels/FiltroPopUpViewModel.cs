@@ -107,8 +107,9 @@ namespace OnlyFoodXamarin.ViewModels
                     viewmodel.Filtro = this.Filtro;
                     await viewmodel.LoadOfertas();
                     view.BindingContext = viewmodel;
+
                     var masterdetail = App.Current.MainPage as MasterDetailPage;
-                    masterdetail.Detail= new NavigationPage(view);
+                    masterdetail.Detail = new NavigationPage(view);
                     await PopupNavigation.Instance.PopAsync();
                 });
             }
@@ -119,8 +120,9 @@ namespace OnlyFoodXamarin.ViewModels
             {
                 return new Command((cadena) =>
                 {
-                    
-                    int cad = int.Parse(cadena as String);
+                    Cadena c = (Cadena)cadena;
+                    int cad = c.Id;
+                    //int cad = int.Parse(cadena as String);
                     if (this.Filtro.IdCadenas.Contains(cad))
                     {
                         this.Filtro.IdCadenas.Remove(cad);

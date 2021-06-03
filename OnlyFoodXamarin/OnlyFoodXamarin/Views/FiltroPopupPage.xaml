@@ -27,6 +27,7 @@
                 <Label Text="Cadenas"
                     VerticalOptions="StartAndExpand" 
                     HorizontalOptions="CenterAndExpand" />
+                <!--OJO, NO ACEPTA COLLECTION VIEW-->
                 <ListView ItemsSource="{Binding Cadenas}" >
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -34,11 +35,18 @@
                                 <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
                                     <!--<Label Text="{Binding Nombre}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>-->
                                     <input:CheckBox Text="{Binding Nombre}" 
-                                                    IsChecked="{Binding Id, Converter={StaticResource converterfiltro}}"
-                                                    CheckChangedCommand="{Binding BindingContext.Meter, 
+                                                    CheckChangedCommand="{Binding BindingContext.Meter, Source={x:Reference pagebuscar}}"
+                                                    CommandParameter="{Binding .}" 
+                                                    Type="Check"/>
+                                    <!--CheckChangedCommand="{Binding BindingContext.Meter, 
                                                         Source={x:Reference pagebuscar}}"
                                                     CommandParameter="{Binding Id, Converter={StaticResource intstringconverter}}"
-                                                    Type="Check"/>
+                                                    Type="Check"/>-->
+                                    <!--IsChecked="{Binding Id, Converter={StaticResource converterfiltro}}"
+                                    CheckChangedCommand="{Binding BindingContext.Meter, 
+                                                        Source={x:Reference pagebuscar}}"
+                                                    CommandParameter="{Binding Id, Converter={StaticResource intstringconverter}}"-->
+                                    
                                     <!--<CheckBox  IsChecked="{Binding .}" HorizontalOptions="EndAndExpand" Color="Black"/>-->
                                 </StackLayout>
                             </ViewCell>
