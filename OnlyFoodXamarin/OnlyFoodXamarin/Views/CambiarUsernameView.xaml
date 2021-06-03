@@ -10,15 +10,12 @@
     <ContentPage.Content>
         <StackLayout>
             <ScrollView>
-                <StackLayout Orientation="Vertical" Padding="10, 15">
-                    <!--<Label Text="Cambiar Username"
-                           FontSize="Title"
-                           HorizontalOptions="CenterAndExpand" />-->
-                    <Label Text="Username"
+                <StackLayout Orientation="Vertical">
+                    <Label Text="New Username"
                            FontSize="20"
                            FontAttributes="Bold"
                            TextColor="#000000"
-                           HorizontalOptions="StartAndExpand"/>
+                           HorizontalOptions="CenterAndExpand"/>
                     <Frame CornerRadius="20">
                          <Entry Text="{Binding Usuario.UserName}"
                                 HorizontalOptions="FillAndExpand"/>

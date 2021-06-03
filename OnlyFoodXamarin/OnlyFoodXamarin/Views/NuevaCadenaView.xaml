@@ -48,20 +48,37 @@
                            AutoSize="TextChanges"/>
                     </Frame>
                     <Label Text="Imagen"
-                           FontSize="Medium"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           TextColor="#000000"
                            HorizontalOptions="StartAndExpand"/>
-                    <Button Text="Seleccionar Imagen" x:Name="btnpickimage"/>
-                    <Image x:Name="resultImg" />
+                    <Button Text="Seleccionar Imagen" 
+                            x:Name="btnpickimage"
+                            CornerRadius="20"
+                            BorderWidth="1"
+                            BorderColor="White"
+                            BackgroundColor="#e41b13"
+                            TextColor="White"/>
+                    <Image x:Name="resultImg"/>
                     
                     <Label Text="Web"
-                           FontSize="Medium"
-                           HorizontalOptions="StartAndExpand"/>
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="StartAndExpand"/>
+                    <Frame CornerRadius="20">
                     <Entry Text="{Binding Cadena.Web}"
                            HorizontalOptions="FillAndExpand"/>
-                    
-                    
+                    </Frame>                    
                     <Button Text="Crear cadena"
-                            Command="{Binding CrearCadena}"/>
+                            Command="{Binding CrearCadena}"
+                            CornerRadius="20"
+                            BorderWidth="1"
+                            BorderColor="#e41b13"
+                            BackgroundColor="White"
+                            TextColor="#e41b13"
+                            FontSize="15"
+                            FontAttributes="Bold"/>
                     
                     <Label Text="{Binding Mensaje}"
                            FontSize="Medium"

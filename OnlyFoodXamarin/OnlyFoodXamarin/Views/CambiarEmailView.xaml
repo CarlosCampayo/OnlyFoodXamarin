@@ -12,16 +12,12 @@
     
     <ContentPage.Content>
             <ScrollView>
-                <StackLayout Orientation="Vertical" Padding="10, 15">
-                    <!--<Label Text="Cambiar Email"
-                           FontSize="Title"
-                           HorizontalOptions="CenterAndExpand" />-->
-                    
-                    <Label Text="Email"
+                <StackLayout Orientation="Vertical" Padding="10, 15">                    
+                    <Label Text="Nuevo Email"
                            FontSize="20"
                            FontAttributes="Bold"
                            TextColor="#000000"
-                           HorizontalOptions="StartAndExpand"/>
+                           HorizontalOptions="CenterAndExpand"/>
                 <Frame CornerRadius="20">
                     <Entry Text="{Binding Usuario.Email}"
                            HorizontalOptions="FillAndExpand"/>

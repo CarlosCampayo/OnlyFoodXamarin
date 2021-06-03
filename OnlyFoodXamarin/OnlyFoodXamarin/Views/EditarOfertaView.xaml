@@ -12,62 +12,103 @@
         <ScrollView VerticalOptions="FillAndExpand">
             <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
                 <Label Text="Editar Oferta"
-                           FontSize="Title"
-                           VerticalOptions="CenterAndExpand" 
-                           HorizontalOptions="CenterAndExpand" />
+                        FontSize="30"
+                        FontAttributes="Bold"
+                        TextColor="#000000"                       
+                        VerticalOptions="CenterAndExpand" 
+                        HorizontalOptions="CenterAndExpand" />
 
                 <Label Text="Cadena"
-                           FontSize="Medium"
-                           HorizontalOptions="StartAndExpand" />
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="StartAndExpand" />
                 <Label Text="{Binding CadenaSeleccionadaAux.Nombre, 
                     StringFormat='Cadena Seleccionada: {0}'}"
-                       FontSize="Small"/>
+                        FontSize="15"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="StartAndExpand"/>
                 <Picker ItemsSource="{Binding Cadenas}"
                             Title="Selecciona una cadena"
                             ItemDisplayBinding="{Binding Nombre}"
                         SelectedItem="{Binding CadenaSeleccionada}" />
 
                 <Label Text="Titulo"
-                           FontSize="Medium"
-                           HorizontalOptions="StartAndExpand"/>
-                <Entry Text="{Binding Oferta.Titulo}"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="StartAndExpand"/>
+                <Frame CornerRadius="20">
+                    <Entry Text="{Binding Oferta.Titulo}"
                            HorizontalOptions="FillAndExpand"/>
-
+                </Frame>
                 <Label Text="Descripcion"
-                           FontSize="Medium"
-                           HorizontalOptions="StartAndExpand"/>
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="StartAndExpand"/>
                 <Editor Text="{Binding Oferta.Descripcion}" 
                         AutoSize="TextChanges"/>
 
                 <Label Text="Imagen"
-                        FontSize="Medium"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
                         HorizontalOptions="StartAndExpand"/>
-                <Label Text="Imagen Actual" FontSize="Micro"/>
+                <Label Text="Imagen Actual" 
+                        FontSize="10"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
+                        HorizontalOptions="StartAndExpand"/>
+                
                 <Image Source="{Binding Oferta.Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}" />
-                <Button Text="Cambiar Imagen" x:Name="btnpickimage"/>
+                
+                <Button Text="Cambiar Imagen" 
+                        x:Name="btnpickimage"
+                        CornerRadius="20"
+                        BorderWidth="1"
+                        BorderColor="White"
+                        BackgroundColor="#e41b13"
+                        TextColor="White"/>
+                
                 <Image x:Name="resultImg"/>
 
-
                 <Label Text="Precio"
-                        FontSize="Medium"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
                         HorizontalOptions="StartAndExpand"/>
-                <Entry Text="{Binding Oferta.Precio}"
-                       Keyboard="Numeric"
+                <Frame CornerRadius="20">
+                    <Entry Text="{Binding Oferta.Precio}"
+                        Keyboard="Numeric"
                         HorizontalOptions="FillAndExpand"/>
+                </Frame>
                 
                 <Label Text="Codigo"
-                        FontSize="Medium"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
                         HorizontalOptions="StartAndExpand"/>
-                <Entry Text="{Binding Oferta.Codigo}"
-                        HorizontalOptions="FillAndExpand"/>
-                
+                <Frame CornerRadius="20">
+                     <Entry Text="{Binding Oferta.Codigo}"
+                            HorizontalOptions="FillAndExpand"/>
+                </Frame>
                 <Label Text="Web"
-                        FontSize="Medium"
+                        FontSize="20"
+                        FontAttributes="Bold"
+                        TextColor="#000000"
                         HorizontalOptions="StartAndExpand"/>
-                <Entry Text="{Binding Oferta.Web}"
-                        HorizontalOptions="FillAndExpand"/>
-
-                <Button Text="Actualizar datos" x:Name="btnEditar" />
+                <Frame CornerRadius="20">
+                     <Entry Text="{Binding Oferta.Web}"
+                            HorizontalOptions="FillAndExpand"/>
+                </Frame>
+                <Button Text="Actualizar datos" x:Name="btnEditar"
+                            CornerRadius="20"
+                            BorderWidth="1"
+                            BorderColor="#e41b13"
+                            BackgroundColor="White"
+                            TextColor="#e41b13"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
