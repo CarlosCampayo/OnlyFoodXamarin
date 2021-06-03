@@ -11,16 +11,11 @@
         <StackLayout>
             <ScrollView>
                 <StackLayout Orientation="Vertical">
-                    <Label Text="Cambiar Username"
-                           HorizontalOptions="CenterAndExpand"
-                           FontSize="35"
-                           FontAttributes="Bold"
-                           TextColor="#000000"/>
-                    <Label Text="Username"
+                    <Label Text="New Username"
                            FontSize="20"
                            FontAttributes="Bold"
                            TextColor="#000000"
-                           HorizontalOptions="StartAndExpand"/>
+                           HorizontalOptions="CenterAndExpand"/>
                     <Frame CornerRadius="20">
                          <Entry Text="{Binding Usuario.UserName}"
                                 HorizontalOptions="FillAndExpand"/>
