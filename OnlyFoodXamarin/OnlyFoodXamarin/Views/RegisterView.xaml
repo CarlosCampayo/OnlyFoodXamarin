@@ -19,48 +19,53 @@
                            FontAttributes="Bold"
                            TextColor="#000000"
                             HorizontalOptions="StartAndExpand"/>
-                <Frame CornerRadius="20">
+                <Frame CornerRadius="20" Margin="0,0,0,10">
                     <Entry Text="{Binding Usuario.UserName}"
                             HorizontalOptions="FillAndExpand"/>
                 </Frame>
+                    
                 <Label Text="Email"
                            FontSize="20"
                            FontAttributes="Bold"
                            TextColor="#000000"
                            HorizontalOptions="StartAndExpand"/>
-                <Frame CornerRadius="20">
+                <Frame CornerRadius="20" Margin="0,0,0,10">
                     <Entry Text="{Binding Usuario.Email}"
                            Keyboard="Email"
                            HorizontalOptions="FillAndExpand"/>
                 </Frame>
+                    
                 <Label Text="Contraseña"
                            FontSize="20"
                            FontAttributes="Bold"
                            TextColor="#000000"
                            HorizontalOptions="StartAndExpand"/>
-                <Frame CornerRadius="20">
+                <Frame CornerRadius="20" Margin="0,0,0,10">
                     <Entry Text="{Binding Usuario.Password}"
                            IsPassword="True"
                            HorizontalOptions="FillAndExpand"/>
                 </Frame>
+                    
                 <Label Text="Nombre"
                            FontSize="20"
                            FontAttributes="Bold"
                            TextColor="#000000"
                            HorizontalOptions="StartAndExpand"/>
-                <Frame CornerRadius="20">
+                <Frame CornerRadius="20" Margin="0,0,0,10">
                     <Entry Text="{Binding Usuario.Nombre}"
                            HorizontalOptions="FillAndExpand"/>
                 </Frame>
+                    
                 <Label Text="Apellidos"
                            FontSize="20"
                            FontAttributes="Bold"
                            TextColor="#000000"
                            HorizontalOptions="StartAndExpand"/>
-                <Frame CornerRadius="20">
+                <Frame CornerRadius="20" Margin="0,0,0,10">
                     <Entry Text="{Binding Usuario.Apellidos}"
                            HorizontalOptions="FillAndExpand"/>
                 </Frame>
+                    
                 <Label Text="Fecha de nacimiento"
                            FontSize="20"
                            FontAttributes="Bold"
@@ -75,7 +80,8 @@
                             BorderWidth="1"
                             BorderColor="White"
                             BackgroundColor="#e41b13"
-                            TextColor="White"/>
+                            TextColor="White"
+                            Margin="0,10,0,0"/>
                 </StackLayout>
             </ScrollView>
     </ContentPage.Content>

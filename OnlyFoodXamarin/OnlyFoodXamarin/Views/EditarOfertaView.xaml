@@ -9,7 +9,7 @@
     </NavigationPage.TitleView>
     
     <ContentPage.Content>
-        <ScrollView VerticalOptions="FillAndExpand">
+        <ScrollView VerticalOptions="FillAndExpand" Padding="10, 15">
             <StackLayout Orientation="Vertical" VerticalOptions="FillAndExpand">
                 <Label Text="Editar Oferta"
                         FontSize="30"
