@@ -8,8 +8,15 @@
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator, viewmodel:OfertasViewModel},Path=OfertasViewModel}">
 
     <NavigationPage.TitleView>
-        <Label Text="Ofertas" TextColor="White"
-               FontSize="Medium"/>
+        <StackLayout>
+            <Label Text="Ofertas" TextColor="White"
+               FontSize="Medium" HorizontalOptions="Center"/>
+            <Button Text="+ Añadir un nuevo vehículo" 
+                    HeightRequest="35"
+                    TextColor="#B4995D" 
+                    BackgroundColor="White"
+                    Clicked="ShowNewCochePopup"/>
+        </StackLayout>
     </NavigationPage.TitleView>
 
 
