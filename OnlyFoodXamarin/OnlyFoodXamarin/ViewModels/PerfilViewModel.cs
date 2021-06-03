@@ -110,18 +110,12 @@ namespace OnlyFoodXamarin.ViewModels
                 });
             }
         }
-        public Command CerrarSesion
+        public async Task CerrarSesion()
         {
-            get
-            {
-                return new Command(() =>
-                {
-                    int idUsaurio = App.ServiceLocator.SessionService.Usuario.Id;
-                    this.repositoryRealm.DeleteUsuario(idUsaurio);
-                    this.EliminarUserSession();
-                    App.LoadMainPage();
-                });
-            }
+            int idUsaurio = App.ServiceLocator.SessionService.Usuario.Id;
+            this.repositoryRealm.DeleteUsuario(idUsaurio);
+            this.EliminarUserSession();
+            App.LoadMainPage();
         }
 
         private void EliminarUserSession()

@@ -6,18 +6,25 @@
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=PerfilViewModel}">
 
     <NavigationPage.TitleView>
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Mi perfil" TextColor="White" FontSize="30" 
-                   HorizontalOptions="Start" VerticalOptions="Center" />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.5*" />
+            </Grid.ColumnDefinitions>
+            
+            <Image Source="https://onlyfood.s3.amazonaws.com/logo_only_r.jpg" HorizontalOptions="FillAndExpand"
+                   Grid.Column="1"/>
+
             <Button Text="Cerrar sesión" x:Name="btnclose" FontSize="10" 
                     BackgroundColor="#bc171d" 
                     HorizontalOptions="EndAndExpand" 
                     VerticalOptions="Center"
                     TextColor="White"
                     BorderColor="#ffffff"
-                    BorderWidth="3"
-                    CornerRadius="1"/>
-        </StackLayout>
+                    BorderWidth="1"
+                    CornerRadius="1"
+                    Grid.Column="2"/>
+        </Grid>
     </NavigationPage.TitleView>
     
     <ContentPage.Content>

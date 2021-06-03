@@ -9,8 +9,12 @@
         <Button Text="Registro" FontSize="Small"
                     HorizontalOptions="End" x:Name="btnregister"/>
     </NavigationPage.TitleView>
+    
     <ContentPage.Content>
         <StackLayout BackgroundColor="#e41b23" Padding="10, 15">
+            <ProgressBar x:Name="progressBar"
+                Progress="0" ProgressColor="White" IsVisible="{Binding showProgress}"/>
+
             <Grid Padding="10, 15" HeightRequest="250">
                 <!--Estructura Grid-->
                 <Grid.ColumnDefinitions>
@@ -20,7 +24,8 @@
                 <Image Source="https://onlyfood.blob.core.windows.net/imagenes/logo_only_r.jpg"
                                            WidthRequest="100"
                                            Grid.Column="1"/>
-            </Grid> 
+            </Grid>
+
             <Label Text="Email" FontSize="Medium" TextColor="White"/>
             <Entry Placeholder="Introduce tu email" Text="{Binding Usuario.Email}" BackgroundColor="White"
                    Keyboard="Email"/>
@@ -29,9 +34,13 @@
             <Entry Placeholder="Introduce tu contraseña" 
                    IsPassword="True" Text="{Binding Usuario.Password}" BackgroundColor="White"/>
 
-            <Button Text="Login" Command="{Binding Login}"/>
+            <Button Text="Login" x:Name="btnLogin"/>
             
             <Label Text="{Binding Mensaje}" TextColor="White" />
+
+            <ActivityIndicator Color="White"
+                               IsVisible="{Binding ShowLoading}" 
+                               IsRunning="{Binding ShowLoading}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

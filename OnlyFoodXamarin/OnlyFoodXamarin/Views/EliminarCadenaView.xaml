@@ -15,7 +15,6 @@
                      Orientation="Vertical">
                     <Label Text="Eliminar Cadena"
                            FontSize="Title"
-                           VerticalOptions="CenterAndExpand" 
                            HorizontalOptions="CenterAndExpand" />
 
                     <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
@@ -32,7 +31,6 @@
                                             <SwipeItems>
                                                 <SwipeItem Text="Eliminar"
                                                     BackgroundColor="Red"
-                                                    IconImageSource="https://ayudawp.com/wp-content/uploads/2018/04/borrar-plugins-wordpress.png"
                                                     Command="{Binding BindingContext.EliminarCadena,
                                                     Source={x:Reference stackCadenas}}"
                                                     CommandParameter="{Binding .}"/>

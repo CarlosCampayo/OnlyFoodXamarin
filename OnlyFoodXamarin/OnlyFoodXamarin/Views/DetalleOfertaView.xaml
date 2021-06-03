@@ -52,6 +52,12 @@
                         TextColor="#000000"
                         VerticalOptions="CenterAndExpand"/>
                 </StackLayout>
+                <StackLayout HorizontalOptions="FillAndExpand" Orientation="Horizontal" IsVisible="{Binding ShowLoading}">
+                    <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
+                               Color="Red"
+                                HorizontalOptions="FillAndExpand"
+                               VerticalOptions="CenterAndExpand" />
+                </StackLayout>
                 <Label Text="{Binding Oferta.Descripcion}"
                        FontSize="15"
                         FontAttributes="Bold"

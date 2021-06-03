@@ -5,6 +5,7 @@
              xmlns:local="clr-namespace:OnlyFoodXamarin"
              xmlns:viewmodel="clr-namespace:OnlyFoodXamarin.ViewModels"
              xmlns:controls="clr-namespace:OnlyFoodXamarin.Controls"
+             xmlns:converter="clr-namespace:OnlyFoodXamarin.Converters"
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator, viewmodel:OfertasViewModel}, 
                 Path=OfertasUsuarioViewModel}">
 
@@ -16,6 +17,9 @@
 
 
     <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ConverterTituloOfertas x:Key="convertertituloofertas" />
+        </ResourceDictionary>
         <ControlTemplate x:Key="CardViewControlTemplate">
             <Frame BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
                        BackgroundColor="{Binding CardColor}"
@@ -46,7 +50,7 @@
                                    HeightRequest="100"
                                    Aspect="AspectFill" />
                     </Frame>
-                    <Label Text="{Binding CardTitle}"
+                    <Label Text="{Binding CardTitle, Converter={StaticResource convertertituloofertas}}"
                                FontAttributes="Bold"
                                FontSize="Large"
                                VerticalTextAlignment="Center"
@@ -99,34 +103,12 @@
                                Color="#e41b23"
                                VerticalOptions="CenterAndExpand" />
 
-        <ScrollView>
-            <CollectionView ItemsSource="{Binding Ofertas}"
-                                        SelectedItem="{Binding OfertaSeleccionada}"
-                                        SelectionMode="Single"
-                                        ItemTemplate="{StaticResource PersonTemplate}"
-                                        x:Name="cvOfertas"
-                                        IsVisible="{Binding ShowContent}">
-
-                <CollectionView.Footer>
-                    <StackLayout Orientation="Vertical">
-                        <Image Source="homer.gif" IsVisible="{Binding Imagen}"
-                                   HeightRequest="300" HorizontalOptions="Center"
-                                   IsAnimationPlaying="True"/>
-                        <Label Text="¡Vaya! Todavía no has creado no tienes ninguna oferta" 
-                               IsVisible="{Binding Mensaje}"
-                               FontSize="Large" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
-                    </StackLayout>
-
-                </CollectionView.Footer>
-                
-            </CollectionView>
-            
-        </ScrollView>
-        <Button Text="Cargar más" 
-                BackgroundColor="#e41b23"
-                TextColor="White"
-                HorizontalOptions="FillAndExpand"                
-                Command="{Binding MostrarMasOfertas}"
-                IsVisible="{Binding Botoncargar}"/>
-    </StackLayout>    
+        <CollectionView ItemsSource="{Binding Ofertas}"
+                                    SelectedItem="{Binding OfertaSeleccionada}"
+                                    SelectionMode="Single"
+                                    ItemTemplate="{StaticResource PersonTemplate}"
+                                    x:Name="cvOfertas"
+                                    IsVisible="{Binding ShowContent}">
+        </CollectionView>
+    </StackLayout>
 </ContentPage>
