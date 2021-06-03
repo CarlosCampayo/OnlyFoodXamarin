@@ -2,6 +2,7 @@
 using OnlyFoodXamarin.Models;
 using OnlyFoodXamarin.Services;
 using OnlyFoodXamarin.Views;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -91,6 +92,16 @@ namespace OnlyFoodXamarin.ViewModels
                 OnPropertyChanged("Mensaje");
             }
         }
+        private FiltroOfertas _Filtro;
+        public FiltroOfertas Filtro
+        {
+            get { return this._Filtro; }
+            set
+            {
+                this._Filtro = value;
+                OnPropertyChanged("Filtro");
+            }
+        }
         public  async Task<DetalleOfertaUsuarioView> MostrarDetalleOfertaAsync()
         {
             DetalleOfertaUsuarioView view = new DetalleOfertaUsuarioView();
@@ -112,7 +123,7 @@ namespace OnlyFoodXamarin.ViewModels
             String token = App.ServiceLocator.SessionService.Token;
             int idUsuario = App.ServiceLocator.SessionService.Usuario.Id;
             this.Ofertas = new ObservableCollection<Oferta>
-                (await this.service.GetOfertasByIdUserAsync(idUsuario, token));
+                (await this.service.GetOfertasUserByFiltroAsync(idUsuario, this.Filtro));
             if (this.Ofertas.Count == 0)
             {
                 this.Mensaje = true;
@@ -124,6 +135,22 @@ namespace OnlyFoodXamarin.ViewModels
                 this.Imagen = false;
             }
             this.ShowLoading = false;
+        }
+        public Command Buscar
+        {
+            get
+            {
+                return new Command(async () =>
+                {
+                    FiltroPopupPage view = new FiltroPopupPage();
+                    FiltroPopUpViewModel viewModel = App.ServiceLocator.FiltroPopUpViewModel;
+                    viewModel.Filtro = this.Filtro;
+                    viewModel.Pagina = 2;
+                    await viewModel.LoadCadenasAsync();
+                    view.BindingContext = viewModel;
+                    await PopupNavigation.Instance.PushAsync(view);
+                });
+            }
         }
     }
 }
