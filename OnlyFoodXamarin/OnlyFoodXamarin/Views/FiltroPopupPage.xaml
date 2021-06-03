@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="OnlyFoodXamarin.Views.FiltroPopupPage"
+             xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             x:Name="pagebuscar">
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation DurationIn="400"
+                                   DurationOut="300"
+                                   EasingIn="SinOut"
+                                   EasingOut="SinIn"
+                                   HasBackgroundAnimation="True"
+                                   PositionIn="Center"
+                                   PositionOut="Center"
+                                   ScaleIn="1.2"
+                                   ScaleOut="0.8" />
+    </pages:PopupPage.Animation>
+    <ContentPage.Content>
+        <StackLayout Margin="12"
+                 Padding="24"
+                 BackgroundColor="White"
+                 HorizontalOptions="Center"
+                 VerticalOptions="Center">
+            <StackLayout BackgroundColor="White">
+                <Label Text="Cadenas"
+                    VerticalOptions="StartAndExpand" 
+                    HorizontalOptions="CenterAndExpand" />
+                <ListView ItemsSource="{Binding Cadenas}" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                    <!--<Label Text="{Binding Nombre}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>-->
+                                    <input:CheckBox Text="{Binding Nombre}" 
+                                                    IsChecked="{Binding Id, Converter={StaticResource converterfiltro}}"
+                                                    CheckChangedCommand="{Binding BindingContext.Meter, 
+                                                        Source={x:Reference pagebuscar}}"
+                                                    CommandParameter="{Binding Id, Converter={StaticResource intstringconverter}}"
+                                                    Type="Check"/>
+                                    <!--<CheckBox  IsChecked="{Binding .}" HorizontalOptions="EndAndExpand" Color="Black"/>-->
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Label Text="Precio mínimo"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            TextColor="#000000"
+                            HorizontalOptions="StartAndExpand"/>
+                <Frame CornerRadius="20">
+                    <Entry Text="{Binding Filtro.Preciomin}"
+                               HorizontalOptions="FillAndExpand"/>
+                </Frame>
+                <Label Text="Precio máximo"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            TextColor="#000000"
+                            HorizontalOptions="StartAndExpand"/>
+                <Frame CornerRadius="20">
+                    <Entry Text="{Binding Filtro.Preciomax}"
+                               HorizontalOptions="FillAndExpand"/>
+                </Frame>
+                <Button Text="Buscar"
+                                Command="{Binding Buscar}"                            
+                                BorderColor="#e41b23" 
+                                BackgroundColor="White" 
+                                TextColor="#e41b23"
+                                BorderWidth="1.5"
+                                CornerRadius="50"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</pages:PopupPage>

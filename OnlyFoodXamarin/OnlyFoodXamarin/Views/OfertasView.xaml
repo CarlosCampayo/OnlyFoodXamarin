@@ -9,8 +9,17 @@
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator, viewmodel:OfertasViewModel},Path=OfertasViewModel}">
 
     <NavigationPage.TitleView>
-        <Label Text="Ofertas" TextColor="White"
-               FontSize="Medium"/>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Ofertas" TextColor="White"
+               FontSize="Medium" HorizontalOptions="Center"/>
+            <Button Text="Buscar" 
+                    HorizontalOptions="End"
+                    HeightRequest="35"
+                    TextColor="Black" 
+                    BackgroundColor="White"
+                    Command="{Binding Buscar}"
+                    Clicked="ShowNewPopup"/>
+        </StackLayout>
     </NavigationPage.TitleView>
 
 

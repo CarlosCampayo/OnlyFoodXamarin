@@ -1,5 +1,6 @@
 ﻿using OnlyFoodXamarin.Models;
 using OnlyFoodXamarin.ViewModels;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,10 @@ namespace OnlyFoodXamarin.Views
             OfertasViewModel vm = (OfertasViewModel)this.BindingContext;
             DetalleOfertaView view = await vm.MostrarDetalleOfertaAsync();
             await Navigation.PushAsync(view);
+        }
+        private void ShowNewPopup(object o, EventArgs e)
+        {
+            
         }
     }
 }
