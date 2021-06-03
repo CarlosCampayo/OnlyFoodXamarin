@@ -10,7 +10,7 @@
     
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Orientation="Vertical">
+            <StackLayout Orientation="Vertical" Padding="10, 15">
                 <Image Source="{Binding Oferta.Imagen, StringFormat='https://onlyfood.blob.core.windows.net/imagenes/{0}'}"
                        Aspect="AspectFit"
                        WidthRequest="200"
@@ -67,7 +67,8 @@
                        FontSize="20"
                         FontAttributes="Bold"
                         TextColor="#000000"
-                        HorizontalOptions="CenterAndExpand"/>
+                        HorizontalOptions="CenterAndExpand"
+                       Margin="0,15,0,5"/>
                 <Frame CornerRadius="20">
                     <Entry Placeholder="Escribe tu comentario" Text="{Binding Mensaje}"/>
                 </Frame>
@@ -76,7 +77,8 @@
                             BackgroundColor="White" 
                             TextColor="#e41b23"
                             BorderWidth="1.5"
-                            CornerRadius="5"/>
+                            CornerRadius="5"
+                            Margin="0,0,0,20"/>
                 <ListView ItemsSource="{Binding Comentarios}" SeparatorColor="#e41b23">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -94,14 +96,15 @@
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                    <ListView.Footer>
+                    <ListView.Footer Margin="0,15,0,0">
                         <Button Text="Cargar más comentarios" 
                             Command="{Binding CargarMasComentarios}"
                             BorderColor="#e41b23" 
                             BackgroundColor="White" 
                             TextColor="#e41b23"
                             BorderWidth="1.5"
-                            CornerRadius="5"/>
+                            CornerRadius="5"
+                                />
                     </ListView.Footer>
                 </ListView>
             </StackLayout>    

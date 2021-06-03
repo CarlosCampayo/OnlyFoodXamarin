@@ -8,8 +8,8 @@
     <NavigationPage.TitleView>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.5*" />
-                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.70*" />
+                <ColumnDefinition Width="0.30*" />
             </Grid.ColumnDefinitions>
             
             <Image Source="https://onlyfood.s3.amazonaws.com/logo_only_r.jpg" HorizontalOptions="FillAndExpand"

@@ -7,19 +7,28 @@
     <!--BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=EliminarUsuarioBuscadorViewModel}">-->
 
     <NavigationPage.TitleView>
-        <Label Text="Eliminar usuario" TextColor="White"
-               FontSize="Medium"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.80*" />
+                <ColumnDefinition Width="0.20*" />
+            </Grid.ColumnDefinitions>
+
+            <Image Source="https://onlyfood.s3.amazonaws.com/logo_only_r.jpg" 
+               HorizontalOptions="CenterAndExpand"
+                Margin="0,0,4,0"
+               Grid.Column="0"/>
+        </Grid>
     </NavigationPage.TitleView>
     
     <ContentPage.Content>
         <StackLayout x:Name="stackUsuarios" 
             BindingContext="{Binding Source={x:Static local:App.ServiceLocator},
                 Path=EliminarUsuarioBuscadorViewModel}">
-            <Label Text="Buscar usuario"
+            <!--<Label Text="Buscar usuario"
                         FontSize="20"
                         FontAttributes="Bold"
                         TextColor="#000000"
-                        HorizontalOptions="CenterAndExpand"/>
+                        HorizontalOptions="CenterAndExpand"/>-->
             <Frame CornerRadius="20">
                 <!--<Entry Text="{Binding Filtro}"
                            x:Name="searchBox"

@@ -9,14 +9,18 @@
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator, viewmodel:OfertasViewModel},Path=OfertasViewModel}">
 
     <NavigationPage.TitleView>
-        <StackLayout Orientation="Horizontal">
-            <Label Text="Ofertas" TextColor="White"
-               FontSize="Medium" HorizontalOptions="Center"/>
-            <!--<Button Text="Buscar" 
-                    HorizontalOptions="End"
-                    HeightRequest="35"
-                    BackgroundColor="White" 
-                    TextColor="#e41b23"
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.70*" />
+                <ColumnDefinition Width="0.30*" />
+            </Grid.ColumnDefinitions>
+
+            <Image Source="https://onlyfood.s3.amazonaws.com/logo_only_r.jpg" 
+                   HorizontalOptions="CenterAndExpand"
+                    Margin="32,0,0,0"
+                   Grid.Column="0"/>
+
+            <Button Text="Buscar" 
                     Command="{Binding Buscar}"
                     Clicked="ShowNewPopup"/>-->
             <ImageButton Source="https://c0.klipartz.com/pngpicture/136/913/sticker-png-magnifying-glass-icon-magnifying-glass-icon-glass-magnifying-glass-icon.png"
