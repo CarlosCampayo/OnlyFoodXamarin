@@ -118,7 +118,7 @@
 
 
 
-    <ContentPage.Content>
+    <!--<ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <Label Text="Mis Ofertas"
                    FontSize="Large"
@@ -179,5 +179,5 @@
                 
             </CollectionView>
         </StackLayout>
-    </ContentPage.Content>
+    </ContentPage.Content>-->
 </ContentPage>

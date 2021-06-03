@@ -23,7 +23,8 @@ namespace OnlyFoodXamarin.Views
 
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            EliminarUsuarioBuscadorViewModel vm = (EliminarUsuarioBuscadorViewModel)this.BindingContext;
+            EliminarUsuarioBuscadorViewModel vm = (EliminarUsuarioBuscadorViewModel)this.stackUsuarios.BindingContext;
+            vm.Filtro = e.NewTextValue;
             vm.BuscarUsuarios.Execute(1);
         }
 

@@ -18,10 +18,10 @@
             <Label Text="Buscar usuario"
                         FontSize="Medium"
                         HorizontalOptions="StartAndExpand"/>
-            <Entry Text="{Binding Filtro}"
+
+            <SearchBar Placeholder="Búsqueda por email o username"
                        x:Name="searchBox"
-                        Placeholder="Introduce el email o username del usuario"
-                        HorizontalOptions="FillAndExpand"/>
+                       HorizontalOptions="FillAndExpand"/>
 
             <StackLayout Orientation="Vertical">
                     <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 
