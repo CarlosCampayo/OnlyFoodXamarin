@@ -7,10 +7,19 @@
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator},Path=CadenasViewModel}">
 
     <NavigationPage.TitleView>
-        <Label Text="Cadenas" TextColor="White"
-               FontSize="Medium"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*" />
+                <ColumnDefinition Width="0.5*" />
+            </Grid.ColumnDefinitions>
+
+        <Image Source="https://onlyfood.s3.amazonaws.com/logo_only_r.jpg" 
+               HorizontalOptions="CenterAndExpand"
+               Grid.Column="0"/>
+
+        </Grid>
     </NavigationPage.TitleView>
-    
+
     <ContentPage.Content>
         <StackLayout Orientation="Vertical">
             <!-- TITLE -->
