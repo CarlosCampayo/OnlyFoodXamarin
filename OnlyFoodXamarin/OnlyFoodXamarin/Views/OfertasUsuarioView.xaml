@@ -21,7 +21,7 @@
                    Margin="32,0,0,0"
                    Grid.Column="0"/>
 
-            <Button Text="Buscar" Command="{Binding Buscar}"
+            <!--<Button Text="Buscar" Command="{Binding Buscar}"
                     FontSize="10" 
                     BackgroundColor="#bc171d" 
                     HorizontalOptions="EndAndExpand" 
@@ -31,7 +31,15 @@
                     BorderWidth="1"
                     CornerRadius="2"
                     Margin="0,0,5,0"
-                    Grid.Column="1"/>
+                    Grid.Column="1"/>-->
+            <ImageButton Source="https://cdn.pixabay.com/photo/2015/12/14/20/36/magnifier-1093184__340.png"
+                         Command="{Binding Buscar}"
+                         HorizontalOptions="EndAndExpand" 
+                         VerticalOptions="Center"
+                         WidthRequest="40"
+                         HeightRequest="40"
+                         BackgroundColor="Transparent"
+                          Grid.Column="1"/>
         </Grid>
     </NavigationPage.TitleView>
 
