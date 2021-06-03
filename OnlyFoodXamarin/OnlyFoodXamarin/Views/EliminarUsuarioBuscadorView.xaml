@@ -21,17 +21,15 @@
                         TextColor="#000000"
                         HorizontalOptions="CenterAndExpand"/>
             <Frame CornerRadius="20">
-                <Entry Text="{Binding Filtro}"
+                <!--<Entry Text="{Binding Filtro}"
                            x:Name="searchBox"
                             Placeholder="Introduce el email o username del usuario"
-                            HorizontalOptions="FillAndExpand"/>
-            </Frame>
-                        FontSize="Medium"
-                        HorizontalOptions="StartAndExpand"/>
-
-            <SearchBar Placeholder="Búsqueda por email o username"
+                            HorizontalOptions="FillAndExpand"/>-->
+                <SearchBar Placeholder="Búsqueda por email o username"
                        x:Name="searchBox"
-                       HorizontalOptions="FillAndExpand"/>
+                        HorizontalOptions="FillAndExpand"/>
+            </Frame>
+
 
             <StackLayout Orientation="Vertical">
                     <ActivityIndicator IsRunning="{Binding ShowLoading}" IsVisible="{Binding ShowLoading}" 

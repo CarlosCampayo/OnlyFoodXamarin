@@ -5,6 +5,7 @@
              xmlns:local="clr-namespace:OnlyFoodXamarin"
              xmlns:viewmodel="clr-namespace:OnlyFoodXamarin.ViewModels"
              xmlns:controls="clr-namespace:OnlyFoodXamarin.Controls"
+             xmlns:converter="clr-namespace:OnlyFoodXamarin.Converters"
              BindingContext="{Binding Source={x:Static local:App.ServiceLocator, viewmodel:OfertasViewModel}, 
                 Path=OfertasUsuarioViewModel}">
 
@@ -16,6 +17,9 @@
 
 
     <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ConverterTituloOfertas x:Key="convertertituloofertas" />
+        </ResourceDictionary>
         <ControlTemplate x:Key="CardViewControlTemplate">
             <Frame BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
                        BackgroundColor="{Binding CardColor}"
@@ -46,7 +50,7 @@
                                    HeightRequest="100"
                                    Aspect="AspectFill" />
                     </Frame>
-                    <Label Text="{Binding CardTitle}"
+                    <Label Text="{Binding CardTitle, Converter={StaticResource convertertituloofertas}}"
                                FontAttributes="Bold"
                                FontSize="Large"
                                VerticalTextAlignment="Center"
