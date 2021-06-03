@@ -191,6 +191,7 @@ namespace OnlyFoodXamarin.ViewModels
                     FiltroPopupPage view = new FiltroPopupPage();
                     FiltroPopUpViewModel viewModel = App.ServiceLocator.FiltroPopUpViewModel;
                     viewModel.Filtro = this.Filtro;
+                    viewModel.Pagina = 1;
                     await viewModel.LoadCadenasAsync();
                     view.BindingContext = viewModel;
                     await PopupNavigation.Instance.PushAsync(view);

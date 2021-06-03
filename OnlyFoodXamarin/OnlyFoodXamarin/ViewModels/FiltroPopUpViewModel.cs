@@ -19,7 +19,6 @@ namespace OnlyFoodXamarin.ViewModels
         public FiltroPopUpViewModel(OnlyFoodService service)
         {
             this.service = service;
-            this.CadenaSeleccionada = new ObservableCollection<Cadena>();
             //this.Cadenas = new ObservableCollection<Cadena>();
             //if (Filtro == null)
             //{
@@ -38,15 +37,14 @@ namespace OnlyFoodXamarin.ViewModels
                 OnPropertyChanged("Cadenas");
             }
         }
-
-        private ObservableCollection<Cadena> _CadenaSeleccionada;
-        public ObservableCollection<Cadena> CadenaSeleccionada
+        private int _Pagina;
+        public int Pagina
         {
-            get { return this._CadenaSeleccionada; }
+            get { return this._Pagina; }
             set
             {
-                this._CadenaSeleccionada = value;
-                OnPropertyChanged("CadenaSeleccionada");
+                this._Pagina = value;
+                OnPropertyChanged("Pagina");
             }
         }
         private FiltroOfertas _Filtro;
@@ -102,13 +100,26 @@ namespace OnlyFoodXamarin.ViewModels
                     //    lista.Add(c.Id);
                     //}
                     //this.Filtro.IdCadenas = lista;
-                    OfertasView view = new OfertasView();
-                    OfertasViewModel viewmodel = App.ServiceLocator.OfertasViewModel;
-                    viewmodel.Filtro = this.Filtro;
-                    await viewmodel.LoadOfertas();
-                    view.BindingContext = viewmodel;
-                    var masterdetail = App.Current.MainPage as MasterDetailPage;
-                    masterdetail.Detail= new NavigationPage(view);
+                    if (this.Pagina == 1)
+                    {
+                        OfertasView view = new OfertasView();
+                        OfertasViewModel viewmodel = App.ServiceLocator.OfertasViewModel;
+                        viewmodel.Filtro = this.Filtro;
+                        await viewmodel.LoadOfertas();
+                        view.BindingContext = viewmodel;
+                        var masterdetail = App.Current.MainPage as MasterDetailPage;
+                        masterdetail.Detail = new NavigationPage(view);
+                    }
+                    else
+                    {
+                        OfertasUsuarioView view = new OfertasUsuarioView();
+                        OfertasUsuarioViewModel viewmodel = App.ServiceLocator.OfertasUsuarioViewModel;
+                        viewmodel.Filtro = this.Filtro;
+                        await viewmodel.CargarMisOfertasAsync();
+                        view.BindingContext = viewmodel;
+                        var masterdetail = App.Current.MainPage as MasterDetailPage;
+                        masterdetail.Detail = new NavigationPage(view);
+                    }
                     await PopupNavigation.Instance.PopAsync();
                 });
             }

@@ -10,8 +10,16 @@
                 Path=OfertasUsuarioViewModel}">
 
     <NavigationPage.TitleView>
-        <Label Text="Mis ofertas" TextColor="White"
-               FontSize="Medium"/>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Mis ofertas" TextColor="White"
+               FontSize="Medium" HorizontalOptions="Center"/>
+            <Button Text="Buscar" 
+                    HorizontalOptions="End"
+                    HeightRequest="35"
+                    BackgroundColor="White" 
+                    TextColor="#e41b23"
+                    Command="{Binding Buscar}"/>
+        </StackLayout>
     </NavigationPage.TitleView>
 
 
@@ -109,6 +117,16 @@
                                     ItemTemplate="{StaticResource PersonTemplate}"
                                     x:Name="cvOfertas"
                                     IsVisible="{Binding ShowContent}">
+            <CollectionView.Footer>
+                <StackLayout Orientation="Vertical">
+                    <Image Source="homer2.gif" IsVisible="{Binding Imagen}"
+                                    HeightRequest="200" HorizontalOptions="Center"
+                                    IsAnimationPlaying="True"/>
+                    <Label Text="D'OH! Todavía no has creado ofertas" IsVisible="{Binding Mensaje}"
+                                    FontSize="Large" HorizontalOptions="Center"/>
+                </StackLayout>
+
+            </CollectionView.Footer>
         </CollectionView>
     </StackLayout>
 </ContentPage>
