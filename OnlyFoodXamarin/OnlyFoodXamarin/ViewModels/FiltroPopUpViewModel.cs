@@ -130,9 +130,9 @@ namespace OnlyFoodXamarin.ViewModels
             {
                 return new Command((cadena) =>
                 {
-                    Cadena c = (Cadena)cadena;
-                    int cad = c.Id;
-                    //int cad = int.Parse(cadena as String);
+                    //Cadena c = (Cadena)cadena;
+                    //int cad = c.Id;
+                    int cad = int.Parse(cadena as String);
                     if (this.Filtro.IdCadenas.Contains(cad))
                     {
                         this.Filtro.IdCadenas.Remove(cad);

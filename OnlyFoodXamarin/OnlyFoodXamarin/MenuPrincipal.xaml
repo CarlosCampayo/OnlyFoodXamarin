@@ -8,8 +8,10 @@
             <StackLayout Orientation="Vertical" >
                 <StackLayout HeightRequest="175" VerticalOptions="Center" >
                     <Grid>
-                        <Image Source="https://live.staticflickr.com/65535/51222125317_ebf13d35b2_c.jpg"
-                           Aspect="AspectFill"
+                        <!--Source="https://live.staticflickr.com/65535/51222125317_ebf13d35b2_c.jpg"-->
+                        <Image 
+                           Source="https://media.istockphoto.com/vectors/pattern-with-fast-food-hand-drawn-colored-icons-doodle-illustrations-vector-id693627708"
+                               Aspect="AspectFill"
                            Opacity="1"/>
                     </Grid>
                 </StackLayout>
